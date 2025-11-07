@@ -150,3 +150,8 @@ textarea {
   font-weight: 100;
   font-display: swap;
 }
+
+input,
+button {
+  border: 0;
+}

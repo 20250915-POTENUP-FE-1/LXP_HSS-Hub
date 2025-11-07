@@ -7,11 +7,11 @@ import './MainPage.css';
 
 function MainPage() {
   return (
-    <main className="main-layout">
+    <main className="main-page">
       {/* 검색창 */}
       <SearchBar />
-      <div className="main-layout-inside">
-        <div className="main-layout-top">
+      <div className="main-page-inside">
+        <div className="main-page-top">
           {/* 카테고리 리스트 */}
           <CategoryList />
           {/* 필터 */}
