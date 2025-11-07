@@ -1,7 +1,12 @@
 import './SignupPage.css';
+import SignupForm from './components/signupForm/SignupForm';
 
 function SignupPage() {
-  return <div>SignupPage</div>;
+  return (
+    <div className="auth-page">
+      <SignupForm />
+    </div>
+  );
 }
 
 export default SignupPage;

@@ -1,7 +1,11 @@
 import './Footer.css';
 
 function Footer() {
-  return <div>Footer</div>;
+  return (
+    <footer className="footer">
+      <p>© 2025 HSS Hub. All rights reserved.</p>
+    </footer>
+  );
 }
 
 export default Footer;

@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 32px; /* 여백 조금만 넉넉하게 */
+  display: flex;
+  align-items: center;
+}
+
+/* ✅ 실제 로고 이미지 스타일 */
+.header-logo-img {
+  height: 32px; /* 필요하면 36px, 40px로 조절해 보기 */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
