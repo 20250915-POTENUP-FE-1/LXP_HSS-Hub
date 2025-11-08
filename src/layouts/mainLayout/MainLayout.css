@@ -1,4 +1,4 @@
-.layout-root {
+.main-layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   background-color: #f5f5f7;
 }
 
-.layout-main {
+.main-layout-content {
   flex: 1;
 
   /* ✅ 가운데 영역 배경색은 따로 안 주고 부모 색 그대로 사용 */
