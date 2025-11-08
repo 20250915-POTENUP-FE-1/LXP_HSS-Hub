@@ -1,0 +1,16 @@
+.main-page {
+  background-color: var(--color-neutral-200);
+  padding: 30px 0;
+}
+
+.main-page-inside {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.main-page-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
