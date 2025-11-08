@@ -5,9 +5,9 @@ import './MainLayout.css';
 
 function MainLayout() {
   return (
-    <div className="layout-root">
+    <div className="main-layout">
       <Header />
-      <main className="layout-main">
+      <main className="main-layout-content">
         <Outlet />
       </main>
       <Footer />
