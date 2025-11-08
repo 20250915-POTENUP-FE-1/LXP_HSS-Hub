@@ -1,0 +1,70 @@
+.lecture-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+
+  background-color: var(--color-white);
+}
+
+.lecture-card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+.lecture-card-thumbnail {
+  height: 160px;
+  object-fit: cover;
+}
+
+.lecture-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  flex: 1;
+
+  width: 100%;
+
+  padding: 16px;
+}
+
+.lecture-card-wrapper .buttons,
+.lecture-card-wrapper .price-enrollment {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+
+  width: 100%;
+  justify-content: space-between;
+}
+
+.lecture-card-wrapper .category {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.lecture-card-wrapper .title {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+.lecture-card-wrapper .author,
+.lecture-card-wrapper .enrollment {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-font-content);
+}
+
+.lecture-card-wrapper .price {
+  font-weight: bold;
+  font-size: 14px;
+}
