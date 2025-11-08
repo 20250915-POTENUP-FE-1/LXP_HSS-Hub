@@ -1,7 +1,20 @@
+import LectureCard from '../lectureCard/LectureCard';
 import './LectureList.css';
 
-function LectureList() {
-  return <div>LectureList</div>;
+function LectureList({ lectures }) {
+  return (
+    <div className="lecture-list">
+      {lectures.length === 0 ? (
+        <div>등록된 강의가 없습니다.</div>
+      ) : (
+        <div className="lecture-list-grid">
+          {lectures.map((lecture, index) => (
+            <LectureCard key={index} lecture={lecture} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default LectureList;
