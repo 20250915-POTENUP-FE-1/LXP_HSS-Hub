@@ -1,6 +1,5 @@
 .main-page {
-  background-color: var(--color-neutral-200);
-  padding: 30px 0;
+  background-color: var(--color-background);
 }
 
 .main-page-inside {
