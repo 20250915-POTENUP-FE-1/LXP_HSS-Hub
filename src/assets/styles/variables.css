@@ -3,8 +3,22 @@
   /* ===== 색상 (Color) ===== */
 
   /* Primary (파란색 계열) */
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
+  --color-primary: #3b82f6;
+  --color-primary-hover: #1d51e0;
+
+  --color-background: #f9fafb;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-font-title: #111827;
+  --color-font-subtitle: #374151;
+  --color-font-content: #475569;
+  --color-font-gray: #9ca3af;
+
+  --color-border: #e1e1e1;
+
+  /* --------------------------------------------------------------------- */
+
   --color-primary-light: rgba(37, 99, 235, 0.15);
 
   /* Success (초록색 계열) */
@@ -49,7 +63,6 @@
   --spacing-lg: 20px;
   --spacing-xl: 24px;
   --spacing-30: 30px;
-  
 
   /* ===== 타이포그래피 (Typography) ===== */
   --font-size-xs: 12px;
