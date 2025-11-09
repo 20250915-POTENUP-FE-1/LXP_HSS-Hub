@@ -3,6 +3,7 @@ import './SearchBar.css';
 import { Search } from 'lucide-react';
 
 function SearchBar({ onSearch }) {
+  
   const [keyword, setKeyword] = useState('');
 
   // 엔터 키로도 검색 가능
