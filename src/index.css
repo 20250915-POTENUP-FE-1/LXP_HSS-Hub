@@ -147,6 +147,11 @@ textarea {
   font-family: inherit;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 /* font 여기서 등록 */
 @font-face {
   font-family: 'Pretendard';
