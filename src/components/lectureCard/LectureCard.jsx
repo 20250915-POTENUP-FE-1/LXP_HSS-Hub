@@ -2,9 +2,9 @@ import Button from '../common/button/Button';
 import { userTeacher } from '../../data/dummy';
 import './LectureCard.css';
 
-function LectureCard({ lecture, type = 'main' }) {
+function LectureCard({ lecture, type = 'main', onClick }) {
   return (
-    <div className="lecture-card">
+    <div className="lecture-card" onClick={onClick}>
       <img
         className="lecture-card-thumbnail"
         src={lecture.thumbnailURL}
