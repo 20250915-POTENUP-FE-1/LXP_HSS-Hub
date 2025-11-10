@@ -4,11 +4,11 @@ import './SignupForm.css';
 
 function SignupForm() {
   const [form, setForm] = useState({
-    email: '',
+    userEmail: '',
     password: '',
     passwordConfirm: '',
-    name: '',
-    role: 'student', // 'student' | 'teacher'
+    userName: '',
+    role: 'STUDENT', // 'STUDENT' | 'TEACHER'
   });
   const [error, setError] = useState('');
 
@@ -47,8 +47,8 @@ function SignupForm() {
         <label className="auth-label">
           이메일
           <input
-            type="email"
-            name="email"
+            type="userEmail"
+            name="userEmail"
             placeholder="이메일을 입력하세요"
             className="auth-input"
             value={form.email}
@@ -98,20 +98,20 @@ function SignupForm() {
             <button
               type="button"
               className={`role-btn ${
-                form.role === 'student' ? 'role-btn--active' : ''
+                form.role === 'STUDENT' ? 'role-btn--active' : ''
               }`}
-              onClick={() => handleRoleChange('student')}
+              onClick={() => handleRoleChange('STUDENT')}
             >
-              ● 수강생
+              수강생
             </button>
             <button
               type="button"
               className={`role-btn ${
-                form.role === 'teacher' ? 'role-btn--active' : ''
+                form.role === 'TEACHER' ? 'role-btn--active' : ''
               }`}
-              onClick={() => handleRoleChange('teacher')}
+              onClick={() => handleRoleChange('TEACHER')}
             >
-              ● 강사
+              강사
             </button>
           </div>
         </div>
