@@ -75,3 +75,18 @@
   font-style: normal;
   font-weight: 500;
 }
+
+.lecture-regist-button {
+  display: block;
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  border: 0;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+  padding: 12px;
+}
+.lecture-regist-button:hover {
+  background-color: var(--color-primary-hover);
+}

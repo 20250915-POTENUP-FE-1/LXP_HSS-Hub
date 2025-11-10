@@ -73,16 +73,21 @@ function DetailPage() {
             </ul>
           </div>
 
-
           {/* 비회원일경우 => 비회원상태입니다. 회원가입하시겠습니까? 이동하기전에 confirm으로 한 번 묻고 확인 시 => 회원가입 페이지로 이동
           학생의 경우 상세 페이지에서 수강신청 버튼이 보여지며, 수강신청을 누르면, 수강신청이 완료되며, 마이 페이지로 이동할지 안할지 선택(이동하기전에 confirm으로 한 번 묻고 확인 시) => 마이페이지 이동한다고하면 마이페이지로 이동
           강사의 경우 상세페이지에서 수강신청 버튼이 보이지 않음 */}
           {/* <div className="lecture-regist-button">
-            <Button variant="primary" block={true} size="lg" radius="md" font- >
+            <Button
+              variant="primary"
+              block={true}
+              size="lg"
+              radius="md"
+              font-size="lg"
+            >
               수강신청
             </Button>
           </div> */}
-          <button></button>
+          <button className="lecture-regist-button">수강신청</button>
         </div>
       </div>
     </div>
