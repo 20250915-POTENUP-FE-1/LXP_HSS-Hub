@@ -5,7 +5,7 @@ import './Button.css';
  *
  * @param {object} props - 컴포넌트에 전달되는 props 객체
  * @param {React.ReactNode} props.children - 버튼 내부에 렌더링할 내용
- * @param {'primary' | 'secondary' | 'ghost' | 'success' | 'danger' | 'warning' | 'outline' | 'link'} [props.variant='primary'] - 버튼 스타일 종류
+ * @param {'primary' | 'secondary' | 'ghost' | 'success' | 'danger' | 'warning' | 'outline' | 'link' | 'clear'} [props.variant='primary'] - 버튼 스타일 종류
  * @param {'sm' | 'md' | 'lg'} [props.size='md'] - 버튼 크기
  * @param {boolean} [props.block=false] - 버튼을 블록(전체 너비)으로 표시할지 여부
  * @param {boolean} [props.disabled=false] - 버튼 비활성화 여부
