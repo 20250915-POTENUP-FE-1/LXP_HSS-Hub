@@ -1,0 +1,17 @@
+.detailpage {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--color-background);
+  padding-top: 32px;
+}
+.detailpage-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+.detailpage-left {
+  flex: 1;
+}
+.detailpage-inform {
+  width: 400px;
+}

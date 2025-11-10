@@ -5,6 +5,7 @@ import Filter from './components/filter/Filter';
 import SearchBar from './components/searchBar/SearchBar';
 import './MainPage.css';
 import { lectures } from '../../data/dummy';
+import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
@@ -14,6 +15,8 @@ function MainPage() {
   const [sortCondition, setSortCondition] = useState('latest');
   //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState('전체');
+  //강의 아이템 클릭시 디테일페이지로 이동 네비게이션 관리
+  const navigate = useNavigate();
 
   // 초기 렌더링 시 전체 강의 표시
   useEffect(() => {
@@ -70,25 +73,31 @@ function MainPage() {
     }
   };
 
+  //강의 버튼 클릭시 디테일페이지로 이동
+  const handleLectureClick = (lectureId) => {
+    navigate(`/detail/${lectureId}`);
+  };
+
   return (
-    <main className="main-page">
+    <main className="mainpage">
       <SearchBar
         keyword={keyword}
         setKeyword={setKeyword}
         onSearch={handleSearch}
       />
 
-      <div className="main-page-inside">
-        <div className="main-page-top">
-          <CategoryList
-            selected={selectedCategory}
-            onCategorySelect={handleCategorySelect}
-          />
-          <Filter value={sortCondition} onChange={handleFilterChange} />
-        </div>
-
-        <LectureList lectures={displayLectures} />
+      <div className="mainpage-top">
+        <CategoryList
+          selected={selectedCategory}
+          onCategorySelect={handleCategorySelect}
+        />
+        <Filter value={sortCondition} onChange={handleFilterChange} />
       </div>
+
+      <LectureList
+        lectures={displayLectures}
+        onLectureClick={handleLectureClick}
+      />
     </main>
   );
 }
