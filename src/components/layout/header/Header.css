@@ -9,6 +9,13 @@
   justify-content: center;
 }
 
+.header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 버튼 간 간격 */
+}
+
 .header-inner {
   width: 100%;
   max-width: 1200px;
@@ -23,6 +30,7 @@
   gap: 3px; /* 글자와 아이콘 사이 여백 */
   font-weight: 700;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .header-logo-text {
