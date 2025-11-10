@@ -2,7 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   background-color: var(--color-background);
-  padding-top: 32px;
+    padding: 32px 0 50px;  
 }
 .detailpage-wrapper {
   display: flex;

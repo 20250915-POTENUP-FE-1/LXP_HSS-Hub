@@ -5,7 +5,6 @@ import Filter from './components/filter/Filter';
 import SearchBar from './components/searchBar/SearchBar';
 import './MainPage.css';
 import { lectures } from '../../data/dummy';
-import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
@@ -15,8 +14,6 @@ function MainPage() {
   const [sortCondition, setSortCondition] = useState('latest');
   //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  //강의 아이템 클릭시 디테일페이지로 이동 네비게이션 관리
-  const navigate = useNavigate();
 
   // 초기 렌더링 시 전체 강의 표시
   useEffect(() => {
@@ -76,10 +73,7 @@ function MainPage() {
     }
   };
 
-   // index 기준 클릭
-  const handleLectureClick = (index) => {
-    navigate(`/detail/${index}`);
-  };
+  
 
   return (
     <main className="mainpage">
@@ -99,7 +93,6 @@ function MainPage() {
 
       <LectureList
         lectures={displayLectures}
-        onLectureClick={handleLectureClick}
       />
     </main>
   );
