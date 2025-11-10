@@ -1,8 +1,14 @@
-.category-select {
-  display: flex;
-  justify-content: flex-start;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-  flex-wrap: wrap;
-  padding: var(--spacing-md) 0;
+.category-list button {
+  margin: 0 6px;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 50vh;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.category-list button.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
 }

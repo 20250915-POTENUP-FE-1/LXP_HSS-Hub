@@ -2,10 +2,7 @@ import { useState } from 'react';
 import './SearchBar.css';
 import { Search } from 'lucide-react';
 
-function SearchBar({ onSearch }) {
-  
-  const [keyword, setKeyword] = useState('');
-
+function SearchBar({ keyword, setKeyword, onSearch }) {
   // 엔터 키로도 검색 가능
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
