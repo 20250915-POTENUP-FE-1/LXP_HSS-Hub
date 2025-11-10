@@ -7,18 +7,19 @@ import './MainPage.css';
 import { lectures } from '../../data/dummy';
 
 function MainPage() {
-  // 화면에 표시할 강의 리스트 상태
+  // 전체 강의 리스트 상태 관리
   const [displayLectures, setDisplayLectures] = useState([]);
-
-  // 현재 선택된 정렬 기준 상태 (latest: 최신순, popularity: 인기순)
+  // 정렬 기준(최신순/인기순) 상태관리
   const [sortCondition, setSortCondition] = useState('latest');
+  //선택된 카테고리 상태 관리
+  const [selectedCategory, setSelectedCategory] = useState('전체');
 
   // 초기 렌더링 시 전체 강의 표시
   useEffect(() => {
     setDisplayLectures(sortLectures(lectures, sortCondition));
   }, []);
 
-  // 🔹 검색 실행 함수
+  // 검색 기능 구현
   const handleSearch = (keyword) => {
     if (!keyword.trim()) {
       alert('검색어를 입력해주세요.');
@@ -34,13 +35,12 @@ function MainPage() {
     setDisplayLectures(sortLectures(filtered, sortCondition));
   };
 
-  // 필터 변경 시 호출 함수
+  // 정렬 기능 구현
   const handleFilterChange = (condition) => {
     setSortCondition(condition);
     setDisplayLectures(sortLectures(displayLectures, condition));
   };
 
-  // 정렬 로직
   const sortLectures = (lectureArray, condition) => {
     const sorted = [...lectureArray];
     if (condition === 'latest') {
@@ -53,13 +53,27 @@ function MainPage() {
     return sorted;
   };
 
+  // 카테고리 선택 기능 구현
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category); // 현재 선택 카테고리 상태 업데이트
+
+    if (category === '전체') {
+      setDisplayLectures(sortLectures(lectures, sortCondition)); // 전체 강의 표시
+    } else {
+      const filtered = lectures.filter(
+        (lec) => lec.category.toLowerCase() === category.toLowerCase(),
+      );
+      setDisplayLectures(sortLectures(filtered, sortCondition)); // 선택한 카테고리 강의만 표시
+    }
+  };
+
   return (
     <main className="main-page">
       <SearchBar onSearch={handleSearch} />
 
       <div className="main-page-inside">
         <div className="main-page-top">
-          <CategoryList />
+          <CategoryList onCategorySelect={handleCategorySelect} />
           <Filter value={sortCondition} onChange={handleFilterChange} />
         </div>
 
