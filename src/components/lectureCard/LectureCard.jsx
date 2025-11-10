@@ -1,8 +1,11 @@
 import Button from '../common/button/Button';
 import { userTeacher } from '../../data/dummy';
 import './LectureCard.css';
+import { useNavigate } from 'react-router-dom';
 
 function LectureCard({ lecture, type = 'MAIN', onClick }) {
+  const navigate = useNavigate();
+
   return (
     <div className="lecture-card" onClick={onClick}>
       <img
@@ -26,7 +29,11 @@ function LectureCard({ lecture, type = 'MAIN', onClick }) {
         {type === 'STUDENT' && <Button variant="primary">수강하기</Button>}
         {type === 'TEACHER' && (
           <div className="buttons">
-            <Button variant="ghost" size="sm" onClick={() => {}}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate(`edit/${lecture.lectureId}`)}
+            >
               수정
             </Button>
             <Button variant="ghost" size="sm" onClick={() => {}}>
