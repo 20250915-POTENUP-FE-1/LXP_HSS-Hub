@@ -7,6 +7,7 @@ import './MainPage.css';
 import { lectures } from '../../data/dummy';
 
 function MainPage() {
+  const [keyword, setKeyword] = useState('');
   // 전체 강의 리스트 상태 관리
   const [displayLectures, setDisplayLectures] = useState([]);
   // 정렬 기준(최신순/인기순) 상태관리
@@ -31,6 +32,7 @@ function MainPage() {
         lec.lectureTitle.toLowerCase().includes(keyword.toLowerCase()) ||
         lec.description.toLowerCase().includes(keyword.toLowerCase()),
     );
+    setSelectedCategory('전체');
 
     setDisplayLectures(sortLectures(filtered, sortCondition));
   };
@@ -59,8 +61,9 @@ function MainPage() {
 
     if (category === '전체') {
       setDisplayLectures(sortLectures(lectures, sortCondition)); // 전체 강의 표시
+      setKeyword('');
     } else {
-      const filtered = lectures.filter(
+      const filtered = displayLectures.filter(
         (lec) => lec.category.toLowerCase() === category.toLowerCase(),
       );
       setDisplayLectures(sortLectures(filtered, sortCondition)); // 선택한 카테고리 강의만 표시
@@ -69,11 +72,18 @@ function MainPage() {
 
   return (
     <main className="main-page">
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar
+        keyword={keyword}
+        setKeyword={setKeyword}
+        onSearch={handleSearch}
+      />
 
       <div className="main-page-inside">
         <div className="main-page-top">
-          <CategoryList onCategorySelect={handleCategorySelect} />
+          <CategoryList
+            selected={selectedCategory}
+            onCategorySelect={handleCategorySelect}
+          />
           <Filter value={sortCondition} onChange={handleFilterChange} />
         </div>
 
