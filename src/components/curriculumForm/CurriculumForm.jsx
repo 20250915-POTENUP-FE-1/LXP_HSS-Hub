@@ -2,7 +2,13 @@ import CurriculumInput from '../../components/curriculumInput/CurriculumInput';
 import Button from '../common/button/Button';
 import './CurriculumForm.css';
 
-function CurriculumForm({ formData, setFormData, handleSubmit, handlePrev }) {
+function CurriculumForm({
+  formData,
+  setFormData,
+  handleSubmit,
+  handlePrev,
+  mode = 'regist',
+}) {
   const handleChangeLesson = (e) => {
     const target = e.target.dataset.order;
     setFormData((prev) => {
@@ -75,7 +81,9 @@ function CurriculumForm({ formData, setFormData, handleSubmit, handlePrev }) {
         <Button variant="ghost" size="md" onClick={() => handlePrev()}>
           이전
         </Button>
-        <Button onClick={(e) => handleSubmit(e)}>등록</Button>
+        <Button onClick={(e) => handleSubmit(e)}>
+          {mode === 'regist' ? '등록' : '수정'}
+        </Button>
       </div>
     </form>
   );
