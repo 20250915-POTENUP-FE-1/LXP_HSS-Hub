@@ -1,14 +1,12 @@
-.main-page {
+/* 메인페이지, 메인상세페이지 공통 레이아웃 css  */
+.mainpage {
   max-width: 1200px;
   margin: 0 auto;
   background-color: var(--color-background);
-  padding-top: 30px;
+  padding-top: 32px;
 }
 
-.main-page-inside {
-}
-
-.main-page-top {
+.mainpage-top {
   display: flex;
   justify-content: space-between;
   align-items: center;

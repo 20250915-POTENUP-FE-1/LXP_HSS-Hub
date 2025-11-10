@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       { path: 'login', element: <LoginPage /> },
       { path: 'signup', element: <SignupPage /> },
       {
-        path: 'detail',
+        path: 'detail/:lectureId', // 해당 강의 카드 클릭시 디테일페이지로이동
         element: <DetailPage />,
       },
       {
