@@ -1,0 +1,9 @@
+.curriculum-item {
+  margin-bottom: 16px;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.curriculum-item:last-child {
+  margin-bottom: 0;
+}

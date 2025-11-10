@@ -44,7 +44,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '웹 개발의 핵심, 자바스크립트를 A부터 Z까지 심층적으로 다룹니다. 실전 프로젝트를 통해 포트폴리오를 완성하세요.',
-    thumbnailURL: 'src/assets/images/thumbnail_01.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_01.jpg',
     price: 180000,
     enrollmentCount: 1520,
     createdAt: '2025-01-15T10:00:00Z',
@@ -69,7 +69,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '가장 인기 있는 프론트엔드 라이브러리, 리액트의 기본기를 다집니다.',
-    thumbnailURL: 'src/assets/images/thumbnail_02.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_02.jpg',
     price: 120000,
     enrollmentCount: 850,
     createdAt: '2025-09-05T14:00:00Z',
@@ -92,7 +92,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '코딩이 처음이신 분들을 위한 파이썬 입문 강의입니다. 설치부터 기본 문법까지.',
-    thumbnailURL: 'src/assets/images/thumbnail_03.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_03.jpg',
     price: 99000,
     enrollmentCount: 2100,
     createdAt: '2024-11-20T11:00:00Z',
@@ -111,7 +111,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '데이터 분석의 필수 언어 SQL! 기초 문법부터 실무 쿼리 작성까지.',
-    thumbnailURL: 'src/assets/images/thumbnail_04.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_04.jpg',
     price: 150000,
     enrollmentCount: 1300,
     createdAt: '2025-03-10T09:00:00Z',
@@ -131,7 +131,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       'OpenAI API를 활용하여 실제 작동하는 AI 챗봇 서비스를 만들어봅니다.',
-    thumbnailURL: 'src/assets/images/thumbnail_05.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_05.jpg',
     price: 165000,
     enrollmentCount: 780,
     createdAt: '2025-10-20T18:00:00Z', // 가장 최신
@@ -150,7 +150,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '현대 웹 개발의 표준, Next.js를 이용한 서버 사이드 렌더링과 정적 사이트 생성을 배웁니다.',
-    thumbnailURL: 'src/assets/images/thumbnail_06.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_06.jpg',
     price: 190000,
     enrollmentCount: 950,
     createdAt: '2025-06-15T12:00:00Z',
@@ -170,7 +170,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '데이터 분석의 핵심 라이브러리 Pandas! 데이터 정제부터 시각화까지 한번에.',
-    thumbnailURL: 'src/assets/images/thumbnail_07.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_07.jpg',
     price: 135000,
     enrollmentCount: 1120,
     createdAt: '2025-02-28T16:00:00Z',
@@ -189,7 +189,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '프로그래밍의 핵심 패러다임, OOP를 Java 언어를 통해 확실하게 이해합니다.',
-    thumbnailURL: 'src/assets/images/thumbnail_08.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_08.jpg',
     price: 140000,
     enrollmentCount: 980,
     createdAt: '2025-04-01T09:00:00Z',
@@ -209,7 +209,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       'WebUI 설치부터 프롬프트 엔지니어링, LoRA 활용까지. AI 아티스트가 되어보세요.',
-    thumbnailURL: 'src/assets/images/thumbnail_09.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_09.jpg',
     price: 110000,
     enrollmentCount: 650,
     createdAt: '2025-08-10T11:00:00Z',
@@ -228,7 +228,7 @@ const lectures = [
     authorId: 't1e2a3c4h5e6r7',
     description:
       '비전공자도 이해할 수 있는 CS 핵심 지식. 자료구조, 알고리즘, 네트워크 기초.',
-    thumbnailURL: 'src/assets/images/thumbnail_10.jpg',
+    thumbnailURL: '/src/assets/images/thumbnail_10.jpg',
     price: 170000,
     enrollmentCount: 1450,
     createdAt: '2024-12-01T13:00:00Z', // 오래됨
