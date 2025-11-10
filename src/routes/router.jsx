@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         children: [
           { index: true, element: <MyPage /> },
           { path: 'regist', element: <RegistPage /> },
-          { path: 'edit', element: <EditPage /> },
+          { path: 'edit/:lectureId', element: <EditPage /> },
         ],
       },
     ],
