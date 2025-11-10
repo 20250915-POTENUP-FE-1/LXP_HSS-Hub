@@ -60,8 +60,8 @@ function MainPage() {
     setSelectedCategory(category); // 현재 선택 카테고리 상태 업데이트
 
     if (category === '전체') {
+      setKeyword(''); //키워드 초기화
       setDisplayLectures(sortLectures(lectures, sortCondition)); // 전체 강의 표시
-      setKeyword('');
     } else {
       const filtered = displayLectures.filter(
         (lec) => lec.category.toLowerCase() === category.toLowerCase(),
