@@ -50,10 +50,10 @@ function SignupForm() {
   };
 
   return (
-    <div className="form-card">
-      <h1 className="form-title">회원가입</h1>
+    <div className="signupForm-card">
+      <h1 className="signupForm-title">회원가입</h1>
 
-      <form className="form-container" onSubmit={handleSubmit}>
+      <form className="signupForm-container" onSubmit={handleSubmit}>
         {/* 이메일 */}
         <FormField label="이메일" htmlFor="signup-email" required>
           <Input
@@ -112,11 +112,11 @@ function SignupForm() {
 
         {/* 역할 선택 */}
         <FormField label="유형" required>
-          <div className="role-toggle">
+          <div className="signupForm-roleToggle">
             <button
               type="button"
-              className={`role-btn ${
-                form.role === 'STUDENT' ? 'role-btn--active' : ''
+              className={`signupForm-roleBtn ${
+                form.role === 'STUDENT' ? 'signupForm-roleBtn--active' : ''
               }`}
               onClick={() => handleRoleChange('STUDENT')}
             >
@@ -124,8 +124,8 @@ function SignupForm() {
             </button>
             <button
               type="button"
-              className={`role-btn ${
-                form.role === 'TEACHER' ? 'role-btn--active' : ''
+              className={`signupForm-roleBtn ${
+                form.role === 'TEACHER' ? 'signupForm-roleBtn--active' : ''
               }`}
               onClick={() => handleRoleChange('TEACHER')}
             >
@@ -135,7 +135,7 @@ function SignupForm() {
         </FormField>
 
         {/* 에러 메시지 */}
-        {error && <p className="form-error">{error}</p>}
+        {error && <p className="signupForm-error">{error}</p>}
 
         {/* 회원가입 버튼 */}
         <Button type="submit" variant="primary" size="lg" block>
@@ -143,7 +143,7 @@ function SignupForm() {
         </Button>
       </form>
 
-      <p className="form-bottom-text">
+      <p className="signupForm-bottomText">
         이미 계정이 있으신가요?{' '}
         <Button
           variant="link"

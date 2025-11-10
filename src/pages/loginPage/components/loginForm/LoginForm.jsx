@@ -26,10 +26,10 @@ function LoginForm() {
   };
 
   return (
-    <div className="form-card">
-      <h1 className="form-title">로그인</h1>
+    <div className="loginForm-card">
+      <h1 className="loginForm-title">로그인</h1>
 
-      <form className="form-container" onSubmit={handleSubmit}>
+      <form className="loginForm-container" onSubmit={handleSubmit}>
         <FormField label="이메일" htmlFor="login-email" required>
           <Input
             id="login-email"
@@ -52,14 +52,14 @@ function LoginForm() {
           />
         </FormField>
 
-        {error && <p className="form-error">{error}</p>}
+        {error && <p className="loginForm-error">{error}</p>}
 
         <Button type="submit" variant="primary" size="lg" block>
           로그인
         </Button>
       </form>
 
-      <p className="form-bottom-text">
+      <p className="loginForm-bottomText">
         계정이 없으신가요?{' '}
         <Button
           variant="link"

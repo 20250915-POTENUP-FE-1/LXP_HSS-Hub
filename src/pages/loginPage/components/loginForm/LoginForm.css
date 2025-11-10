@@ -1,4 +1,4 @@
-.form-card {
+.loginForm-card {
   width: 420px;
   padding: 40px 36px 32px;
   background-color: #ffffff;
@@ -7,51 +7,52 @@
   text-align: left;
 }
 
-.form-title {
+.loginForm-title {
   text-align: center;
   font-size: 24px;
   font-weight: var(--font-weight-bold);
   margin-bottom: 32px;
 }
 
-.form-container {
+.loginForm-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-error {
+.loginForm-error {
   margin-top: 4px;
   font-size: 12px;
   color: var(--color-danger);
 }
 
-.form-bottom-text {
+.loginForm-bottomText {
   margin-top: 16px;
   font-size: 13px;
   text-align: center;
   color: var(--color-text-muted);
 }
 
-.form-bottom-text a {
+.loginForm-bottomText a {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
 }
 
-.form-button {
+.loginForm-button {
   margin-top: 8px;
   width: 100%;
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: 999px;
   border: none;
   background-color: var(--color-primary);
   color: #f9fafb;
   font-size: 14px;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.form-button:hover {
+.loginForm-button:hover {
   background-color: var(--color-primary-hover);
 }
