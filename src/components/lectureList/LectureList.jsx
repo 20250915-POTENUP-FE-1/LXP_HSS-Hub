@@ -1,7 +1,7 @@
 import LectureCard from '../lectureCard/LectureCard';
 import './LectureList.css';
 
-function LectureList({ lectures, onLectureClick }) {
+function LectureList({ lectures, onLectureClick, type }) {
   return (
     <div className="lecture-list">
       {lectures.length === 0 ? (
@@ -13,6 +13,7 @@ function LectureList({ lectures, onLectureClick }) {
               key={index}
               lecture={lecture}
               onClick={() => onLectureClick(lecture.lectureId)}
+              type={type}
             />
           ))}
         </div>

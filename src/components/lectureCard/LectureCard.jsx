@@ -2,7 +2,7 @@ import Button from '../common/button/Button';
 import { userTeacher } from '../../data/dummy';
 import './LectureCard.css';
 
-function LectureCard({ lecture, type = 'main', onClick }) {
+function LectureCard({ lecture, type = 'MAIN', onClick }) {
   return (
     <div className="lecture-card" onClick={onClick}>
       <img
@@ -13,22 +13,18 @@ function LectureCard({ lecture, type = 'main', onClick }) {
       <div className="lecture-card-wrapper">
         <div className="category">{lecture.category}</div>
         <div className="title">{lecture.lectureTitle}</div>
-        {type !== 'teacher' && (
+        {type !== 'TEACHER' && (
           // 임시
           <div className="author">{userTeacher.userName}</div>
         )}
-        {type === 'main' && (
+        {type === 'MAIN' && (
           <div className="price-enrollment">
             <div className="price">{lecture.price.toLocaleString()}원</div>
             <div className="enrollment">수강생 {lecture.enrollmentCount}명</div>
           </div>
         )}
-        {type === 'student' && (
-          <Button className="go" size="md" block="false">
-            수강하기
-          </Button>
-        )}
-        {type === 'teacher' && (
+        {type === 'STUDENT' && <Button variant="primary">수강하기</Button>}
+        {type === 'TEACHER' && (
           <div className="buttons">
             <Button variant="ghost" size="sm" onClick={() => {}}>
               수정
