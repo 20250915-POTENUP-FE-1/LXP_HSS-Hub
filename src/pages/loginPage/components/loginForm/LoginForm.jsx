@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../../../components/common/button/Button';
 import './LoginForm.css';
 
 function LoginForm() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -56,9 +59,14 @@ function LoginForm() {
 
       <p className="auth-bottom-text">
         계정이 없으신가요?{' '}
-        <Link to="/signup" className="auth-link">
+        <Button
+          variant="link"
+          size="md"
+          style={{ fontSize: '13px' }}
+          onClick={() => navigate('/signup')}
+        >
           회원가입
-        </Link>
+        </Button>
       </p>
     </div>
   );

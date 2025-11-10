@@ -60,7 +60,7 @@
   border-radius: 8px;
   border: none;
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: #f9fafb;
   font-size: 14px;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
@@ -103,5 +103,5 @@
 .role-btn--active {
   border-color: var(--color-primary);
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: #f9fafb;
 }

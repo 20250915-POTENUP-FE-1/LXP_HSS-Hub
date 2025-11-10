@@ -33,6 +33,7 @@
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid var(--color-border);
+  background-color: var(--color-background);
   font-size: 14px;
 }
 
@@ -59,7 +60,7 @@
   border-radius: 8px;
   border: none;
   background-color: var(--color-primary);
-  color: #ffffff;
+  color: #f9fafb;
   font-size: 14px;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;

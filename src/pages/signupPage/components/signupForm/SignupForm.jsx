@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Input from '../../../../components/common/form/input/Input';
 import './SignupForm.css';
 
 function SignupForm() {
@@ -70,14 +71,7 @@ function SignupForm() {
 
         <label className="auth-label">
           비밀번호 확인
-          <input
-            type="password"
-            name="passwordConfirm"
-            placeholder="비밀번호를 다시 입력하세요"
-            className="auth-input"
-            value={form.passwordConfirm}
-            onChange={handleChange}
-          />
+          <Input placeholder="비밀번호를 다시 입력하세요" />
         </label>
 
         <label className="auth-label">
