@@ -12,15 +12,23 @@
 .header-inner {
   width: 100%;
   max-width: 1200px;
-  padding: 0 32px; /* 여백 조금만 넉넉하게 */
+  padding: 0 32px; /* 여백 */
   display: flex;
   align-items: center;
 }
 
-/* ✅ 실제 로고 이미지 스타일 */
-.header-logo-img {
-  height: 32px; /* 필요하면 36px, 40px로 조절해 보기 */
-  width: auto;
-  object-fit: contain;
-  display: block;
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 3px; /* 글자와 아이콘 사이 여백 */
+  font-weight: 700;
+  font-size: 30px;
+}
+
+.header-logo-text {
+  color: #000000;
+}
+
+.header-logo-icon {
+  color: var(--color-primary);
 }

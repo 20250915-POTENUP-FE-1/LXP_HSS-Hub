@@ -1,15 +1,15 @@
 import './Header.css';
+import { Infinity as Inf } from 'lucide-react';
 
 function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        {/* ✅ PNG 안에 아이콘 + HSSHUB 글자까지 다 있으니까 span 제거 */}
-        <img
-          src="/hsshub-logo.png"
-          alt="HSSHUB 로고"
-          className="header-logo-img"
-        />
+        {/* ✅ HSS + Lucide Infinity 아이콘 조합 */}
+        <div className="header-logo">
+          <span className="header-logo-text">HSS</span>
+          <Inf size={40} strokeWidth={3} className="header-logo-icon" />
+        </div>
       </div>
     </header>
   );

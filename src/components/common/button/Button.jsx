@@ -22,6 +22,7 @@ function Button({
   onClick,
   radius = 'sm',
   type = 'button',
+  ...rest
 }) {
   const className = [
     'btn',
@@ -39,6 +40,7 @@ function Button({
       disabled={disabled}
       onClick={onClick}
       type={type}
+      {...rest}
     >
       {children}
     </button>
