@@ -5,9 +5,11 @@ import { lectures } from '../../data/dummy';
 import { useParams } from 'react-router-dom';
 
 function DetailPage() {
-  const { lectureId } = useParams();
+  const { lectureId } = useParams(); // URL param 이름과 맞춤
 
   const lecture = lectures.find((lec) => lec.lectureId === lectureId);
+
+  if (!lecture) return <div>해당 강의를 찾을 수 없습니다.</div>;
 
   return (
     <div className="detailpage">

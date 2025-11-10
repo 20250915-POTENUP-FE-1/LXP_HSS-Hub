@@ -76,9 +76,9 @@ function MainPage() {
     }
   };
 
-  //강의 버튼 클릭시 디테일페이지로 이동
-  const handleLectureClick = (lectureId) => {
-    navigate(`/detail/${lectureId}`);
+   // index 기준 클릭
+  const handleLectureClick = (index) => {
+    navigate(`/detail/${index}`);
   };
 
   return (

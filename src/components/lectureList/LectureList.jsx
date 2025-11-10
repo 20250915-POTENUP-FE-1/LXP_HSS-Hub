@@ -1,7 +1,7 @@
 import LectureCard from '../lectureCard/LectureCard';
 import './LectureList.css';
 
-function LectureList({ lectures, onLectureClick }) {
+function LectureList({ lectures, onLectureClick  }) {
   return (
     <div className="lecture-list">
       {lectures.length === 0 ? (
@@ -9,11 +9,7 @@ function LectureList({ lectures, onLectureClick }) {
       ) : (
         <div className="lecture-list-grid">
           {lectures.map((lecture, index) => (
-            <LectureCard
-              key={index}
-              lecture={lecture}
-              onClick={() => onLectureClick(lecture.lectureId)}
-            />
+            <LectureCard key={index} lecture={lecture} onClick={() => onLectureClick(index)}/>
           ))}
         </div>
       )}
