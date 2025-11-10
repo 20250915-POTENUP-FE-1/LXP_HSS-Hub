@@ -1,9 +1,14 @@
 import CurriculumItem from './components/curriculumItem/CurriculumItem';
 import Button from '../../../src/components/common/button/Button';
 import './DetailPage.css';
-// import  lectures '../../data/dummy';
+import { lectures } from '../../data/dummy';
+import { useParams } from 'react-router-dom';
 
-function DetailPage({ lecture }) {
+function DetailPage() {
+  const { lectureId } = useParams();
+
+  const lecture = lectures.find((lec) => lec.lectureId === lectureId);
+
   return (
     <div className="detailpage">
       <div className="detailpage-wrapper">
@@ -54,6 +59,7 @@ function DetailPage({ lecture }) {
 
           <div className="actions">
             {/* Button 컴포넌트 사용, variant="secondary" → 스타일 옵션 지정 */}
+            {/* 버튼 잘 불러오고 있는거맞는지? @@ */}
             <Button variant="secondary">수강신청</Button>
           </div>
         </div>
