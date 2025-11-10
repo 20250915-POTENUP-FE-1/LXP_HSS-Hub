@@ -94,7 +94,7 @@ function MainPage() {
           selected={selectedCategory}
           onCategorySelect={handleCategorySelect}
         />
-        <Filter value={sortCondition} onChange={handleLectureClick} />
+        <Filter value={sortCondition} onChange={handleFilterChange} />
       </div>
 
       <LectureList
