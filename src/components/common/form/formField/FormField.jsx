@@ -5,7 +5,6 @@ function FormField({
   label,
   htmlFor,
   required = false,
-  helperText,
   error,
   size, // 'sm' | 'lg'
   children,

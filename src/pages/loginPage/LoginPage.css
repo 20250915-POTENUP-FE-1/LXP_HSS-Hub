@@ -1,7 +1,49 @@
-.login-page {
-  width: 100%;
+.form-card {
+  width: 420px;
+  padding: 40px 36px 32px;
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  text-align: left;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 32px;
+}
+
+.form-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--color-danger);
+}
+
+.form-bottom-text {
+  margin-top: 16px;
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.form-bottom-text a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+/* 로그인 페이지 전체 가운데 정렬 */
+.login-page {
+  display: flex;
+  justify-content: center; /* 가로 가운데 */
+  align-items: center; /* 세로 가운데 */
+  height: 100vh;
+  background-color: var(--color-background); /* 페이지 배경색 */
 }

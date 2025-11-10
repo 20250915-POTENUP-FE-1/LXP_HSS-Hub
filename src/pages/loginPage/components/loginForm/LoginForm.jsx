@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../../components/common/button/Button';
+import Input from '../../../../components/common/form/input/Input';
+import FormField from '../../../../components/common/form/formField/FormField';
 import './LoginForm.css';
 
 function LoginForm() {
@@ -24,40 +26,40 @@ function LoginForm() {
   };
 
   return (
-    <div className="auth-card">
-      <h1 className="auth-title">로그인</h1>
+    <div className="form-card">
+      <h1 className="form-title">로그인</h1>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label className="auth-label">
-          이메일
-          <input
+      <form className="form-container" onSubmit={handleSubmit}>
+        <FormField label="이메일" htmlFor="login-email" required>
+          <Input
+            id="login-email"
             type="email"
             placeholder="이메일을 입력하세요"
-            className="auth-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
-        </label>
+        </FormField>
 
-        <label className="auth-label">
-          비밀번호
-          <input
+        <FormField label="비밀번호" htmlFor="login-password" required>
+          <Input
+            id="login-password"
             type="password"
             placeholder="비밀번호를 입력하세요"
-            className="auth-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
-        </label>
+        </FormField>
 
-        {error && <p className="auth-error">{error}</p>}
+        {error && <p className="form-error">{error}</p>}
 
-        <button type="submit" className="auth-button">
+        <Button type="submit" variant="primary" size="lg" block>
           로그인
-        </button>
+        </Button>
       </form>
 
-      <p className="auth-bottom-text">
+      <p className="form-bottom-text">
         계정이 없으신가요?{' '}
         <Button
           variant="link"

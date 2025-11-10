@@ -1,16 +1,21 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../../../components/common/form/input/Input';
+import FormField from '../../../../components/common/form/formField/FormField';
+import Button from '../../../../components/common/button/Button';
 import './SignupForm.css';
 
 function SignupForm() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
+    userName: '',
     userEmail: '',
     password: '',
     passwordConfirm: '',
-    userName: '',
-    role: 'STUDENT', // 'STUDENT' | 'TEACHER'
+    role: 'STUDENT',
   });
+
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
@@ -26,7 +31,12 @@ function SignupForm() {
     e.preventDefault();
     setError('');
 
-    if (!form.email || !form.password || !form.passwordConfirm || !form.name) {
+    if (
+      !form.userEmail ||
+      !form.password ||
+      !form.passwordConfirm ||
+      !form.userName
+    ) {
       setError('모든 항목을 입력해주세요.');
       return;
     }
@@ -36,58 +46,72 @@ function SignupForm() {
       return;
     }
 
-    // TODO: Firebase 회원가입 로직 연결
     console.log('회원가입 시도', form);
   };
 
   return (
-    <div className="auth-card">
-      <h1 className="auth-title">회원가입</h1>
+    <div className="form-card">
+      <h1 className="form-title">회원가입</h1>
 
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <label className="auth-label">
-          이메일
-          <input
-            type="userEmail"
+      <form className="form-container" onSubmit={handleSubmit}>
+        {/* 이메일 */}
+        <FormField label="이메일" htmlFor="signup-email" required>
+          <Input
+            id="signup-email"
+            type="email"
             name="userEmail"
             placeholder="이메일을 입력하세요"
-            className="auth-input"
-            value={form.email}
+            value={form.userEmail}
             onChange={handleChange}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
-        </label>
+        </FormField>
 
-        <label className="auth-label">
-          비밀번호
-          <input
+        {/* 비밀번호 */}
+        <FormField label="비밀번호" htmlFor="signup-password" required>
+          <Input
+            id="signup-password"
             type="password"
             name="password"
             placeholder="비밀번호를 입력하세요"
-            className="auth-input"
             value={form.password}
             onChange={handleChange}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
-        </label>
+        </FormField>
 
-        <label className="auth-label">
-          비밀번호 확인
-          <Input placeholder="비밀번호를 다시 입력하세요" />
-        </label>
-
-        <label className="auth-label">
-          이름
-          <input
-            type="text"
-            name="name"
-            placeholder="이름을 입력하세요"
-            className="auth-input"
-            value={form.name}
+        {/* 비밀번호 확인 */}
+        <FormField
+          label="비밀번호 확인"
+          htmlFor="signup-password-confirm"
+          required
+        >
+          <Input
+            id="signup-password-confirm"
+            type="password"
+            name="passwordConfirm"
+            placeholder="비밀번호를 다시 입력하세요"
+            value={form.passwordConfirm}
             onChange={handleChange}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
-        </label>
+        </FormField>
 
-        <div className="auth-label">
-          유형
+        {/* 이름 */}
+        <FormField label="이름" htmlFor="signup-name" required>
+          <Input
+            id="signup-name"
+            type="text"
+            name="userName"
+            placeholder="이름을 입력하세요"
+            value={form.userName}
+            onChange={handleChange}
+            style={{ backgroundColor: '#F9FAFB' }}
+          />
+        </FormField>
+
+        {/* 역할 선택 */}
+        <FormField label="유형" required>
           <div className="role-toggle">
             <button
               type="button"
@@ -108,20 +132,27 @@ function SignupForm() {
               강사
             </button>
           </div>
-        </div>
+        </FormField>
 
-        {error && <p className="auth-error">{error}</p>}
+        {/* 에러 메시지 */}
+        {error && <p className="form-error">{error}</p>}
 
-        <button type="submit" className="auth-button">
+        {/* 회원가입 버튼 */}
+        <Button type="submit" variant="primary" size="lg" block>
           회원가입
-        </button>
+        </Button>
       </form>
 
-      <p className="auth-bottom-text">
+      <p className="form-bottom-text">
         이미 계정이 있으신가요?{' '}
-        <Link to="/login" className="auth-link">
-          로그인하기
-        </Link>
+        <Button
+          variant="link"
+          size="md"
+          style={{ fontSize: '13px' }}
+          onClick={() => navigate('/login')}
+        >
+          로그인
+        </Button>
       </p>
     </div>
   );
