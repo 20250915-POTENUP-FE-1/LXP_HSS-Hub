@@ -1,0 +1,36 @@
+.curriculum-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+
+  padding: 32px;
+  gap: 32px;
+}
+
+.curriculum-length {
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.curriculum-form .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+
+  gap: 16px;
+}
+
+.curriculum-form .buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
