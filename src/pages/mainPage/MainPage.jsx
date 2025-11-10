@@ -64,12 +64,15 @@ function MainPage() {
 
     if (category === '전체') {
       setKeyword(''); //키워드 초기화
-      setDisplayLectures(sortLectures(lectures, sortCondition)); // 전체 강의 표시
+      // 전체 강의 표시
+      setDisplayLectures(sortLectures(lectures, sortCondition));
     } else {
-      const filtered = displayLectures.filter(
+      // 선택한 카테고리의 강의만 표시 (검색 결과와 무관하게 전체 lectures 기준)
+      const filtered = lectures.filter(
         (lec) => lec.category.toLowerCase() === category.toLowerCase(),
       );
-      setDisplayLectures(sortLectures(filtered, sortCondition)); // 선택한 카테고리 강의만 표시
+      // 선택한 카테고리 강의만 표시
+      setDisplayLectures(sortLectures(filtered, sortCondition));
     }
   };
 
