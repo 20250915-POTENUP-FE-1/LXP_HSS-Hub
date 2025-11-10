@@ -8,8 +8,8 @@ function Filter({ value, onChange }) {
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
-      <option value="latest">최신순</option>
-      <option value="popularity">인기순</option>
+      <option value="latest">최신 순</option>
+      <option value="popularity">인기 순</option>
     </select>
   );
 }
