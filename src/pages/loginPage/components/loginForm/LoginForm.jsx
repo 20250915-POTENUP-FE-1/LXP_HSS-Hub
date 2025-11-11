@@ -12,6 +12,12 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // 비밀번호 유효성 검사 (8~15자, 영문+숫자 포함)
+  const validatePassword = (value) => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/;
+    return regex.test(value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
@@ -23,6 +29,16 @@ function LoginForm() {
 
     // TODO: 나중에 Firebase 로그인 로직(userService) 연결
     console.log('로그인 시도', { email, password });
+  };
+
+  // 비밀번호 입력할 때 실시간으로 에러 제거
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (error && validatePassword(value)) {
+      setError('');
+    }
   };
 
   return (
