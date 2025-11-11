@@ -58,9 +58,10 @@ function MainPage() {
     const data = await getLectures('all', sortCondition, keyword);
     setSelectedCategory('all');
     setDisplayLectures(data);
-  }
+  };
 
   // 정렬 기능 구현
+  /*
   const handleFilterChange = (condition) => {
     setSortCondition(condition);
     setDisplayLectures(sortLectures(displayLectures, condition));
@@ -76,6 +77,12 @@ function MainPage() {
       sorted.sort((a, b) => b.enrollmentCount - a.enrollmentCount);
     }
     return sorted;
+  };
+  */
+  const handleFilterChange = async (condition) => {
+    setSortCondition(condition);
+    const data = await getLectures(selectedCategory, condition, keyword);
+    setDisplayLectures(data);
   };
 
   // 카테고리 선택 기능 구현
@@ -97,7 +104,6 @@ function MainPage() {
     }
   };
   */
-  
 
   //강의 클릭시 해당 강의 상세 페이지 이동
   const handleLectureClick = (lectureId) => {
