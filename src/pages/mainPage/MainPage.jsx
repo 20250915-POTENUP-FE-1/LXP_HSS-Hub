@@ -7,14 +7,13 @@ import './MainPage.css';
 import { lectures } from '../../data/dummy';
 import { useNavigate } from 'react-router-dom';
 import { getLectures } from '../../services/lectureService';
-// import { db } from "../../firebase/config"; // Firebase 초기화된 db
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
   // 전체 강의 리스트 상태 관리
   const [displayLectures, setDisplayLectures] = useState([]);
   // 정렬 기준(최신순/인기순) 상태관리
-  const [sortCondition, setSortCondition] = useState('latest');
+  const [sortCondition, setSortCondition] = useState('createdAt');
   //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState('all');
   // 강의 클릭시 해당 디테일 페이지 이동
@@ -26,12 +25,16 @@ function MainPage() {
   // }, []);
   useEffect(() => {
     const fetchLectures = async () => {
-      const data = await getLectures('all', 'createdAt', '');
+      const data = await getLectures(
+        selectedCategory,
+        sortCondition,
+        keyword || '',
+      );
       console.log('Firebase에서 가져온 데이터:', data);
       setDisplayLectures(data);
     };
     fetchLectures();
-  }, []);
+  }, [selectedCategory, sortCondition, keyword]);
 
   // 검색 기능 구현
   const handleSearch = (keyword) => {
