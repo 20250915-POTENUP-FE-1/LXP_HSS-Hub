@@ -15,7 +15,7 @@ function MainPage() {
   const [sortCondition, setSortCondition] = useState('latest');
   //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState('전체');
-  //강의 아이템 클릭시 디테일페이지로 이동 네비게이션 관리
+  // 강의 클릭시 해당 디테일 페이지 이동
   const navigate = useNavigate();
 
   // 초기 렌더링 시 전체 강의 표시
@@ -62,8 +62,8 @@ function MainPage() {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category); // 현재 선택 카테고리 상태 업데이트
 
+    setKeyword(''); //키워드 초기화
     if (category === '전체') {
-      setKeyword(''); //키워드 초기화
       // 전체 강의 표시
       setDisplayLectures(sortLectures(lectures, sortCondition));
     } else {
@@ -76,7 +76,7 @@ function MainPage() {
     }
   };
 
-  //강의 버튼 클릭시 디테일페이지로 이동
+  //강의 클릭시 해당 강의 상세 페이지 이동
   const handleLectureClick = (lectureId) => {
     navigate(`/detail/${lectureId}`);
   };
