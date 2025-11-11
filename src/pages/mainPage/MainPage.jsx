@@ -6,6 +6,7 @@ import SearchBar from './components/searchBar/SearchBar';
 import './MainPage.css';
 import { lectures } from '../../data/dummy';
 import { useNavigate } from 'react-router-dom';
+import { getLectures } from '../../services/lectureService';
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
@@ -19,8 +20,15 @@ function MainPage() {
   const navigate = useNavigate();
 
   // 초기 렌더링 시 전체 강의 표시
+  // useEffect(() => {
+  //   setDisplayLectures(sortLectures(lectures, sortCondition));
+  // }, []);
   useEffect(() => {
-    setDisplayLectures(sortLectures(lectures, sortCondition));
+    const fetchLectures = async () => {
+      const data = await getLectures('all', 'createdAt', '');
+      setDisplayLectures(data);
+    };
+    fetchLectures();
   }, []);
 
   // 검색 기능 구현
