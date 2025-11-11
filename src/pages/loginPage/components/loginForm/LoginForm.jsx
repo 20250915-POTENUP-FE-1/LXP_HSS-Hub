@@ -17,6 +17,13 @@ function LoginForm() {
   const [loginError, setLoginError] = useState('');
 
   const handleSubmit = async (e) => {
+  // 비밀번호 유효성 검사 (8~15자, 영문+숫자 포함)
+  const validatePassword = (value) => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/;
+    return regex.test(value);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoginError('');
 
@@ -34,6 +41,16 @@ function LoginForm() {
     );
     if (result.meta.requestStatus === 'fulfilled') {
       navigate('/', { replace: true });
+    }
+  };
+
+  // 비밀번호 입력할 때 실시간으로 에러 제거
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (error && validatePassword(value)) {
+      setError('');
     }
   };
 

@@ -17,6 +17,7 @@ function SignupForm() {
   });
 
   const [error, setError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,6 +26,22 @@ function SignupForm() {
 
   const handleRoleChange = (role) => {
     setForm((prev) => ({ ...prev, role }));
+  };
+
+  const handlePasswordCheck = (e) => {
+    const type = e.target.name;
+    if (type === 'password') {
+      if (!e.target.value) {
+        setPasswordError('');
+      }
+    } else {
+      // passwordConfirm
+      if (form.password && form.password !== e.target.value) {
+        setPasswordError('비밀번호가 일치하지 않습니다.');
+      } else {
+        setPasswordError('');
+      }
+    }
   };
 
   const handleSubmit = (e) => {
@@ -38,11 +55,6 @@ function SignupForm() {
       !form.userName
     ) {
       setError('모든 항목을 입력해주세요.');
-      return;
-    }
-
-    if (form.password !== form.passwordConfirm) {
-      setError('비밀번호가 일치하지 않습니다.');
       return;
     }
 
@@ -75,7 +87,10 @@ function SignupForm() {
             name="password"
             placeholder="비밀번호를 입력하세요"
             value={form.password}
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              handlePasswordCheck(e);
+            }}
             style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
@@ -85,6 +100,7 @@ function SignupForm() {
           label="비밀번호 확인"
           htmlFor="signup-password-confirm"
           required
+          error={passwordError}
         >
           <Input
             id="signup-password-confirm"
@@ -92,7 +108,10 @@ function SignupForm() {
             name="passwordConfirm"
             placeholder="비밀번호를 다시 입력하세요"
             value={form.passwordConfirm}
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              handlePasswordCheck(e);
+            }}
             style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
