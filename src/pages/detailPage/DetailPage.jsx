@@ -9,6 +9,7 @@ function DetailPage() {
   const { lectureId } = useParams();
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
+  // 초기상태: 비회원 
   // 유저타입에 따른 수강신청 버튼 기능 다르게
   const [userType, setUserType] = useState('guest'); // 'guest' | 'student' | 'teacher'
 
@@ -25,14 +26,14 @@ function DetailPage() {
   //수강신청 버튼 클릭 이벤트
   const handleRegistLecture = () => {
     // 비회원일경우
-    if (userType === 'guest') {
+    if (userType === 'GUEST') {
       const confirmSignup = window.confirm(
         '비회원 상태입니다. 회원가입 하시겠습니까?',
       );
       if (confirmSignup) {
         navigate(`/signup`); // 회원가입 페이지로 이동
       }
-    } else if (userType === 'student') {
+    } else if (userType === 'STUDENT') {
       // 학생일 경우
       // 1. 수강생 수 증가 ( firebase연동 후 추후 수정)
       setLecture((prev) => ({
