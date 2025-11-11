@@ -81,7 +81,7 @@ export const login = createAsyncThunk(
           errorMessage = '올바른 이메일 형식이 아닙니다.';
           break;
         case 'auth/invalid-credential':
-          errorMessage = '등록된 계정이 아닙니다.';
+          errorMessage = '계정이 존재하지 않거나 비밀번호가 일치하지 않습니다.';
           break;
         case 'auth/too-many-requests':
           errorMessage =

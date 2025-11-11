@@ -3,14 +3,25 @@ import './Header.css';
 import { Infinity as Inf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../store/userSlice';
 
 function Header({ type = 'none' }) {
   const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleLogoClick = () => navigate('/');
   const handleLoginClick = () => navigate('/login');
   const handleMyPageClick = () => navigate('/mypage');
-  const handleLogoutClick = () => navigate('/');
+  const handleLogoutClick = async () => {
+    try {
+      await dispatch(logout());
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <header className="header">
