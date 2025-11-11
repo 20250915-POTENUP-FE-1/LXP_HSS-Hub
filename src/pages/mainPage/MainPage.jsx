@@ -14,7 +14,7 @@ function MainPage() {
   // 정렬 기준(최신순/인기순) 상태관리
   const [sortCondition, setSortCondition] = useState('latest');
   //선택된 카테고리 상태 관리
-  const [selectedCategory, setSelectedCategory] = useState('전체');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   // 강의 클릭시 해당 디테일 페이지 이동
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ function MainPage() {
         lec.lectureTitle.toLowerCase().includes(keyword.toLowerCase()) ||
         lec.description.toLowerCase().includes(keyword.toLowerCase()),
     );
-    setSelectedCategory('전체');
+    setSelectedCategory('all');
 
     setDisplayLectures(sortLectures(filtered, sortCondition));
   };
@@ -63,7 +63,7 @@ function MainPage() {
     setSelectedCategory(category); // 현재 선택 카테고리 상태 업데이트
 
     setKeyword(''); //키워드 초기화
-    if (category === '전체') {
+    if (category === 'all') {
       // 전체 강의 표시
       setDisplayLectures(sortLectures(lectures, sortCondition));
     } else {

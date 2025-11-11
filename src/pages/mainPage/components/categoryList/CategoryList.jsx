@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function CategoryList({ selected, onCategorySelect }) {
   //  카테고리 목록을 배열로 정의
-  const categories = ['전체', 'Web', 'Basic', 'Data', 'AI'];
+  const categories = ['all', 'web', 'basic', 'data', 'ai'];
 
   return (
     <div className="category-list">
