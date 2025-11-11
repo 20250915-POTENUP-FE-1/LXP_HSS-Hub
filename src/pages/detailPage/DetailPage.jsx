@@ -9,9 +9,9 @@ function DetailPage() {
   const { lectureId } = useParams();
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
-  // 초기상태: 비회원 
+  // 초기상태: 비회원
   // 유저타입에 따른 수강신청 버튼 기능 다르게
-  const [userType, setUserType] = useState('guest'); // 'guest' | 'student' | 'teacher'
+  const [userType, setUserType] = useState('GUEST');
 
   //해당 강의 데이터 불러오기
   useEffect(() => {
@@ -102,7 +102,7 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          {userType !== 'teacher' && (
+          {userType !== 'TEACHER' && (
             <button
               className="lecture-regist-button"
               onClick={handleRegistLecture}
