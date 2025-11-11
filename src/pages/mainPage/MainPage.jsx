@@ -37,21 +37,28 @@ function MainPage() {
   }, [selectedCategory, sortCondition, keyword]);
 
   // 검색 기능 구현
-  const handleSearch = (keyword) => {
+  // const handleSearch = (keyword) => {
+  //   if (!keyword.trim()) {
+  //     alert('검색어를 입력해주세요.');
+  //     return;
+  //   }
+  //   const filtered = lectures.filter(
+  //     (lec) =>
+  //       lec.lectureTitle.toLowerCase().includes(keyword.toLowerCase()) ||
+  //       lec.description.toLowerCase().includes(keyword.toLowerCase()),
+  //   );
+  //   setSelectedCategory('all');
+  //   setDisplayLectures(sortLectures(filtered, sortCondition));
+  // };
+  const handleSearch = async (keyword) => {
     if (!keyword.trim()) {
       alert('검색어를 입력해주세요.');
       return;
     }
-
-    const filtered = lectures.filter(
-      (lec) =>
-        lec.lectureTitle.toLowerCase().includes(keyword.toLowerCase()) ||
-        lec.description.toLowerCase().includes(keyword.toLowerCase()),
-    );
+    const data = await getLectures('all', sortCondition, keyword);
     setSelectedCategory('all');
-
-    setDisplayLectures(sortLectures(filtered, sortCondition));
-  };
+    setDisplayLectures(data);
+  }
 
   // 정렬 기능 구현
   const handleFilterChange = (condition) => {
@@ -72,6 +79,7 @@ function MainPage() {
   };
 
   // 카테고리 선택 기능 구현
+  /*
   const handleCategorySelect = (category) => {
     setSelectedCategory(category); // 현재 선택 카테고리 상태 업데이트
 
@@ -88,6 +96,8 @@ function MainPage() {
       setDisplayLectures(sortLectures(filtered, sortCondition));
     }
   };
+  */
+  
 
   //강의 클릭시 해당 강의 상세 페이지 이동
   const handleLectureClick = (lectureId) => {
