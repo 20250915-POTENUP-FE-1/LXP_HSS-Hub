@@ -7,6 +7,7 @@ import './MainPage.css';
 import { lectures } from '../../data/dummy';
 import { useNavigate } from 'react-router-dom';
 import { getLectures } from '../../services/lectureService';
+// import { db } from "../../firebase/config"; // Firebase 초기화된 db
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
@@ -26,6 +27,7 @@ function MainPage() {
   useEffect(() => {
     const fetchLectures = async () => {
       const data = await getLectures('all', 'createdAt', '');
+      console.log('Firebase에서 가져온 데이터:', data);
       setDisplayLectures(data);
     };
     fetchLectures();
