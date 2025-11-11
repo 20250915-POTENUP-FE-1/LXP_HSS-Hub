@@ -38,10 +38,10 @@ const userTeacher = {
 const lectures = [
   // 1. web (인기 많음)
   {
-    lectureId: 'lec_web_js_master',
+    lectureId: 'a3sD4fG5hJ6kL8mN9bV2',
     lectureTitle: 'JavaScript 마스터 클래스: ES6부터 실전 프로젝트까지',
     category: 'web',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '웹 개발의 핵심, 자바스크립트를 A부터 Z까지 심층적으로 다룹니다. 실전 프로젝트를 통해 포트폴리오를 완성하세요.',
     thumbnailURL: '/src/assets/images/thumbnail_01.jpg',
@@ -50,23 +50,26 @@ const lectures = [
     createdAt: '2025-01-15T10:00:00Z',
     updatedAt: '2025-10-01T10:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_js_01', lessonTitle: '섹션 1: ES6 핵심 문법' },
       {
-        lessonId: 'lsn_js_02',
+        lessonId: 'T3oB_R9gK7pWqXzL8vYcI',
+        lessonTitle: '섹션 1: ES6 핵심 문법',
+      },
+      {
+        lessonId: 'eN4jA-sD1vF0hG2kL5mN9',
         lessonTitle: '섹션 2: 비동기 처리 (Promise, async/await)',
       },
       {
-        lessonId: 'lsn_js_03',
+        lessonId: 'P0oI9uY8tR7eW6qA5sD4',
         lessonTitle: '섹션 3: 실전 미니 프로젝트 - 투두리스트',
       },
     ],
   },
   // 2. web (중간)
   {
-    lectureId: 'lec_web_react_basic',
+    lectureId: 'c1Xz2Vb3N4mK5lL6jJ7h',
     lectureTitle: 'React.js 입문: 기초부터 차근차근',
     category: 'web',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '가장 인기 있는 프론트엔드 라이브러리, 리액트의 기본기를 다집니다.',
     thumbnailURL: '/src/assets/images/thumbnail_02.jpg',
@@ -76,20 +79,29 @@ const lectures = [
     updatedAt: '2025-09-05T14:00:00Z',
     curriculum: [
       {
-        lessonId: 'lsn_react_01',
+        lessonId: 'fG3hJ4kL6mN7bV8cZ0x',
         lessonTitle: '리액트 소개 및 개발 환경 세팅',
       },
-      { lessonId: 'lsn_react_02', lessonTitle: '컴포넌트와 Props' },
-      { lessonId: 'lsn_react_03', lessonTitle: 'State와 생명주기' },
-      { lessonId: 'lsn_react_04', lessonTitle: 'Hooks (useState, useEffect)' },
+      {
+        lessonId: 'qW1eR2tY4uI5oP6aS7d',
+        lessonTitle: '컴포넌트와 Props',
+      },
+      {
+        lessonId: 'zL9xK8jH7gV6fB5dN4m',
+        lessonTitle: 'State와 생명주기',
+      },
+      {
+        lessonId: 'A_sD2fG3hJ4kL5mN6bV',
+        lessonTitle: 'Hooks (useState, useEffect)',
+      },
     ],
   },
   // 3. basic (가장 인기 많음, 오래됨)
   {
-    lectureId: 'lec_basic_python',
+    lectureId: 'g8H9jK0lM1nB2vC3xZ4q',
     lectureTitle: '왕초보를 위한 파이썬 프로그래밍',
     category: 'basic',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '코딩이 처음이신 분들을 위한 파이썬 입문 강의입니다. 설치부터 기본 문법까지.',
     thumbnailURL: '/src/assets/images/thumbnail_03.jpg',
@@ -98,17 +110,26 @@ const lectures = [
     createdAt: '2024-11-20T11:00:00Z',
     updatedAt: '2025-05-10T11:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_py_01', lessonTitle: '파이썬 설치와 환경설정' },
-      { lessonId: 'lsn_py_02', lessonTitle: '변수와 자료형' },
-      { lessonId: 'lsn_py_03', lessonTitle: '조건문과 반복문' },
+      {
+        lessonId: 'rE5tY6uI7oP8aS9dF0g',
+        lessonTitle: '파이썬 설치와 환경설정',
+      },
+      {
+        lessonId: 'hJ1kL2mN3bV4cZ5xQ6w',
+        lessonTitle: '변수와 자료형',
+      },
+      {
+        lessonId: 'E7rT8yU9iO0pA-sD1f',
+        lessonTitle: '조건문과 반복문',
+      },
     ],
   },
   // 4. data (인기 많음)
   {
-    lectureId: 'lec_data_sql',
+    lectureId: 'w5E6rT7yU8iO9pA1sD2f',
     lectureTitle: '실무에서 바로 쓰는 SQL 데이터 분석',
     category: 'data',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '데이터 분석의 필수 언어 SQL! 기초 문법부터 실무 쿼리 작성까지.',
     thumbnailURL: '/src/assets/images/thumbnail_04.jpg',
@@ -117,18 +138,30 @@ const lectures = [
     createdAt: '2025-03-10T09:00:00Z',
     updatedAt: '2025-07-15T09:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_sql_01', lessonTitle: '데이터베이스와 SQL 기초' },
-      { lessonId: 'lsn_sql_02', lessonTitle: 'SELECT 쿼리 마스터' },
-      { lessonId: 'lsn_sql_03', lessonTitle: 'JOIN과 서브쿼리' },
-      { lessonId: 'lsn_sql_04', lessonTitle: '데이터 그룹핑 (GROUP BY)' },
+      {
+        lessonId: 'gH2jK3lM4nB5vC6xZ7q',
+        lessonTitle: '데이터베이스와 SQL 기초',
+      },
+      {
+        lessonId: 'W8eR9tY0uI1oP2aS3d',
+        lessonTitle: 'SELECT 쿼리 마스터',
+      },
+      {
+        lessonId: 'F4gH5jK6lM7nB8vC9x',
+        lessonTitle: 'JOIN과 서브쿼리',
+      },
+      {
+        lessonId: 'Z0qW1eR2tY3uI4oP5a',
+        lessonTitle: '데이터 그룹핑 (GROUP BY)',
+      },
     ],
   },
   // 5. ai (최신)
   {
-    lectureId: 'lec_ai_chatgpt_api',
+    lectureId: 'G3hJ4kL5mN6bV7cZ8xQ9',
     lectureTitle: 'ChatGPT API 활용: 나만의 AI 챗봇 만들기',
     category: 'ai',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       'OpenAI API를 활용하여 실제 작동하는 AI 챗봇 서비스를 만들어봅니다.',
     thumbnailURL: '/src/assets/images/thumbnail_05.jpg',
@@ -137,17 +170,26 @@ const lectures = [
     createdAt: '2025-10-20T18:00:00Z', // 가장 최신
     updatedAt: '2025-10-20T18:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_ai_01', lessonTitle: 'OpenAI API 키 발급 및 환경 세팅' },
-      { lessonId: 'lsn_ai_02', lessonTitle: '기본 API 호출과 응답 처리' },
-      { lessonId: 'lsn_ai_03', lessonTitle: 'React로 챗봇 UI 만들기' },
+      {
+        lessonId: 'sD6fG7hJ8kL9mN0bV1c',
+        lessonTitle: 'OpenAI API 키 발급 및 환경 세팅',
+      },
+      {
+        lessonId: 'Z2xQ3wE4rT5yU6iO7p',
+        lessonTitle: '기본 API 호출과 응답 처리',
+      },
+      {
+        lessonId: 'A8sD9fG0hJ1kL2mN3b',
+        lessonTitle: 'React로 챗봇 UI 만들기',
+      },
     ],
   },
   // 6. web (중간)
   {
-    lectureId: 'lec_web_nextjs',
+    lectureId: 'wE4rT5yU6iO7pA8sD9fG',
     lectureTitle: 'Next.js 풀스택 마스터: SSR과 SSG 정복',
     category: 'web',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '현대 웹 개발의 표준, Next.js를 이용한 서버 사이드 렌더링과 정적 사이트 생성을 배웁니다.',
     thumbnailURL: '/src/assets/images/thumbnail_06.jpg',
@@ -156,18 +198,30 @@ const lectures = [
     createdAt: '2025-06-15T12:00:00Z',
     updatedAt: '2025-08-15T12:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_next_01', lessonTitle: 'Next.js 소개와 라우팅' },
-      { lessonId: 'lsn_next_02', lessonTitle: '데이터 페칭: SSR vs SSG' },
-      { lessonId: 'lsn_next_03', lessonTitle: 'API Routes로 백엔드 구현' },
-      { lessonId: 'lsn_next_04', lessonTitle: 'Vercel 배포' },
+      {
+        lessonId: 'V4cZ5xQ6wE7rT8yU9i',
+        lessonTitle: 'Next.js 소개와 라우팅',
+      },
+      {
+        lessonId: 'O0pA-sD1fG2hJ3kL4m',
+        lessonTitle: '데이터 페칭: SSR vs SSG',
+      },
+      {
+        lessonId: 'N5bV6cZ7xQ8wE9rT0y',
+        lessonTitle: 'API Routes로 백엔드 구현',
+      },
+      {
+        lessonId: 'U1iO2pA-sD3fG4hJ5k',
+        lessonTitle: 'Vercel 배포',
+      },
     ],
   },
   // 7. data (중간)
   {
-    lectureId: 'lec_data_pandas',
+    lectureId: 'hJ1kL2mN3bV4cZ5xQ6wE',
     lectureTitle: '파이썬 Pandas 데이터 분석 실무',
     category: 'data',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '데이터 분석의 핵심 라이브러리 Pandas! 데이터 정제부터 시각화까지 한번에.',
     thumbnailURL: '/src/assets/images/thumbnail_07.jpg',
@@ -176,17 +230,26 @@ const lectures = [
     createdAt: '2025-02-28T16:00:00Z',
     updatedAt: '2025-06-30T16:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_pd_01', lessonTitle: 'DataFrame과 Series 이해' },
-      { lessonId: 'lsn_pd_02', lessonTitle: '데이터 불러오기 및 정제' },
-      { lessonId: 'lsn_pd_03', lessonTitle: '데이터 분석 및 시각화 기초' },
+      {
+        lessonId: 'L6mN7bV8cZ9xQ0wE1r',
+        lessonTitle: 'DataFrame과 Series 이해',
+      },
+      {
+        lessonId: 'T2yU3iO4pA-sD5fG6h',
+        lessonTitle: '데이터 불러오기 및 정제',
+      },
+      {
+        lessonId: 'J7kL8mN9bV0cZ1xQ2w',
+        lessonTitle: '데이터 분석 및 시각화 기초',
+      },
     ],
   },
   // 8. basic (중간)
   {
-    lectureId: 'lec_basic_java_oop',
+    lectureId: 'rT7yU8iO9pA0sD1fG2hJ',
     lectureTitle: 'Java로 배우는 객체 지향 프로그래밍 (OOP)',
     category: 'basic',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '프로그래밍의 핵심 패러다임, OOP를 Java 언어를 통해 확실하게 이해합니다.',
     thumbnailURL: '/src/assets/images/thumbnail_08.jpg',
@@ -195,18 +258,30 @@ const lectures = [
     createdAt: '2025-04-01T09:00:00Z',
     updatedAt: '2025-04-01T09:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_java_01', lessonTitle: '객체 지향이란?' },
-      { lessonId: 'lsn_java_02', lessonTitle: '클래스와 객체' },
-      { lessonId: 'lsn_java_03', lessonTitle: '상속과 다형성' },
-      { lessonId: 'lsn_java_04', lessonTitle: '추상 클래스와 인터페이스' },
+      {
+        lessonId: 'E3rT4yU5iO6pA-sD7f',
+        lessonTitle: '객체 지향이란?',
+      },
+      {
+        lessonId: 'G8hJ9kL0mN1bV2cZ3x',
+        lessonTitle: '클래스와 객체',
+      },
+      {
+        lessonId: 'Q4wE5rT6yU7iO8pA-s',
+        lessonTitle: '상속과 다형성',
+      },
+      {
+        lessonId: 'D9fG0hJ1kL2mN3bV4c',
+        lessonTitle: '추상 클래스와 인터페이스',
+      },
     ],
   },
   // 9. ai (인기 적음)
   {
-    lectureId: 'lec_ai_stable_diffusion',
+    lectureId: 'kL3mN4bV5cZ6xQ7wE8rT',
     lectureTitle: 'Stable Diffusion 이미지 생성 AI 활용법',
     category: 'ai',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       'WebUI 설치부터 프롬프트 엔지니어링, LoRA 활용까지. AI 아티스트가 되어보세요.',
     thumbnailURL: '/src/assets/images/thumbnail_09.jpg',
@@ -215,17 +290,26 @@ const lectures = [
     createdAt: '2025-08-10T11:00:00Z',
     updatedAt: '2025-09-10T11:00:00Z',
     curriculum: [
-      { lessonId: 'lsn_sd_01', lessonTitle: 'WebUI 설치 및 기본 사용법' },
-      { lessonId: 'lsn_sd_02', lessonTitle: '프롬프트 엔지니어링 기초' },
-      { lessonId: 'lsn_sd_03', lessonTitle: 'ControlNet과 LoRA 활용하기' },
+      {
+        lessonId: 'Z5xQ6wE7rT8yU9iO0p',
+        lessonTitle: 'WebUI 설치 및 기본 사용법',
+      },
+      {
+        lessonId: 'A-sD1fG2hJ3kL4mN5b',
+        lessonTitle: '프롬프트 엔지니어링 기초',
+      },
+      {
+        lessonId: 'V6cZ7xQ8wE9rT0yU1i',
+        lessonTitle: 'ControlNet과 LoRA 활용하기',
+      },
     ],
   },
   // 10. basic (인기 많음, 오래됨)
   {
-    lectureId: 'lec_basic_cs',
+    lectureId: 'yU9iO0pA1sD2fG3hJ4kL',
     lectureTitle: '개발자 필수: 컴퓨터 사이언스 101',
     category: 'basic',
-    authorId: 't1e2a3c4h5e6r7',
+    authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
     description:
       '비전공자도 이해할 수 있는 CS 핵심 지식. 자료구조, 알고리즘, 네트워크 기초.',
     thumbnailURL: '/src/assets/images/thumbnail_10.jpg',
@@ -235,12 +319,21 @@ const lectures = [
     updatedAt: '2025-03-01T13:00:00Z',
     curriculum: [
       {
-        lessonId: 'lsn_cs_01',
+        lessonId: 'O2pA-sD3fG4hJ5kL6m',
         lessonTitle: '자료구조 (배열, 리스트, 스택, 큐)',
       },
-      { lessonId: 'lsn_cs_02', lessonTitle: '알고리즘 기초 (정렬, 탐색)' },
-      { lessonId: 'lsn_cs_03', lessonTitle: '네트워크 (OSI 7계층, TCP/IP)' },
-      { lessonId: 'lsn_cs_04', lessonTitle: '운영체제 (프로세스, 스레드)' },
+      {
+        lessonId: 'N7bV8cZ9xQ0wE1rT2y',
+        lessonTitle: '알고리즘 기초 (정렬, 탐색)',
+      },
+      {
+        lessonId: 'U3iO4pA-sD5fG6hJ7k',
+        lessonTitle: '네트워크 (OSI 7계층, TCP/IP)',
+      },
+      {
+        lessonId: 'L8mN9bV0cZ1xQ2wE3r',
+        lessonTitle: '운영체제 (프로세스, 스레드)',
+      },
     ],
   },
 ];
