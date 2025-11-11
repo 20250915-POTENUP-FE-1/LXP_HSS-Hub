@@ -3,6 +3,12 @@
   padding: 20px;
   font-size: 18px;
   font-weight: 700;
+  cursor: pointer;
+}
+.curriculum-item:hover {
+  color: #fff;
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
 }
 .curriculum-item:last-child {
   margin-bottom: 0;
