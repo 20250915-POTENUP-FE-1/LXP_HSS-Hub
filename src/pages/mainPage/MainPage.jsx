@@ -23,17 +23,28 @@ function MainPage() {
   // useEffect(() => {
   //   setDisplayLectures(sortLectures(lectures, sortCondition));
   // }, []);
+  // useEffect(() => {
+  //   const fetchLectures = async () => {
+  //     const data = await getLectures(
+  //       selectedCategory,
+  //       sortCondition,
+  //       keyword || '',
+  //     );
+  //     console.log('Firebase에서 가져온 데이터:', data);
+  //     setDisplayLectures(data);
+  //   };
+  //   fetchLectures();
+  // }, [selectedCategory, sortCondition, keyword]);
+
+  // 모든 조회를 하나로 관리
+  const fetchAndSetLectures = async (category, sort, searchKeyword) => {
+    const data = await getLectures(category, sort, searchKeyword);
+    setDisplayLectures(data);
+  };
+
+  // 초기 렌더링 및 상태 변화 시 Firebase 조회
   useEffect(() => {
-    const fetchLectures = async () => {
-      const data = await getLectures(
-        selectedCategory,
-        sortCondition,
-        keyword || '',
-      );
-      console.log('Firebase에서 가져온 데이터:', data);
-      setDisplayLectures(data);
-    };
-    fetchLectures();
+    fetchAndSetLectures(selectedCategory, sortCondition, keyword);
   }, [selectedCategory, sortCondition, keyword]);
 
   // 검색 기능 구현
@@ -50,14 +61,16 @@ function MainPage() {
   //   setSelectedCategory('all');
   //   setDisplayLectures(sortLectures(filtered, sortCondition));
   // };
-  const handleSearch = async (keyword) => {
-    if (!keyword.trim()) {
+
+  // 검색 기능
+  const handleSearch = (searchKeyword) => {
+    if (!searchKeyword.trim()) {
+      //@trim ?? trim이 아니라면이 무슨말
       alert('검색어를 입력해주세요.');
       return;
     }
-    const data = await getLectures('all', sortCondition, keyword);
-    setSelectedCategory('all');
-    setDisplayLectures(data);
+    setKeyword(searchKeyword); //@??
+    setSelectedCategory('all'); // 검색 시 전체 카테고리 기준
   };
 
   // 정렬 기능 구현
@@ -79,10 +92,9 @@ function MainPage() {
     return sorted;
   };
   */
-  const handleFilterChange = async (condition) => {
-    setSortCondition(condition);
-    const data = await getLectures(selectedCategory, condition, keyword);
-    setDisplayLectures(data);
+  const handleFilterChange = (condition) => {
+    const sort = condition === 'latest' ? 'createdAt' : 'enrollmentCount'; //@뭔말
+    setSortCondition(sort);
   };
 
   // 카테고리 선택 기능 구현
@@ -104,6 +116,10 @@ function MainPage() {
     }
   };
   */
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setKeyword(''); //카테고리 클릭시 검색 초기화
+  };
 
   //강의 클릭시 해당 강의 상세 페이지 이동
   const handleLectureClick = (lectureId) => {
