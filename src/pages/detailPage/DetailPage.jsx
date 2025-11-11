@@ -71,7 +71,6 @@ function DetailPage() {
             ))}
           </div>
         </div>
-
         <div className="detailpage-inform white-box">
           <h2 className="detailpage-inform-title">{lecture?.lectureTitle}</h2>
           <div className="category-box">{lecture?.category}</div>
