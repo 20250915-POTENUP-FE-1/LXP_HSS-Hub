@@ -3,21 +3,13 @@ import './DetailPage.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Tag, UserRound, UsersRound } from 'lucide-react';
-import { getLecture } from '../../services/lectureService';
+import { getLecture, updateLecture } from '../../services/lectureService';
 import { useSelector } from 'react-redux';
-// import { getAuth } from 'firebase/auth';
-// import { getUser } from '../../services/userService';
-// import { useDispatch, useSelector } from 'react-redux';
 
 function DetailPage() {
-  const { lectureId } = useParams(); //useParams()로 URL의 id를 꺼내고,
+  const { lectureId } = useParams();
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
-  // 초기상태: 비회원
-  // 유저타입에 따른 수강신청 버튼 기능 다르게
-  // const [userType, setUserType] = useState('GUEST');
-  // const dispatch = useDispatch();
-  // const user = useSelector(state => state.user)
 
   // Redux에서 userInfo 가져오기
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -34,75 +26,40 @@ function DetailPage() {
     fetchLecture();
   }, [lectureId]);
 
-  /*
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      const auth = getAuth();
-      const currentUser = auth.currentUser;
-
-      if (!currentUser) {
-        //로그인 안한상태
-        setUserType('GUEST');
-        return;
-      }
-      try {
-        const userData = await getUser(currentUser.uid);
-        // console.log(userData);
-        setUserType(userData.role);
-      } catch (error) {
-        console.error('유저 정보 가져오기 실패:', error);
-        setUserType('GUEST');
-      }
-    };
-    fetchUserRole();
-  }, []);
-*/
-
   //수강신청 버튼 클릭 이벤트
-  /*
-  const handleRegistLecture = () => {
-    // 비회원일경우
+  const handleRegistLecture = async () => {
     if (userRole === 'GUEST') {
-      const confirmSignup = window.confirm(
-        '비회원 상태입니다. 회원가입 하시겠습니까?',
-      );
-      if (confirmSignup) {``
-        navigate(`/signup`); // 회원가입 페이지로 이동
-      }
-    } else if (userRole === 'STUDENT') {
-      // 학생일 경우
-      // 1. 수강생 수 증가 ( firebase연동 후 추후 수정)
-      setLecture((prev) => ({
-        ...prev,
-        enrollmentCount: prev.enrollmentCount + 1,
-      }));
-
-      // 2. 완료 메시지 확인 후 마이페이지 이동
-      const confirmMypage = window.confirm(
-        '수강신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?',
-      );
-      if (confirmMypage) {
-        navigate(`/mypage`); // 학생 마이페이지로 이동
-      }
-    }
-  };
-  */
-
-  //수강신청 버튼 클릭 이벤트
-  const handleRegistLecture = () => {
-    if (userRole === 'GUEST') {
-      if (window.confirm('비회원 상태입니다. 회원가입 하시겠습니까?')) {
-        navigate(`/signup`);
+      if (window.confirm('로그인 상태가 아닙니다. 로그인하시겠습니까?')) {
+        navigate(`/login`);
       }
       return;
     }
 
     if (userRole === 'STUDENT') {
       // 학생일 경우 수강생 수 증가@@
+
+      // true면 이미 수강중인 강의, false면 아직 수강하지 않은 강의
+      if (
+        userInfo.lectureList.find(
+          (lectureId) => lectureId === lecture.lectureId,
+        )
+      ) {
+        if (
+          confirm('이미 수강 중인 강의 입니다. 마이페이지로 이동하시겠습니까?')
+        ) {
+          navigate('/mypage');
+        }
+        return;
+      }
+
       setLecture((prev) => ({
-        ...prev, //@prev?
+        ...prev,
         enrollmentCount: prev.enrollmentCount + 1,
       }));
+
+      await updateLecture(lecture.lectureId, {
+        enrollmentCount: lecture.enrollmentCount + 1,
+      });
 
       if (
         window.confirm(
@@ -114,16 +71,6 @@ function DetailPage() {
       return;
     }
   };
-
-  //버튼 렌더링 조건
-  // const renderRegisterButton = () => {
-  //   if (userRole === 'TEACHER') return null; // TEACHER이면 버튼 안보임
-  //   return (
-  //     <button className="lecture-regist-button" onClick={handleRegistLecture}>
-  //       {userRole === 'GUEST' ? '로그인 후 신청 가능' : '수강신청'}
-  //     </button>
-  //   );
-  // };
 
   return (
     <div className="detailpage">
