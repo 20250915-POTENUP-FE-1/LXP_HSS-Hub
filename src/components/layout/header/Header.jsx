@@ -11,7 +11,9 @@ function Header({ type = 'none' }) {
   const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleLogoClick = () => navigate('/');
+  const handleLogoClick = () => {
+    window.location.href = '/';
+  };
   const handleLoginClick = () => navigate('/login');
   const handleMyPageClick = () => navigate('/mypage');
   const handleLogoutClick = async () => {
