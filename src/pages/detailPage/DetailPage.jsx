@@ -1,53 +1,74 @@
 import CurriculumItem from './components/curriculumItem/CurriculumItem';
 import './DetailPage.css';
-import { lectures } from '../../data/dummy';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Tag, UserRound, UsersRound } from 'lucide-react';
+import { getLecture, updateLecture } from '../../services/lectureService';
+import { useSelector } from 'react-redux';
 
 function DetailPage() {
   const { lectureId } = useParams();
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
-  // 초기상태: 비회원
-  // 유저타입에 따른 수강신청 버튼 기능 다르게
-  const [userType, setUserType] = useState('GUEST');
 
-  //해당 강의 데이터 불러오기
+  // Redux에서 userInfo 가져오기
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const userRole = userInfo?.role || 'GUEST'; //로그인 안하면 GUEST
+
+  //  a. useParams의 id값으로 해당 강의 정보 가져오기
   useEffect(() => {
-    getLecture(lectureId);
-  }, [lectureId]); //  lectureId 변경 시에도 새로 불러오도록 수정
-
-  const getLecture = (lectureId) => {
-    const target = lectures.find((lec) => lec.lectureId === lectureId);
-    setLecture(target);
-  };
+    const fetchLecture = async () => {
+      // console.log(lectureId);
+      const data = await getLecture(lectureId); // Firestore에서 강의 불러오기
+      // console.log(data);
+      setLecture(data);
+    };
+    fetchLecture();
+  }, [lectureId]);
 
   //수강신청 버튼 클릭 이벤트
-  const handleRegistLecture = () => {
-    // 비회원일경우
-    if (userType === 'GUEST') {
-      const confirmSignup = window.confirm(
-        '비회원 상태입니다. 회원가입 하시겠습니까?',
-      );
-      if (confirmSignup) {
-        navigate(`/signup`); // 회원가입 페이지로 이동
+  const handleRegistLecture = async () => {
+    if (userRole === 'GUEST') {
+      if (window.confirm('로그인 상태가 아닙니다. 로그인하시겠습니까?')) {
+        navigate(`/login`);
       }
-    } else if (userType === 'STUDENT') {
-      // 학생일 경우
-      // 1. 수강생 수 증가 ( firebase연동 후 추후 수정)
+      return;
+    }
+
+    if (userRole === 'STUDENT') {
+      // 학생일 경우 수강생 수 증가@@
+
+      // true면 이미 수강중인 강의, false면 아직 수강하지 않은 강의
+      if (
+        userInfo.lectureList.find(
+          (lectureId) => lectureId === lecture.lectureId,
+        )
+      ) {
+        if (
+          confirm('이미 수강 중인 강의 입니다. 마이페이지로 이동하시겠습니까?')
+        ) {
+          navigate('/mypage');
+        }
+        return;
+      }
+
       setLecture((prev) => ({
         ...prev,
         enrollmentCount: prev.enrollmentCount + 1,
       }));
 
-      // 2. 완료 메시지 확인 후 마이페이지 이동
-      const confirmMypage = window.confirm(
-        '수강신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?',
-      );
-      if (confirmMypage) {
-        navigate(`/mypage`); // 학생 마이페이지로 이동
+      await updateLecture(lecture.lectureId, {
+        enrollmentCount: lecture.enrollmentCount + 1,
+      });
+
+      if (
+        window.confirm(
+          '수강신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?',
+        )
+      ) {
+        navigate(`/mypage`);
       }
+      return;
     }
   };
 
@@ -102,7 +123,7 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          {userType !== 'TEACHER' && (
+          {userRole !== 'TEACHER' && (
             <button
               className="lecture-regist-button"
               onClick={handleRegistLecture}
