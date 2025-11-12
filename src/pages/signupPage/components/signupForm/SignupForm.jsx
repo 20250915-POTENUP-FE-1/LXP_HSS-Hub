@@ -24,12 +24,21 @@ function SignupForm() {
 
   const [signupError, setSignupError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [showPw, setShowPw] = useState(false); // 비밀번호 보이기/숨기기
-  const [showPw2, setShowPw2] = useState(false); // 비밀번호 확인 보이기/숨기기
+  const [showPw, setShowPw] = useState(false);
+  const [showPw2, setShowPw2] = useState(false);
 
+  // ✅ 모든 입력값에서 공백 제거
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    const noSpaceValue = value.replace(/\s/g, ''); // 공백 모두 제거
+    setForm((prev) => ({ ...prev, [name]: noSpaceValue }));
+  };
+
+  // ✅ 스페이스바 자체 입력 방지
+  const preventSpace = (e) => {
+    if (e.key === ' ') {
+      e.preventDefault();
+    }
   };
 
   const handleRoleChange = (role) => {
@@ -39,11 +48,8 @@ function SignupForm() {
   const handlePasswordCheck = (e) => {
     const type = e.target.name;
     if (type === 'password') {
-      if (!e.target.value) {
-        setPasswordError('');
-      }
+      if (!e.target.value) setPasswordError('');
     } else {
-      // passwordConfirm
       if (form.password && form.password !== e.target.value) {
         setPasswordError('비밀번호가 일치하지 않습니다.');
       } else {
@@ -69,9 +75,9 @@ function SignupForm() {
     try {
       await dispatch(
         signup({
-          userName: form.name,
-          userEmail: form.userEmail,
-          password: form.password,
+          userName: form.name.trim(),
+          userEmail: form.userEmail.trim(),
+          password: form.password.trim(),
           role: form.role,
         }),
       );
@@ -100,6 +106,7 @@ function SignupForm() {
             placeholder="이메일을 입력하세요"
             value={form.userEmail}
             onChange={handleChange}
+            onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
           />
         </FormField>
 
@@ -116,6 +123,7 @@ function SignupForm() {
                 handleChange(e);
                 handlePasswordCheck(e);
               }}
+              onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -148,6 +156,7 @@ function SignupForm() {
                 handleChange(e);
                 handlePasswordCheck(e);
               }}
+              onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -171,6 +180,7 @@ function SignupForm() {
             placeholder="이름을 입력하세요"
             value={form.name}
             onChange={handleChange}
+            onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
             style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
