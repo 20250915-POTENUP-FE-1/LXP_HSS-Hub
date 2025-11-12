@@ -27,23 +27,19 @@ function SignupForm() {
   const [showPw, setShowPw] = useState(false);
   const [showPw2, setShowPw2] = useState(false);
 
-  // ✅ 모든 입력값에서 공백 제거
+  // 공백 제거
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const noSpaceValue = value.replace(/\s/g, ''); // 공백 모두 제거
+    const noSpaceValue = value.replace(/\s/g, '');
     setForm((prev) => ({ ...prev, [name]: noSpaceValue }));
   };
 
-  // ✅ 스페이스바 자체 입력 방지
+  // 스페이스 입력 차단
   const preventSpace = (e) => {
-    if (e.key === ' ') {
-      e.preventDefault();
-    }
+    if (e.key === ' ') e.preventDefault();
   };
 
-  const handleRoleChange = (role) => {
-    setForm((prev) => ({ ...prev, role }));
-  };
+  const handleRoleChange = (role) => setForm((prev) => ({ ...prev, role }));
 
   const handlePasswordCheck = (e) => {
     const type = e.target.name;
@@ -73,7 +69,7 @@ function SignupForm() {
     }
 
     try {
-      await dispatch(
+      const resultAction = await dispatch(
         signup({
           userName: form.name.trim(),
           userEmail: form.userEmail.trim(),
@@ -81,11 +77,13 @@ function SignupForm() {
           role: form.role,
         }),
       );
-    } catch (error) {
-      console.log(error);
-      return;
+      // fulfilled일 때만 이동
+      if (resultAction.meta.requestStatus === 'fulfilled') {
+        navigate('/login', { replace: true });
+      }
+    } catch (err) {
+      console.log(err);
     }
-    navigate('/login');
   };
 
   return (
@@ -96,6 +94,7 @@ function SignupForm() {
         className="signupForm-container"
         onSubmit={handleSubmit}
         autoComplete="off"
+        aria-busy={loading}
       >
         {/* 이메일 */}
         <FormField label="이메일" htmlFor="signup-email" required>
@@ -106,7 +105,9 @@ function SignupForm() {
             placeholder="이메일을 입력하세요"
             value={form.userEmail}
             onChange={handleChange}
-            onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
+            onKeyDown={preventSpace}
+            disabled={loading}
+            style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
 
@@ -123,7 +124,8 @@ function SignupForm() {
                 handleChange(e);
                 handlePasswordCheck(e);
               }}
-              onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
+              onKeyDown={preventSpace}
+              disabled={loading}
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -132,6 +134,7 @@ function SignupForm() {
               aria-label={showPw ? '비밀번호 숨기기' : '비밀번호 보이기'}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw((v) => !v)}
+              disabled={loading}
             >
               {showPw ? <FiEyeOff size={17} /> : <FiEye size={17} />}
             </button>
@@ -156,7 +159,8 @@ function SignupForm() {
                 handleChange(e);
                 handlePasswordCheck(e);
               }}
-              onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
+              onKeyDown={preventSpace}
+              disabled={loading}
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -165,6 +169,7 @@ function SignupForm() {
               aria-label={showPw2 ? '비밀번호 숨기기' : '비밀번호 보이기'}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw2((v) => !v)}
+              disabled={loading}
             >
               {showPw2 ? <FiEyeOff size={17} /> : <FiEye size={17} />}
             </button>
@@ -180,33 +185,10 @@ function SignupForm() {
             placeholder="이름을 입력하세요"
             value={form.name}
             onChange={handleChange}
-            onKeyDown={preventSpace} // ✅ 스페이스 입력 차단
+            onKeyDown={preventSpace}
+            disabled={loading}
             style={{ backgroundColor: '#F9FAFB' }}
           />
-        </FormField>
-
-        {/* 역할 선택 */}
-        <FormField label="유형" required>
-          <div className="signupForm-roleToggle">
-            <button
-              type="button"
-              className={`signupForm-roleBtn ${
-                form.role === 'STUDENT' ? 'signupForm-roleBtn--active' : ''
-              }`}
-              onClick={() => handleRoleChange('STUDENT')}
-            >
-              수강생
-            </button>
-            <button
-              type="button"
-              className={`signupForm-roleBtn ${
-                form.role === 'TEACHER' ? 'signupForm-roleBtn--active' : ''
-              }`}
-              onClick={() => handleRoleChange('TEACHER')}
-            >
-              강사
-            </button>
-          </div>
         </FormField>
 
         {/* 에러 메시지 */}
@@ -214,9 +196,18 @@ function SignupForm() {
         {error && <p className="signupForm-error">{error}</p>}
 
         {/* 회원가입 버튼 */}
-        <Button type="submit" variant="primary" size="lg" block>
-          회원가입
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          block
+          disabled={loading}
+        >
+          {loading ? '가입 중...' : '회원가입'}
         </Button>
+
+        {/* 로딩 스피너 (로그인 폼과 동일한 클래스 사용) */}
+        {loading && <span className="loader" />}
       </form>
 
       <p className="signupForm-bottomText">
@@ -226,6 +217,7 @@ function SignupForm() {
           size="md"
           style={{ fontSize: '13px' }}
           onClick={() => navigate('/login')}
+          disabled={loading}
         >
           로그인
         </Button>
