@@ -17,7 +17,7 @@ import { db } from '../firebase/config';
 
 const LECTURES_COLLECTION_NAME = 'lectures';
 
-// 전체 강의 조회(필터링, 정렬, 검색어를 인수로 받아서) sort: createdAt | enrollmentCount
+//1. 전체 강의 조회(필터링, 정렬, 검색어를 인수로 받아서) sort: createdAt | enrollmentCount
 // 반환 값은 필터링, 정렬, 검색어 옵션이 처리되어서 반환됨
 export const getLectures = async (category, sort, keyword) => {
   let q = null;
