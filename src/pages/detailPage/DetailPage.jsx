@@ -4,7 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Tag, UserRound, UsersRound } from 'lucide-react';
 import { getLecture, updateLecture } from '../../services/lectureService';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateInfo } from '../../store/userSlice';
 
 function DetailPage() {
   const { lectureId } = useParams();
@@ -14,6 +15,7 @@ function DetailPage() {
   // Redux에서 userInfo 가져오기
   const userInfo = useSelector((state) => state.user.userInfo);
   const userRole = userInfo?.role || 'GUEST'; //로그인 안하면 GUEST
+  const dispatch = useDispatch();
 
   //  a. useParams의 id값으로 해당 강의 정보 가져오기
   useEffect(() => {
@@ -52,6 +54,7 @@ function DetailPage() {
         return;
       }
 
+      //ui lectureList업데이트
       setLecture((prev) => ({
         ...prev,
         enrollmentCount: prev.enrollmentCount + 1,
@@ -60,6 +63,16 @@ function DetailPage() {
       await updateLecture(lecture.lectureId, {
         enrollmentCount: lecture.enrollmentCount + 1,
       });
+
+      //user lectureList업데이트
+      const updatedLectureList = [...userInfo.lectureList, lectureId];
+
+      await dispatch(
+        updateInfo({
+          userId: userInfo.userId,
+          userInfo: { lectureList: updatedLectureList },
+        }),
+      );
 
       if (
         window.confirm(
