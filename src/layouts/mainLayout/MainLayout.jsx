@@ -6,7 +6,7 @@ import './MainLayout.css';
 import { useSelector } from 'react-redux';
 
 function MainLayout() {
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo, loading } = useSelector((state) => state.user);
   const location = useLocation();
   const { pathname } = location;
 
@@ -35,6 +35,7 @@ function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      {loading && <span className="loader"></span>}
     </div>
   );
 }
