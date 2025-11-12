@@ -9,7 +9,7 @@ function SignupForm() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    userName: '',
+    name: '',
     userEmail: '',
     password: '',
     passwordConfirm: '',
@@ -65,7 +65,11 @@ function SignupForm() {
     <div className="signupForm-card">
       <h1 className="signupForm-title">회원가입</h1>
 
-      <form className="signupForm-container" onSubmit={handleSubmit}>
+      <form
+        className="signupForm-container"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
         {/* 이메일 */}
         <FormField label="이메일" htmlFor="signup-email" required>
           <Input
@@ -75,7 +79,6 @@ function SignupForm() {
             placeholder="이메일을 입력하세요"
             value={form.userEmail}
             onChange={handleChange}
-            style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
 
@@ -91,7 +94,6 @@ function SignupForm() {
               handleChange(e);
               handlePasswordCheck(e);
             }}
-            style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
 
@@ -121,9 +123,9 @@ function SignupForm() {
           <Input
             id="signup-name"
             type="text"
-            name="userName"
+            name="name"
             placeholder="이름을 입력하세요"
-            value={form.userName}
+            value={form.name}
             onChange={handleChange}
             style={{ backgroundColor: '#F9FAFB' }}
           />
