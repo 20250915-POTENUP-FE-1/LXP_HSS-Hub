@@ -9,7 +9,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-const firebaseConfig = null; // 가리기
+const firebaseConfig = null;
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -97,8 +97,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_01.jpg',
     price: 180000,
     enrollmentCount: 1520,
-    createdAt: '2025-01-15T10:00:00Z',
-    updatedAt: '2025-10-01T10:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'T3oB_R9gK7pWqXzL8vYcI',
@@ -125,8 +125,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_02.jpg',
     price: 120000,
     enrollmentCount: 850,
-    createdAt: '2025-09-05T14:00:00Z',
-    updatedAt: '2025-09-05T14:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'fG3hJ4kL6mN7bV8cZ0x',
@@ -157,8 +157,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_03.jpg',
     price: 99000,
     enrollmentCount: 2100,
-    createdAt: '2024-11-20T11:00:00Z',
-    updatedAt: '2025-05-10T11:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'rE5tY6uI7oP8aS9dF0g',
@@ -185,8 +185,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_04.jpg',
     price: 150000,
     enrollmentCount: 1300,
-    createdAt: '2025-03-10T09:00:00Z',
-    updatedAt: '2025-07-15T09:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'gH2jK3lM4nB5vC6xZ7q',
@@ -206,7 +206,7 @@ const lectures = [
       },
     ],
   },
-  // 5. ai (최신)
+  // 5. ai (최신) - ※ 날짜 변경 주의 (UTC 18:00 -> KST 익일 03:00)
   {
     lectureId: 'G3hJ4kL5mN6bV7cZ8xQ9',
     lectureTitle: 'ChatGPT API 활용: 나만의 AI 챗봇 만들기',
@@ -217,8 +217,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_05.jpg',
     price: 165000,
     enrollmentCount: 780,
-    createdAt: '2025-10-20T18:00:00Z', // 가장 최신
-    updatedAt: '2025-10-20T18:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'sD6fG7hJ8kL9mN0bV1c',
@@ -245,8 +245,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_06.jpg',
     price: 190000,
     enrollmentCount: 950,
-    createdAt: '2025-06-15T12:00:00Z',
-    updatedAt: '2025-08-15T12:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'V4cZ5xQ6wE7rT8yU9i',
@@ -266,7 +266,7 @@ const lectures = [
       },
     ],
   },
-  // 7. data (중간)
+  // 7. data (중간) - ※ 날짜 변경 주의 (UTC 16:00 -> KST 익일 01:00)
   {
     lectureId: 'hJ1kL2mN3bV4cZ5xQ6wE',
     lectureTitle: '파이썬 Pandas 데이터 분석 실무',
@@ -277,8 +277,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_07.jpg',
     price: 135000,
     enrollmentCount: 1120,
-    createdAt: '2025-02-28T16:00:00Z',
-    updatedAt: '2025-06-30T16:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'L6mN7bV8cZ9xQ0wE1r',
@@ -305,8 +305,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_08.jpg',
     price: 140000,
     enrollmentCount: 980,
-    createdAt: '2025-04-01T09:00:00Z',
-    updatedAt: '2025-04-01T09:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'E3rT4yU5iO6pA-sD7f',
@@ -337,8 +337,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_09.jpg',
     price: 110000,
     enrollmentCount: 650,
-    createdAt: '2025-08-10T11:00:00Z',
-    updatedAt: '2025-09-10T11:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'Z5xQ6wE7rT8yU9iO0p',
@@ -365,8 +365,8 @@ const lectures = [
     thumbnailURL: '/src/assets/images/thumbnail_10.jpg',
     price: 170000,
     enrollmentCount: 1450,
-    createdAt: '2024-12-01T13:00:00Z', // 오래됨
-    updatedAt: '2025-03-01T13:00:00Z',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
     curriculum: [
       {
         lessonId: 'O2pA-sD3fG4hJ5kL6m',
