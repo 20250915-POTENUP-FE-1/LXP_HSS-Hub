@@ -4,6 +4,8 @@ import Input from '../../../../components/common/form/input/Input';
 import FormField from '../../../../components/common/form/formField/FormField';
 import Button from '../../../../components/common/button/Button';
 import './SignupForm.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { signup } from '../../../../store/userSlice';
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -16,7 +18,10 @@ function SignupForm() {
     role: 'STUDENT',
   });
 
-  const [error, setError] = useState('');
+  const { error, loading } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const [signupError, setSignupError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   const handleChange = (e) => {
@@ -44,21 +49,34 @@ function SignupForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setSignupError('');
 
     if (
       !form.userEmail ||
       !form.password ||
       !form.passwordConfirm ||
-      !form.userName
+      !form.name
     ) {
-      setError('모든 항목을 입력해주세요.');
+      setSignupError('모든 항목을 입력해주세요.');
       return;
     }
 
-    console.log('회원가입 시도', form);
+    try {
+      await dispatch(
+        signup({
+          userName: form.name,
+          userEmail: form.userEmail,
+          password: form.password,
+          role: form.role,
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    navigate('/login');
   };
 
   return (
@@ -156,6 +174,7 @@ function SignupForm() {
         </FormField>
 
         {/* 에러 메시지 */}
+        {signupError && <p className="signupForm-error">{signupError}</p>}
         {error && <p className="signupForm-error">{error}</p>}
 
         {/* 회원가입 버튼 */}

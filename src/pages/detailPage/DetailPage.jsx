@@ -4,24 +4,49 @@ import { lectures } from '../../data/dummy';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Tag, UserRound, UsersRound } from 'lucide-react';
+import { getLecture } from '../../services/lectureService';
+import { getAuth } from 'firebase/auth';
+import { getUser } from '../../services/userService';
 
 function DetailPage() {
-  const { lectureId } = useParams();
+  const { lectureId } = useParams(); //useParams()로 URL의 id를 꺼내고,
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
   // 초기상태: 비회원
   // 유저타입에 따른 수강신청 버튼 기능 다르게
   const [userType, setUserType] = useState('GUEST');
 
-  //해당 강의 데이터 불러오기
+  //  a. useParams의 id값으로 해당 강의 정보 가져오기
   useEffect(() => {
-    getLecture(lectureId);
-  }, [lectureId]); //  lectureId 변경 시에도 새로 불러오도록 수정
+    const fetchLecture = async () => {
+      const data = await getLecture(lectureId); // Firestore에서 강의 하나 불러오기
+      // console.log('firestore강의 데이터확인:', data);
+      setLecture(data);
+    };
+    fetchLecture();
+  }, [lectureId]);
 
-  const getLecture = (lectureId) => {
-    const target = lectures.find((lec) => lec.lectureId === lectureId);
-    setLecture(target);
-  };
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      const auth = getAuth();
+      const currentUser = auth.currentUser;
+
+      if (!currentUser) {
+        //로그인 안한상태
+        setUserType('GUEST');
+        return;
+      }
+      try {
+        const userData = await getUser(currentUser.uid);
+        // console.log(' 로그인한 유저 정보:', userData);
+        setUserType(userData.role);
+      } catch (error) {
+        // console.error('유저 정보 가져오기 실패:', error);
+        setUserType('GUEST');
+      }
+    };
+    fetchUserRole();
+  }, []);
 
   //수강신청 버튼 클릭 이벤트
   const handleRegistLecture = () => {
