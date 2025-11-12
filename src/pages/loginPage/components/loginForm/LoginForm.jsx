@@ -6,7 +6,7 @@ import FormField from '../../../../components/common/form/formField/FormField';
 import './LoginForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError, login } from '../../../../store/userSlice';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { Eye, EyeOff } from 'lucide-react';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ function LoginForm() {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPassword((v) => !v)}
             >
-              {showPassword ? <FiEyeOff size={17} /> : <FiEye size={17} />}
+              {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
             </button>
           </div>
         </FormField>

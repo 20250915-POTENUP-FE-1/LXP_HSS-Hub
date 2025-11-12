@@ -6,7 +6,7 @@ import Button from '../../../../components/common/button/Button';
 import './SignupForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../../../store/userSlice';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { Eye, EyeOff } from 'lucide-react';
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -136,7 +136,7 @@ function SignupForm() {
               onClick={() => setShowPw((v) => !v)}
               disabled={loading}
             >
-              {showPw ? <FiEyeOff size={17} /> : <FiEye size={17} />}
+              {showPw ? <EyeOff size={17} /> : <Eye size={17} />}
             </button>
           </div>
         </FormField>
@@ -171,7 +171,7 @@ function SignupForm() {
               onClick={() => setShowPw2((v) => !v)}
               disabled={loading}
             >
-              {showPw2 ? <FiEyeOff size={17} /> : <FiEye size={17} />}
+              {showPw2 ? <EyeOff size={17} /> : <Eye size={17} />}
             </button>
           </div>
         </FormField>
