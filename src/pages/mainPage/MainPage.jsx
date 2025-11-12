@@ -4,6 +4,7 @@ import CategoryList from './components/categoryList/CategoryList';
 import Filter from './components/filter/Filter';
 import SearchBar from './components/searchBar/SearchBar';
 import './MainPage.css';
+import { lectures } from '../../data/dummy';
 import { useNavigate } from 'react-router-dom';
 import { getLectures } from '../../services/lectureService';
 
