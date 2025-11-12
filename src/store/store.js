@@ -7,6 +7,10 @@ const store = configureStore({
   reducer: {
     user: userReducer, // {state: { user: { userInfo, loading, error } } }
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;
