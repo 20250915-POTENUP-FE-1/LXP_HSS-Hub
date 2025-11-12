@@ -11,7 +11,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
       <div className="form-input thumbnail">
         <div className="label">썸네일 업로드</div>
         <ThumbnailInput
-          thumbnail={formData.thumbnailURL}
+          thumbnail={formData?.thumbnailURL}
           onFileChange={(file) =>
             setFormData((prev) => ({ ...prev, thumbnailURL: file }))
           }
@@ -21,7 +21,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
         <div className="label">강의 제목</div>
         <Input
           id="lectureTitle"
-          value={formData.lectureTitle}
+          value={formData?.lectureTitle}
           onChange={(e) => {
             setFormData((prev) => ({ ...prev, lectureTitle: e.target.value }));
           }}
@@ -32,7 +32,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
         <div className="label">카테고리 선택</div>
         <Select
           id="category"
-          value={formData.category}
+          value={formData?.category}
           onChange={(e) => {
             setFormData((prev) => ({
               ...prev,
@@ -54,7 +54,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
         <Input
           type="number"
           id="price"
-          value={formData.price}
+          value={formData?.price}
           onChange={(e) => handleChange(e)}
           placeholder={'가격을 입력하세요'}
         />
@@ -63,7 +63,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
         <div className="label">강의 설명</div>
         <Textarea
           id="description"
-          value={formData.description}
+          value={formData?.description}
           rows={6}
           onChange={(e) => handleChange(e)}
           placeholder={

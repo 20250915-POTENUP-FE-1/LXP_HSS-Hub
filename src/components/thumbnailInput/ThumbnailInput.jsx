@@ -29,7 +29,7 @@ function ThumbnailInput({ thumbnail, onFileChange }) {
     } else {
       setPreviewImage(null);
     }
-  }, []);
+  }, [thumbnail]);
 
   // 파일 유효성 검사 및 미리보기 생성
   const handleFile = useCallback(

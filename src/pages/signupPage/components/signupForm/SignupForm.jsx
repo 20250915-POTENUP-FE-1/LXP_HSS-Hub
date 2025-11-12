@@ -94,7 +94,6 @@ function SignupForm() {
         className="signupForm-container"
         onSubmit={handleSubmit}
         autoComplete="off"
-        aria-busy={loading}
       >
         {/* 이메일 */}
         <FormField label="이메일" htmlFor="signup-email" required>
@@ -106,7 +105,6 @@ function SignupForm() {
             value={form.userEmail}
             onChange={handleChange}
             onKeyDown={preventSpace}
-            disabled={loading}
             style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
@@ -125,7 +123,6 @@ function SignupForm() {
                 handlePasswordCheck(e);
               }}
               onKeyDown={preventSpace}
-              disabled={loading}
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -134,7 +131,6 @@ function SignupForm() {
               aria-label={showPw ? '비밀번호 숨기기' : '비밀번호 보이기'}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw((v) => !v)}
-              disabled={loading}
             >
               {showPw ? <EyeOff size={17} /> : <Eye size={17} />}
             </button>
@@ -160,7 +156,6 @@ function SignupForm() {
                 handlePasswordCheck(e);
               }}
               onKeyDown={preventSpace}
-              disabled={loading}
               style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
@@ -169,7 +164,6 @@ function SignupForm() {
               aria-label={showPw2 ? '비밀번호 숨기기' : '비밀번호 보이기'}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw2((v) => !v)}
-              disabled={loading}
             >
               {showPw2 ? <EyeOff size={17} /> : <Eye size={17} />}
             </button>
@@ -186,7 +180,6 @@ function SignupForm() {
             value={form.name}
             onChange={handleChange}
             onKeyDown={preventSpace}
-            disabled={loading}
             style={{ backgroundColor: '#F9FAFB' }}
           />
         </FormField>
@@ -203,11 +196,8 @@ function SignupForm() {
           block
           disabled={loading}
         >
-          {loading ? '가입 중...' : '회원가입'}
+          회원가입
         </Button>
-
-        {/* 로딩 스피너 (로그인 폼과 동일한 클래스 사용) */}
-        {loading && <span className="loader" />}
       </form>
 
       <p className="signupForm-bottomText">
@@ -217,7 +207,6 @@ function SignupForm() {
           size="md"
           style={{ fontSize: '13px' }}
           onClick={() => navigate('/login')}
-          disabled={loading}
         >
           로그인
         </Button>
