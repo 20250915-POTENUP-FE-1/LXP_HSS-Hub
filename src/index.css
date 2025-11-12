@@ -231,6 +231,7 @@ button {
   left: calc(50% - 38px);
   position: absolute;
   animation: flippx 2s infinite linear;
+  z-index: 99;
 }
 .loader:before {
   content: '';
