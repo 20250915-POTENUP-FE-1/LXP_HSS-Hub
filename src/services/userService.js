@@ -1,6 +1,12 @@
 // user firestore
 
-import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+import {
+  doc,
+  setDoc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+} from 'firebase/firestore';
 import { db } from '../firebase/config';
 
 const USERS_COLLECTION_NAME = 'users';
@@ -20,5 +26,19 @@ export const createUser = async (userId, userInfo) => {
     ...userInfo,
     lectureList: [],
     createdAt: serverTimestamp(),
+  });
+};
+
+// 임시 구현
+export const getUserName = async (userId) => {
+  const snapshot = await getDoc(doc(db, USERS_COLLECTION_NAME, userId));
+  return {
+    userName: snapshot.data().userName,
+  };
+};
+
+export const updateUser = async (userId, userInfo) => {
+  await updateDoc(doc(db, USERS_COLLECTION_NAME, userId), {
+    ...userInfo,
   });
 };
