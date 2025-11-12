@@ -58,20 +58,20 @@ function LoginForm() {
           <div className="password-wrapper">
             <Input
               id="login-password"
-              type={showPassword ? 'text' : 'password'} // 👈 비밀번호 보이기/숨기기
+              type={showPassword ? 'text' : 'password'}
               placeholder="비밀번호를 입력하세요"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }} // 아이콘 자리 확보
+              style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
             />
             <button
               type="button"
               className="password-toggle"
               aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 보이기'}
-              onMouseDown={(e) => e.preventDefault()} // 포커스 유지
-              onClick={() => setShowPassword((v) => !v)} // 👈 토글
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setShowPassword((v) => !v)}
             >
-              {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              {showPassword ? <FiEyeOff size={17} /> : <FiEye size={17} />}
             </button>
           </div>
         </FormField>

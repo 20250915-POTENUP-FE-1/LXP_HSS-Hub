@@ -125,7 +125,7 @@ function SignupForm() {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw((v) => !v)}
             >
-              {showPw ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              {showPw ? <FiEyeOff size={17} /> : <FiEye size={17} />}
             </button>
           </div>
         </FormField>
@@ -157,7 +157,7 @@ function SignupForm() {
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => setShowPw2((v) => !v)}
             >
-              {showPw2 ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              {showPw2 ? <FiEyeOff size={17} /> : <FiEye size={17} />}
             </button>
           </div>
         </FormField>
