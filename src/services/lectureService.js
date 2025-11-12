@@ -44,7 +44,7 @@ export const getLectures = async (category, sort, keyword) => {
   // 키워드 필터링 로직
   if (keyword) {
     const filtered = result.filter((lecture) =>
-      lecture.lectureTitle.includes(keyword),
+      lecture.lectureTitle.toLowerCase().includes(keyword.toLowerCase()),
     );
     return filtered;
   } else {
