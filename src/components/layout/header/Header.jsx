@@ -1,6 +1,6 @@
 // src/components/layout/header/Header.jsx
 import './Header.css';
-import { Infinity as Inf } from 'lucide-react';
+import { Infinity as Inf, LogIn, LogOut, UserCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../common/button/Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import { logout } from '../../../store/userSlice';
 
 function Header({ type = 'none' }) {
   const navigate = useNavigate();
-  const { loading, error } = useSelector((state) => state.user);
+  const { userInfo, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleLogoClick = () => {
@@ -38,21 +38,26 @@ function Header({ type = 'none' }) {
         <div className="header-actions">
           {type === 'login' && (
             <>
+              <div className="hello">
+                <span className="name">{userInfo.userName}</span>
+                <span>
+                  {userInfo.role === 'TEACHER' && ' 강사'}님 안녕하세요.
+                </span>
+              </div>
               <Button variant="clear" size="md" onClick={handleMyPageClick}>
-                마이페이지
+                <UserCircle size={30}></UserCircle>
               </Button>
               <Button variant="clear" size="md" onClick={handleLogoutClick}>
-                로그아웃
+                <LogOut size={30} />
               </Button>
             </>
           )}
 
           {type === 'logout' && (
             <Button variant="clear" size="md" onClick={handleLoginClick}>
-              로그인
+              <LogIn size={30} />
             </Button>
           )}
-          {/* type === 'none' → 아무 버튼도 안 뜸 */}
         </div>
       </div>
     </header>

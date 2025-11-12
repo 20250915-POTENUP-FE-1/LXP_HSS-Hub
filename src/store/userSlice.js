@@ -111,7 +111,6 @@ export const updateInfo = createAsyncThunk(
     try {
       await updateUser(payload.userId, payload.userInfo);
       const userInfo = await getUser(payload.userId);
-      console.log(userInfo);
       return { userInfo };
     } catch (error) {
       return rejectWithValue(error);

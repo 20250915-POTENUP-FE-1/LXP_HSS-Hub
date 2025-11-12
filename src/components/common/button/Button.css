@@ -125,6 +125,7 @@
 }
 .btn--clear:hover {
   font-weight: 700;
+  color: var(--color-primary);
 }
 
 .btn--dashed:hover {

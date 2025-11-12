@@ -15,6 +15,7 @@ function RegistPage() {
   const { userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState('basic');
   const [formData, setFormData] = useState({
     thumbnailURL: '',
@@ -43,7 +44,6 @@ function RegistPage() {
   };
 
   const handleNext = () => {
-    // 유효성 체크
     if (checkBasicInfo()) {
       setStep('curriculum');
     } else {
@@ -81,6 +81,7 @@ function RegistPage() {
       return;
     }
     try {
+      setIsLoading(true);
       const lectureId = await createLecture({
         ...formData,
         authorId: userInfo.userId,
@@ -88,7 +89,6 @@ function RegistPage() {
 
       // 유저 정보 변경 하는 내용
       const updatedLectureList = [...userInfo.lectureList, lectureId];
-      console.log(updatedLectureList);
       await dispatch(
         updateInfo({
           userId: userInfo.userId,
@@ -99,6 +99,8 @@ function RegistPage() {
     } catch (error) {
       console.log(error);
       return;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -136,6 +138,7 @@ function RegistPage() {
             setFormData={setFormData}
             handleSubmit={handleSubmit}
             handlePrev={handlePrev}
+            isLoading={isLoading}
           />
         )}
       </div>

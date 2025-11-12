@@ -10,17 +10,19 @@ import { getLecturesByLectureIds } from '../../services/lectureService';
 function MyPage() {
   const navigate = useNavigate();
   const [lectures, setLectures] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { userInfo } = useSelector((state) => state.user);
-  console.log(userInfo);
 
   const fetchLectures = async () => {
+    setIsLoading(true);
     const result = await getLecturesByLectureIds(userInfo.lectureList);
     setLectures(result);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchLectures();
-  }, []);
+  }, [userInfo]);
 
   return (
     <div className="mypage">
@@ -38,6 +40,7 @@ function MyPage() {
         </div>
         <LectureList lectures={lectures} type={userInfo.role} />
       </div>
+      {isLoading && <span className="loader" />}
     </div>
   );
 }

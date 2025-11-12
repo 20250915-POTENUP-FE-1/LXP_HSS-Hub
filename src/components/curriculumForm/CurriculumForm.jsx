@@ -9,6 +9,7 @@ function CurriculumForm({
   handleSubmit,
   handlePrev,
   mode = 'regist',
+  isLoading,
 }) {
   const handleChangeLesson = (e) => {
     const target = e.target.dataset.order;
@@ -82,7 +83,7 @@ function CurriculumForm({
         <Button variant="ghost" size="md" onClick={() => handlePrev()}>
           이전
         </Button>
-        <Button onClick={(e) => handleSubmit(e)}>
+        <Button onClick={(e) => handleSubmit(e)} disabled={isLoading}>
           {mode === 'regist' ? '등록' : '수정'}
         </Button>
       </div>

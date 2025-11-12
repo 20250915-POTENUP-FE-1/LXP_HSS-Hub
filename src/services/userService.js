@@ -29,12 +29,9 @@ export const createUser = async (userId, userInfo) => {
   });
 };
 
-// 임시 구현
 export const getUserName = async (userId) => {
   const snapshot = await getDoc(doc(db, USERS_COLLECTION_NAME, userId));
-  return {
-    userName: snapshot.data().userName,
-  };
+  return snapshot.data().userName;
 };
 
 export const updateUser = async (userId, userInfo) => {

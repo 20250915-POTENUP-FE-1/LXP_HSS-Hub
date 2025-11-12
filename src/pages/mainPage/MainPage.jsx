@@ -3,10 +3,8 @@ import LectureList from '../../components/lectureList/LectureList';
 import CategoryList from './components/categoryList/CategoryList';
 import Filter from './components/filter/Filter';
 import SearchBar from './components/searchBar/SearchBar';
-import './MainPage.css';
-import { lectures } from '../../data/dummy';
-import { useNavigate } from 'react-router-dom';
 import { getLectures } from '../../services/lectureService';
+import './MainPage.css';
 
 function MainPage() {
   const [keyword, setKeyword] = useState('');
@@ -16,13 +14,14 @@ function MainPage() {
   const [sortCondition, setSortCondition] = useState('createdAt');
   //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState('all');
-  // 강의 클릭시 해당 디테일 페이지 이동
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
 
   // 데이터 불러오기 통합 함수
   const fetchAndSetLectures = async (category, sort, searchKeyword) => {
+    setIsLoading(true);
     const data = await getLectures(category, sort, searchKeyword);
     setDisplayLectures(data);
+    setIsLoading(false);
   };
 
   //selectedCategory (카테고리)가 변경될 때마다 실행
@@ -47,11 +46,6 @@ function MainPage() {
     fetchAndSetLectures('all', sortCondition, searchKeyword);
   };
 
-  //강의 클릭시 해당 강의 상세 페이지 이동
-  const handleLectureClick = (lectureId) => {
-    navigate(`/detail/${lectureId}`);
-  };
-
   return (
     <main className="mainpage">
       <SearchBar
@@ -68,10 +62,12 @@ function MainPage() {
         <Filter value={sortCondition} setSortCondition={setSortCondition} />
       </div>
 
-      <LectureList
-        lectures={displayLectures}
-        onLectureClick={handleLectureClick}
-      />
+      {!isLoading && displayLectures.length === 0 ? (
+        <div>등록된 강의가 없습니다.</div>
+      ) : (
+        <LectureList lectures={displayLectures} />
+      )}
+      {isLoading && <span className="loader" />}
     </main>
   );
 }

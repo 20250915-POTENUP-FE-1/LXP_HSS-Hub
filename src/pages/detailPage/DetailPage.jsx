@@ -6,11 +6,13 @@ import { Tag, UserRound, UsersRound } from 'lucide-react';
 import { getLecture, updateLecture } from '../../services/lectureService';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateInfo } from '../../store/userSlice';
+import { getUserName } from '../../services/userService';
 
 function DetailPage() {
   const { lectureId } = useParams();
   const navigate = useNavigate();
   const [lecture, setLecture] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   // Redux에서 userInfo 가져오기
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -20,10 +22,11 @@ function DetailPage() {
   //  a. useParams의 id값으로 해당 강의 정보 가져오기
   useEffect(() => {
     const fetchLecture = async () => {
-      // console.log(lectureId);
+      setIsLoading(true);
       const data = await getLecture(lectureId); // Firestore에서 강의 불러오기
-      // console.log(data);
-      setLecture(data);
+      const authorName = await getUserName(data.authorId);
+      setLecture({ ...data, authorName: authorName });
+      setIsLoading(false);
     };
     fetchLecture();
   }, [lectureId]);
@@ -35,9 +38,7 @@ function DetailPage() {
         navigate(`/login`);
       }
       return;
-    }
-
-    if (userRole === 'STUDENT') {
+    } else if (userRole === 'STUDENT') {
       // 학생일 경우 수강생 수 증가@@
 
       // true면 이미 수강중인 강의, false면 아직 수강하지 않은 강의
@@ -82,6 +83,8 @@ function DetailPage() {
         navigate(`/mypage`);
       }
       return;
+    } else if (userRole === 'TEACHER') {
+      navigate(`/mypage/edit/${lectureId}`);
     }
   };
 
@@ -115,8 +118,7 @@ function DetailPage() {
                   <UserRound size={20} color="#64748B" />
                   강사명:
                 </em>
-                {/* 나중에 firebase연동후 수정 */}
-                <p className="teacher">{lecture?.authorId}</p>
+                <p className="teacher">{lecture?.authorName}</p>
               </li>
               <li>
                 <em>
@@ -136,16 +138,19 @@ function DetailPage() {
               </li>
             </ul>
           </div>
-          {userRole !== 'TEACHER' && (
+
+          {(userRole !== 'TEACHER' ||
+            userInfo.lectureList.some((id) => id === lectureId)) && (
             <button
               className="lecture-regist-button"
               onClick={handleRegistLecture}
             >
-              수강신청
+              {userRole === 'STUDENT' ? '수강 신청' : '강의 수정'}
             </button>
           )}
         </div>
       </div>
+      {isLoading && <span className="loader"></span>}
     </div>
   );
 }

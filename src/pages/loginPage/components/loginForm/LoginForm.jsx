@@ -118,9 +118,6 @@ function LoginForm() {
           회원가입
         </Button>
       </p>
-
-      {/* 로딩 스피너 */}
-      {loading && <span className="loader" />}
     </div>
   );
 }

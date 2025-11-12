@@ -6,66 +6,91 @@ import Button from '../../components/common/button/Button';
 import BasicForm from '../../components/basicForm/BasicForm';
 import CurriculumForm from '../../components/curriculumForm/CurriculumForm';
 import './EditPage.css';
-import { lectures } from '../../data/dummy';
+import { getLecture, updateLecture } from '../../services/lectureService';
 
 function EditPage() {
   const navigate = useNavigate();
   const { lectureId } = useParams();
   const [step, setStep] = useState('basic');
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    thumbnail: '',
-    title: '',
+    thumbnailURL: '',
+    lectureTitle: '',
     category: '',
     price: '',
     description: '',
-    curriculum: [
-      {
-        lessonId: '',
-        lessonTitle: '',
-      },
-      {
-        lessonId: '',
-        lessonTitle: '',
-      },
-      {
-        lessonId: '',
-        lessonTitle: '',
-      },
-    ],
+    curriculum: [],
   });
+  const fetchLecture = async () => {
+    setIsLoading(true);
+    setFormData(await getLecture(lectureId));
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     // 정보 불러오기
+    fetchLecture();
   }, []);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    console.log(formData);
   };
 
   const handleNext = () => {
-    // 유효성 체크
-    setStep('curriculum');
+    if (checkBasicInfo()) {
+      setStep('curriculum');
+    } else {
+      alert('모든 정보를 입력해 주세요.');
+    }
   };
 
   const handlePrev = () => {
     setStep('basic');
   };
 
-  const handleSubmit = (e) => {
+  const checkBasicInfo = () => {
+    if (
+      !formData.lectureTitle ||
+      !formData.description ||
+      !formData.category ||
+      !formData.price
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const checkCurriculumInfo = () => {
+    if (formData.curriculum.some((lesson) => !lesson.lessonTitle)) {
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: 유효성 체크
-
-    // firebase에 등록
-
-    // 성공 시 mypage로 이동
-    navigate('/mypage', { replace: true });
+    if (!checkBasicInfo() || !checkCurriculumInfo()) {
+      alert('모든 정보를 입력해 주세요.');
+      return;
+    }
+    setIsLoading(true);
+    try {
+      await updateLecture(lectureId, formData);
+      navigate('/mypage', { replace: true });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+    setIsLoading(false);
   };
 
   const handleClickStep = (e) => {
     const target = e.target.name;
     if (target === 'curriculum') {
-      // 유효성 체크
+      if (!checkBasicInfo()) {
+        alert('모든 정보를 입력해 주세요.');
+        return;
+      }
     }
     setStep(target);
   };
@@ -94,9 +119,11 @@ function EditPage() {
             handleSubmit={handleSubmit}
             handlePrev={handlePrev}
             mode={'edit'}
+            isLoading={isLoading}
           />
         )}
       </div>
+      {isLoading && <span className="loader" />}
     </div>
   );
 }
