@@ -56,3 +56,38 @@
 .loginForm-button:hover {
   background-color: var(--color-primary-hover);
 }
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+
+  color: var(--color-neutral-600);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.password-toggle:hover {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-600);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
