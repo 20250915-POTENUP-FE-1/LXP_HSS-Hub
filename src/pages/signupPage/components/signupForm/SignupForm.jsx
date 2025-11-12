@@ -6,6 +6,7 @@ import Button from '../../../../components/common/button/Button';
 import './SignupForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../../../store/userSlice';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ function SignupForm() {
 
   const [signupError, setSignupError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [showPw, setShowPw] = useState(false); // 비밀번호 보이기/숨기기
+  const [showPw2, setShowPw2] = useState(false); // 비밀번호 확인 보이기/숨기기
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -102,17 +105,29 @@ function SignupForm() {
 
         {/* 비밀번호 */}
         <FormField label="비밀번호" htmlFor="signup-password" required>
-          <Input
-            id="signup-password"
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력하세요"
-            value={form.password}
-            onChange={(e) => {
-              handleChange(e);
-              handlePasswordCheck(e);
-            }}
-          />
+          <div className="password-wrapper">
+            <Input
+              id="signup-password"
+              type={showPw ? 'text' : 'password'}
+              name="password"
+              placeholder="비밀번호를 입력하세요"
+              value={form.password}
+              onChange={(e) => {
+                handleChange(e);
+                handlePasswordCheck(e);
+              }}
+              style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              aria-label={showPw ? '비밀번호 숨기기' : '비밀번호 보이기'}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setShowPw((v) => !v)}
+            >
+              {showPw ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </button>
+          </div>
         </FormField>
 
         {/* 비밀번호 확인 */}
@@ -122,18 +137,29 @@ function SignupForm() {
           required
           error={passwordError}
         >
-          <Input
-            id="signup-password-confirm"
-            type="password"
-            name="passwordConfirm"
-            placeholder="비밀번호를 다시 입력하세요"
-            value={form.passwordConfirm}
-            onChange={(e) => {
-              handleChange(e);
-              handlePasswordCheck(e);
-            }}
-            style={{ backgroundColor: '#F9FAFB' }}
-          />
+          <div className="password-wrapper">
+            <Input
+              id="signup-password-confirm"
+              type={showPw2 ? 'text' : 'password'}
+              name="passwordConfirm"
+              placeholder="비밀번호를 다시 입력하세요"
+              value={form.passwordConfirm}
+              onChange={(e) => {
+                handleChange(e);
+                handlePasswordCheck(e);
+              }}
+              style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              aria-label={showPw2 ? '비밀번호 숨기기' : '비밀번호 보이기'}
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setShowPw2((v) => !v)}
+            >
+              {showPw2 ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </button>
+          </div>
         </FormField>
 
         {/* 이름 */}

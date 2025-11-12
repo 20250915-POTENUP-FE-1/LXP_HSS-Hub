@@ -6,6 +6,7 @@ import FormField from '../../../../components/common/form/formField/FormField';
 import './LoginForm.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearError, login } from '../../../../store/userSlice';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,14 +55,25 @@ function LoginForm() {
         </FormField>
 
         <FormField label="비밀번호" htmlFor="login-password">
-          <Input
-            id="login-password"
-            type="password"
-            placeholder="비밀번호를 입력하세요"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{ backgroundColor: '#F9FAFB' }}
-          />
+          <div className="password-wrapper">
+            <Input
+              id="login-password"
+              type={showPassword ? 'text' : 'password'} // 👈 비밀번호 보이기/숨기기
+              placeholder="비밀번호를 입력하세요"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ backgroundColor: '#F9FAFB', paddingRight: '40px' }} // 아이콘 자리 확보
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              aria-label={showPassword ? '비밀번호 숨기기' : '비밀번호 보이기'}
+              onMouseDown={(e) => e.preventDefault()} // 포커스 유지
+              onClick={() => setShowPassword((v) => !v)} // 👈 토글
+            >
+              {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+            </button>
+          </div>
         </FormField>
 
         {loginError && <p className="loginForm-error">{loginError}</p>}
