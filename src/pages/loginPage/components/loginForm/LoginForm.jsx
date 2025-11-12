@@ -41,7 +41,7 @@ function LoginForm() {
     <div className="loginForm-card">
       <h1 className="loginForm-title">로그인</h1>
 
-      <form className="loginForm-container" onSubmit={handleSubmit}>
+      <form className="loginForm-container">
         <FormField label="이메일" htmlFor="login-email">
           <Input
             id="login-email"
@@ -66,7 +66,14 @@ function LoginForm() {
         {loginError && <p className="loginForm-error">{loginError}</p>}
         {error && <p className="loginForm-error">{error}</p>}
 
-        <Button type="submit" variant="primary" size="lg" block>
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          block
+          disabled={loading}
+          onClick={handleSubmit}
+        >
           로그인
         </Button>
       </form>
@@ -82,6 +89,7 @@ function LoginForm() {
           회원가입
         </Button>
       </p>
+      {loading && <span className="loader" />}
     </div>
   );
 }

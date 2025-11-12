@@ -46,4 +46,5 @@
   align-items: center; /* 세로 가운데 */
   background-color: var(--color-background); /* 페이지 배경색 */
   padding: 100px 0;
+  position: relative;
 }
