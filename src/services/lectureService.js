@@ -24,16 +24,22 @@ export const getLectures = async (category, sort, keyword) => {
   // 카테고리 전체면, 모든 강의 가져오기
   if (category === 'all') {
     // 카테고리 전체, 인기순 정렬
-    q = query(collection(db, LECTURES_COLLECTION_NAME), orderBy(sort, 'desc'));
+    q = query(
+      collection(db, LECTURES_COLLECTION_NAME),
+      where('authorId', '!=', null),
+      orderBy(sort, 'desc'),
+    );
   } else {
     // 카테고리 전체 아니고, 해당 카테고리만 가져오기
     q = query(
       collection(db, LECTURES_COLLECTION_NAME),
       where('category', '==', category),
+      where('authorId', '!=', null),
       orderBy(sort, 'desc'),
     );
   }
 
+  if (!q) return;
   const snapshot = await getDocs(q);
 
   const result = [];
@@ -59,8 +65,9 @@ export const getLecturesByLectureIds = async (lectureIds) => {
     return lec;
   });
 
-  const result = Promise.all(lecutrePromise);
-  return result;
+  const result = await Promise.all(lecutrePromise);
+
+  return result.sort((a, b) => b.createdAt - a.createdAt);
 };
 
 // 특정 강의 조회(강의 ID)
