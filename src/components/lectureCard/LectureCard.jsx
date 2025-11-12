@@ -1,5 +1,4 @@
 import Button from '../common/button/Button';
-import { userTeacher } from '../../data/dummy';
 import './LectureCard.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,17 +15,20 @@ function LectureCard({ lecture, type = 'MAIN', onClick }) {
       <div className="lecture-card-wrapper">
         <div className="category">{lecture.category}</div>
         <div className="title">{lecture.lectureTitle}</div>
-        {type !== 'TEACHER' && (
-          // 임시
-          <div className="author">{userTeacher.userName}</div>
-        )}
+        {type !== 'TEACHER' && <div className="author">{lecture.authorId}</div>}
         {type === 'MAIN' && (
           <div className="price-enrollment">
-            <div className="price">{lecture.price.toLocaleString()}원</div>
+            <div className="price">{lecture.price?.toLocaleString()}원</div>
             <div className="enrollment">수강생 {lecture.enrollmentCount}명</div>
           </div>
         )}
-        {type === 'STUDENT' && <Button variant="primary">수강하기</Button>}
+        {type === 'STUDENT' && (
+          <div className="buttons">
+            <Button variant="primary" block={'true'}>
+              수강하기
+            </Button>
+          </div>
+        )}
         {type === 'TEACHER' && (
           <div className="buttons">
             <Button

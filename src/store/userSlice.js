@@ -8,7 +8,7 @@ import {
   signOut,
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
-import { createUser, getUser } from '../services/userService';
+import { createUser, getUser, updateUser } from '../services/userService';
 
 // 전역으로 관리할 상태
 const initialState = {
@@ -105,6 +105,20 @@ export const logout = createAsyncThunk(
   },
 );
 
+export const updateInfo = createAsyncThunk(
+  'user/updateInfo',
+  async (payload, { rejectWithValue }) => {
+    try {
+      await updateUser(payload.userId, payload.userInfo);
+      const userInfo = await getUser(payload.userId);
+      console.log(userInfo);
+      return { userInfo };
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -155,6 +169,20 @@ const userSlice = createSlice({
         state.error = '';
       })
       .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+    // 4. 유저 정보 수정 액션 처리
+    builder
+      .addCase(updateInfo.pending, (state) => {
+        state.loading = true;
+        state.error = '';
+      })
+      .addCase(updateInfo.fulfilled, (state, action) => {
+        state.userInfo = action.payload.userInfo;
+        state.error = '';
+      })
+      .addCase(updateInfo.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

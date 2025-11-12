@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import CurriculumInput from '../../components/curriculumInput/CurriculumInput';
 import Button from '../common/button/Button';
 import './CurriculumForm.css';
@@ -30,7 +31,7 @@ function CurriculumForm({
     setFormData((prev) => {
       const updated = prev.curriculum;
       updated.push({
-        lessonId: '',
+        lessonId: nanoid(),
         lessonTitle: '',
       });
       return {

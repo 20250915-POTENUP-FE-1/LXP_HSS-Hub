@@ -11,18 +11,20 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
       <div className="form-input thumbnail">
         <div className="label">썸네일 업로드</div>
         <ThumbnailInput
-          thumbnail={formData.thumbnail}
+          thumbnail={formData.thumbnailURL}
           onFileChange={(file) =>
-            setFormData((prev) => ({ ...prev, thumbnail: file }))
+            setFormData((prev) => ({ ...prev, thumbnailURL: file }))
           }
         />
       </div>
       <div className="form-input title">
         <div className="label">강의 제목</div>
         <Input
-          id="title"
-          value={formData.title}
-          onChange={(e) => handleChange(e)}
+          id="lectureTitle"
+          value={formData.lectureTitle}
+          onChange={(e) => {
+            setFormData((prev) => ({ ...prev, lectureTitle: e.target.value }));
+          }}
           placeholder={'강의 제목을 입력하세요'}
         />
       </div>
