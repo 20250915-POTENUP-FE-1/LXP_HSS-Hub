@@ -1,15 +1,15 @@
 import React from 'react';
 import './Filter.css';
 
-function Filter({ value, onChange }) {
+function Filter({ value, setSortCondition }) {
   return (
     <select
       className="filter-select"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => setSortCondition(e.target.value)}
     >
-      <option value="latest">최신 순</option>
-      <option value="popularity">인기 순</option>
+      <option value="createdAt">최신 순</option>
+      <option value="enrollmentCount">인기 순</option>
     </select>
   );
 }
