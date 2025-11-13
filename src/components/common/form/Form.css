@@ -2,7 +2,7 @@
 .radio {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-8);
 }
 
 .input,
@@ -11,7 +11,7 @@
   width: 100%;
   border: 1px solid var(--color-border-default);
   border-radius: var(--radius-sm);
-  padding: 10px var(--spacing-md);
+  padding: 10px var(--spacing-12);
   background: var(--color-background);
   color: var(--color-text-primary);
 }
@@ -38,8 +38,8 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-12);
 }
 .label {
   font-weight: var(--font-weight-semibold);
@@ -66,13 +66,13 @@
 .is-sm .input,
 .is-sm .select,
 .is-sm .textarea {
-  padding: var(--spacing-sm) 10px;
+  padding: var(--spacing-8) 10px;
   font-size: var(--font-size-xs);
 }
 .is-lg .input,
 .is-lg .select,
 .is-lg .textarea {
-  padding: var(--spacing-md) 14px;
+  padding: var(--spacing-12) 14px;
   font-size: var(--font-size-md);
 }
 

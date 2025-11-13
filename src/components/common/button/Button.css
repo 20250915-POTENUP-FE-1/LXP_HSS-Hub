@@ -2,13 +2,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-8);
   border: none;
   border-radius: var(--radius-sm);
   cursor: pointer;
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-base);
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--spacing-12);
 }
 .btn:disabled {
   opacity: 0.6;
@@ -45,7 +45,7 @@
 }
 
 .btn--radius--max {
-  border-radius: var(--radius-max);
+  border-radius: var(--radius-50vh);
 }
 
 .btn--primary {
