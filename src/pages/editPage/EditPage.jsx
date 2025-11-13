@@ -79,9 +79,9 @@ function EditPage() {
       navigate('/mypage', { replace: true });
     } catch (error) {
       console.log(error);
-      return;
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleClickStep = (e) => {

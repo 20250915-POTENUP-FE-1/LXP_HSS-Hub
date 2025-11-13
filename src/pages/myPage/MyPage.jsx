@@ -14,10 +14,15 @@ function MyPage() {
   const { userInfo } = useSelector((state) => state.user);
 
   const fetchLectures = async () => {
-    setIsLoading(true);
-    const result = await getLecturesByLectureIds(userInfo.lectureList);
-    setLectures(result);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const result = await getLecturesByLectureIds(userInfo.lectureList);
+      setLectures(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {

@@ -95,7 +95,7 @@ function RegistPage() {
           userId: userInfo.userId,
           userInfo: { lectureList: updatedLectureList },
         }),
-      );
+      ).unwrap();
       navigate('/mypage', { replace: true });
     } catch (error) {
       console.log(error);
