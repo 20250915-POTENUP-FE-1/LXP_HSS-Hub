@@ -52,7 +52,6 @@ function LectureCard({ lecture, type = 'MAIN' }) {
         )}
         {type === 'MAIN' && (
           <div className="price-enrollment">
-            {console.log(lecture.price)}
             <div className="price">{lecture.price?.toLocaleString()}원</div>
             <div className="enrollment">수강생 {lecture.enrollmentCount}명</div>
           </div>
