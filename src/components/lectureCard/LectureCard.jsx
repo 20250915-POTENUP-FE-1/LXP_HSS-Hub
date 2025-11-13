@@ -82,7 +82,9 @@ function LectureCard({ lecture, type = 'MAIN' }) {
           </div>
         )}
       </div>
-      {!lecture.authorName && <div className={'backdrop-blur'}></div>}
+      {!lecture.authorName && (
+        <div className={'backdrop-blur'}></div>
+      )}
     </div>
   );
 }

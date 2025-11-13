@@ -3,10 +3,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
   width: 100%;
-
-  gap: 32px;
+  gap: var(--spacing-32);
 }
 
 .basic-form .form-input {
@@ -14,13 +12,12 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   width: 100%;
   gap: 8px;
 }
 
 .basic-form .label {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   color: var(--color-font-subtitle);
 }
 

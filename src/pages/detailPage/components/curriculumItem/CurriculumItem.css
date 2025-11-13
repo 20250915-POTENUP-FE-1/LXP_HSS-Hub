@@ -1,7 +1,7 @@
 .curriculum-item {
-  margin-bottom: 16px;
-  padding: 20px;
-  font-size: 18px;
+  margin-bottom: var(--spacing-16);
+  padding: var(--spacing-20);
+  font-size: var(--font-size-18);
   font-weight: 700;
   cursor: pointer;
 }
