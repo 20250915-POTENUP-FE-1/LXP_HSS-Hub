@@ -79,6 +79,7 @@ function SignupForm() {
       );
       // fulfilled일 때만 이동
       if (resultAction.meta.requestStatus === 'fulfilled') {
+        alert('회원가입이 완료되었습니다!');
         navigate('/login', { replace: true });
       }
     } catch (err) {
