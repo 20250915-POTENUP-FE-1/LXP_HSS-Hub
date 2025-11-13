@@ -180,6 +180,7 @@ const userSlice = createSlice({
       })
       .addCase(updateInfo.fulfilled, (state, action) => {
         state.userInfo = action.payload.userInfo;
+        state.loading = false;
         state.error = '';
       })
       .addCase(updateInfo.rejected, (state, action) => {
