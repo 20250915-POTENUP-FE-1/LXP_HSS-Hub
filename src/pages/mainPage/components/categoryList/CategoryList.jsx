@@ -1,7 +1,7 @@
 import './CategoryList.css';
 import { useState } from 'react';
 
-function CategoryList({ selected, setSelected }) {
+function CategoryList({ selected, handleCategoryClick }) {
   //  카테고리 목록을 배열로 정의
   const categories = ['all', 'web', 'basic', 'data', 'ai'];
 
@@ -20,7 +20,7 @@ function CategoryList({ selected, setSelected }) {
           key={category}
           //선택된 버튼만 CSS 적용
           className={selected === category ? 'active' : ''}
-          onClick={() => setSelected(category)}
+          onClick={() => handleCategoryClick(category)}
         >
           {categoryText[category]}
         </button>

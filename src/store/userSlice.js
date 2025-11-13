@@ -36,7 +36,9 @@ export const signup = createAsyncThunk(
         userName: payload.userName,
       });
 
-      //
+      await auth.signOut();
+
+      return;
     } catch (error) {
       let errorMessage = '회원가입 중 오류가 발생했습니다.';
 
@@ -62,18 +64,14 @@ export const login = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     // payload : { userEmail: "", password: ""}
     try {
-      // authentication 검
-      const userCredential = await signInWithEmailAndPassword(
+      // authentication
+      await signInWithEmailAndPassword(
         auth,
         payload.userEmail,
         payload.password,
       );
 
-      const uid = userCredential.user.uid;
-
-      // firestore에 정보 요청
-      const userInfo = await getUser(uid);
-      return { userInfo };
+      return;
     } catch (error) {
       let errorMessage = '로그인 중 오류가 발생했습니다.';
       switch (error.code) {
@@ -128,6 +126,9 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.userInfo = action.payload;
     },
+    clearUser: (state) => {
+      state.userInfo = null;
+    },
   },
   extraReducers: (builder) => {
     // 1. 회원가입 액션 처리
@@ -149,9 +150,8 @@ const userSlice = createSlice({
         state.loading = true;
         state.error = '';
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state) => {
         state.loading = false;
-        state.userInfo = action.payload.userInfo;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
@@ -190,6 +190,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { clearError, setUser } = userSlice.actions;
+export const { clearError, setUser, clearUser } = userSlice.actions;
 
 export default userSlice.reducer;
