@@ -18,10 +18,15 @@ function MainPage() {
 
   // 데이터 불러오기 통합 함수
   const fetchAndSetLectures = async (category, sort, searchKeyword) => {
-    setIsLoading(true);
-    const data = await getLectures(category, sort, searchKeyword);
-    setDisplayLectures(data);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const data = await getLectures(category, sort, searchKeyword);
+      setDisplayLectures(data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   //selectedCategory (카테고리)가 변경될 때마다 실행

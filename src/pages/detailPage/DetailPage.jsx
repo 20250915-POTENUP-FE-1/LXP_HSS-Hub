@@ -6,7 +6,6 @@ import { Tag, UserRound, UsersRound } from 'lucide-react';
 import { getLecture, updateLecture } from '../../services/lectureService';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateInfo } from '../../store/userSlice';
-import { getUserName } from '../../services/userService';
 
 function DetailPage() {
   const { lectureId } = useParams();
@@ -24,8 +23,7 @@ function DetailPage() {
     const fetchLecture = async () => {
       setIsLoading(true);
       const data = await getLecture(lectureId); // Firestore에서 강의 불러오기
-      const authorName = await getUserName(data.authorId);
-      setLecture({ ...data, authorName: authorName });
+      setLecture(data);
       setIsLoading(false);
     };
     fetchLecture();
