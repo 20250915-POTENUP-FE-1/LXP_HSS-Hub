@@ -6,8 +6,8 @@
 
   width: 100%;
 
-  padding: 32px;
-  gap: 32px;
+  padding: var(--spacing-32);
+  gap: var(--spacing-32);
 }
 
 .curriculum-length {

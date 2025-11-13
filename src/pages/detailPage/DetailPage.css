@@ -9,12 +9,12 @@
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  gap: 32px;
+  gap: var(--spacing-32);
 }
 .detailpage-left {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--spacing-32);
   flex: 1;
 }
 .detailpage-thumbnail {
@@ -29,7 +29,7 @@
 }
 
 .detailpage-desc {
-  padding: 32px;
+  padding: var(--spacing-32);
 }
 .white-box {
   background-color: #fff;
@@ -45,7 +45,7 @@
 
 .detailpage-inform {
   position: sticky;
-  top: 32px;
+  top: var(--spacing-32);
   max-width: 400px;
   height: fit-content;
   padding: 24px;

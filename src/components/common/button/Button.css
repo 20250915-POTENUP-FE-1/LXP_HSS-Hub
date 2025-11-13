@@ -20,7 +20,7 @@
 }
 
 .btn--sm {
-  height: 32px;
+  height: var(--spacing-32);
   font-size: var(--font-size-xs);
 }
 .btn--md {

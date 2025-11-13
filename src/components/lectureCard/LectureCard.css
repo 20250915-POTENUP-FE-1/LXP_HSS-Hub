@@ -64,14 +64,14 @@
 
 .lecture-card-wrapper .author,
 .lecture-card-wrapper .enrollment {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 300;
   color: var(--color-font-content);
 }
 
 .lecture-card-wrapper .price {
   font-weight: bold;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
 }
 
 .backdrop-blur {
