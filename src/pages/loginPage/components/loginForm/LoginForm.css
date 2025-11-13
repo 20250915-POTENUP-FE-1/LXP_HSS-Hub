@@ -9,7 +9,7 @@
 
 .loginForm-title {
   text-align: center;
-  font-size: 24px;
+  font-size: var(--font-size-24);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-32);
 }
@@ -17,18 +17,18 @@
 .loginForm-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-16);
 }
 
 .loginForm-error {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-danger);
 }
 
 .loginForm-bottomText {
-  margin-top: 16px;
-  font-size: 13px;
+  margin-top: var(--spacing-16);
+  font-size: var(--font-size-13);
   text-align: center;
   color: var(--color-text-muted);
 }

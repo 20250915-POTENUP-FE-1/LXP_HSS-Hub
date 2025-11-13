@@ -3,21 +3,17 @@
 .thumbnail-input {
   position: relative;
   border: 2px dashed var(--color-border);
-
   border-radius: 10px;
-  padding: 20px;
+  padding: var(--spacing-20);
   min-height: 294px; /* 최소 높이 지정 */
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   text-align: center;
   cursor: pointer;
   background-color: var(--color-background);
-
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -41,7 +37,7 @@
 }
 
 .upload-prompt div {
-  font-size: 16px;
+  font-size: var(--font-size-md);
   font-weight: bold;
   color: var(--color-font-title);
 }

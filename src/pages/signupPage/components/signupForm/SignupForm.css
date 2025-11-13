@@ -9,7 +9,7 @@
 
 .signupForm-title {
   text-align: center;
-  font-size: 24px;
+  font-size: var(--font-size-24);
   font-weight: var(--font-weight-semibold);
   margin-bottom: var(--spacing-32);
 }
@@ -17,18 +17,18 @@
 .signupForm-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-16);
 }
 
 .signupForm-error {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--color-danger);
 }
 
 .signupForm-bottomText {
-  margin-top: 16px;
-  font-size: 13px;
+  margin-top: var(--spacing-16);
+  font-size: var(--font-size-13);
   text-align: center;
   color: var(--color-text-muted);
 }
@@ -52,7 +52,7 @@
   border-radius: 8px;
   border: 1px solid var(--color-border);
   background-color: var(--color-bg-muted);
-  font-size: 13px;
+  font-size: var(--font-size-13);
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
