@@ -29,16 +29,20 @@ function MainPage() {
     }
   };
 
-  //selectedCategory (카테고리)가 변경될 때마다 실행
-  useEffect(() => {
-    setKeyword('');
-    fetchAndSetLectures(selectedCategory, sortCondition, '');
-  }, [selectedCategory]);
-
-  //sortCondition (정렬 기준)이 변경될 때마다 실행
   useEffect(() => {
     fetchAndSetLectures(selectedCategory, sortCondition, keyword);
-  }, [sortCondition]);
+  }, []);
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    setKeyword('');
+    fetchAndSetLectures(category, sortCondition, '');
+  };
+
+  const handleSortClick = (sort) => {
+    setSortCondition(sort);
+    fetchAndSetLectures(selectedCategory, sort, keyword);
+  };
 
   // 검색 기능
   const handleSearch = (searchKeyword) => {
@@ -46,8 +50,7 @@ function MainPage() {
       alert('검색어를 입력해주세요.');
       return;
     }
-    setSelectedCategory('all'); // 검색 시 전체 카테고리 기준
-    setKeyword(searchKeyword);
+    setSelectedCategory('all');
     fetchAndSetLectures('all', sortCondition, searchKeyword);
   };
 
@@ -62,9 +65,9 @@ function MainPage() {
       <div className="mainpage-top">
         <CategoryList
           selected={selectedCategory}
-          setSelected={setSelectedCategory}
+          handleCategoryClick={handleCategoryClick}
         />
-        <Filter value={sortCondition} setSortCondition={setSortCondition} />
+        <Filter value={sortCondition} handleSortClick={handleSortClick} />
       </div>
 
       {!isLoading && displayLectures.length === 0 ? (
