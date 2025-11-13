@@ -39,14 +39,11 @@ function LectureCard({ lecture, type = 'MAIN' }) {
 
   return (
     <div className="lecture-card" onClick={handleClickCard}>
-      <div className="img">
-        <img
-          className="lecture-card-thumbnail"
-          src={lecture.thumbnailURL}
-          alt="썸네일 이미지"
-        />
-      </div>
-
+      <img
+        className="lecture-card-thumbnail"
+        src={lecture.thumbnailURL}
+        alt="썸네일 이미지"
+      />
       <div className="lecture-card-wrapper">
         <div className="category">{lecture.category}</div>
         <div className="title">{lecture.lectureTitle}</div>
