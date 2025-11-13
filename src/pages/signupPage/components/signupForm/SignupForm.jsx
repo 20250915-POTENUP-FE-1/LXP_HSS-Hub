@@ -184,6 +184,29 @@ function SignupForm() {
           />
         </FormField>
 
+        <FormField label="유형" required>
+          <div className="signupForm-roleToggle">
+            <button
+              type="button"
+              className={`signupForm-roleBtn ${
+                form.role === 'STUDENT' ? 'signupForm-roleBtn--active' : ''
+              }`}
+              onClick={() => handleRoleChange('STUDENT')}
+            >
+              수강생
+            </button>
+            <button
+              type="button"
+              className={`signupForm-roleBtn ${
+                form.role === 'TEACHER' ? 'signupForm-roleBtn--active' : ''
+              }`}
+              onClick={() => handleRoleChange('TEACHER')}
+            >
+              강사
+            </button>
+          </div>
+        </FormField>
+
         {/* 에러 메시지 */}
         {signupError && <p className="signupForm-error">{signupError}</p>}
         {error && <p className="signupForm-error">{error}</p>}
