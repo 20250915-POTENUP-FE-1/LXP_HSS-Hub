@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateInfo } from '../../store/userSlice';
 
 function RegistPage() {
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo, loading } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -85,6 +85,7 @@ function RegistPage() {
       const lectureId = await createLecture({
         ...formData,
         authorId: userInfo.userId,
+        authorName: userInfo.userName,
       });
 
       // 유저 정보 변경 하는 내용
@@ -98,7 +99,6 @@ function RegistPage() {
       navigate('/mypage', { replace: true });
     } catch (error) {
       console.log(error);
-      return;
     } finally {
       setIsLoading(false);
     }

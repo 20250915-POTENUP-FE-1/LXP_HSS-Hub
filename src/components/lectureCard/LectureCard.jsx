@@ -4,23 +4,11 @@ import Button from '../common/button/Button';
 import './LectureCard.css';
 import { useNavigate } from 'react-router-dom';
 import { updateInfo } from '../../store/userSlice';
-import { getUserName } from '../../services/userService';
-import { useEffect, useState } from 'react';
 
 function LectureCard({ lecture, type = 'MAIN' }) {
   const { userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [authorName, setAuthorName] = useState('');
-
-  const getAuthorName = async () => {
-    const result = await getUserName(lecture.authorId);
-    setAuthorName(result || '');
-  };
-
-  useEffect(() => {
-    getAuthorName();
-  }, []);
 
   const handleClickCard = () => {
     if (type === 'MAIN') {
@@ -59,7 +47,9 @@ function LectureCard({ lecture, type = 'MAIN' }) {
       <div className="lecture-card-wrapper">
         <div className="category">{lecture.category}</div>
         <div className="title">{lecture.lectureTitle}</div>
-        {type !== 'TEACHER' && <div className="author">{authorName}</div>}
+        {type !== 'TEACHER' && (
+          <div className="author">{lecture.authorName}</div>
+        )}
         {type === 'MAIN' && (
           <div className="price-enrollment">
             <div className="price">{lecture.price?.toLocaleString()}원</div>
@@ -71,7 +61,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
             <Button
               variant="primary"
               block={'true'}
-              disabled={authorName ? false : true}
+              disabled={lecture.authorName ? false : true}
             >
               수강하기
             </Button>
@@ -92,7 +82,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
           </div>
         )}
       </div>
-      {!authorName && <div className={'backdrop-blur'}></div>}
+      {!lecture.authorName && <div className={'backdrop-blur'}></div>}
     </div>
   );
 }
