@@ -6,13 +6,13 @@
 
   width: 100%;
 
-  padding: 32px;
-  gap: 32px;
+  padding: var(--spacing-32);
+  gap: var(--spacing-32);
 }
 
 .curriculum-length {
   width: 100%;
-  font-size: 18px;
+  font-size: var(--font-size-18);
   font-weight: bold;
 }
 
@@ -21,16 +21,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
   width: 100%;
-
-  gap: 16px;
+  gap: var(--spacing-16);
 }
 
 .curriculum-form .buttons {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   width: 100%;
 }
