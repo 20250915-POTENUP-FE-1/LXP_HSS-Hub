@@ -9,7 +9,7 @@ import {
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
-const firebaseConfig = null;
+const firebaseConfig = '';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -92,6 +92,7 @@ const lectures = [
     lectureTitle: 'JavaScript 마스터 클래스: ES6부터 실전 프로젝트까지',
     category: 'web',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '웹 개발의 핵심, 자바스크립트를 A부터 Z까지 심층적으로 다룹니다. 실전 프로젝트를 통해 포트폴리오를 완성하세요.',
     thumbnailURL: '/src/assets/images/thumbnail_01.jpg',
@@ -120,6 +121,7 @@ const lectures = [
     lectureTitle: 'React.js 입문: 기초부터 차근차근',
     category: 'web',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '가장 인기 있는 프론트엔드 라이브러리, 리액트의 기본기를 다집니다.',
     thumbnailURL: '/src/assets/images/thumbnail_02.jpg',
@@ -152,6 +154,7 @@ const lectures = [
     lectureTitle: '왕초보를 위한 파이썬 프로그래밍',
     category: 'basic',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '코딩이 처음이신 분들을 위한 파이썬 입문 강의입니다. 설치부터 기본 문법까지.',
     thumbnailURL: '/src/assets/images/thumbnail_03.jpg',
@@ -180,6 +183,7 @@ const lectures = [
     lectureTitle: '실무에서 바로 쓰는 SQL 데이터 분석',
     category: 'data',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '데이터 분석의 필수 언어 SQL! 기초 문법부터 실무 쿼리 작성까지.',
     thumbnailURL: '/src/assets/images/thumbnail_04.jpg',
@@ -212,6 +216,7 @@ const lectures = [
     lectureTitle: 'ChatGPT API 활용: 나만의 AI 챗봇 만들기',
     category: 'ai',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       'OpenAI API를 활용하여 실제 작동하는 AI 챗봇 서비스를 만들어봅니다.',
     thumbnailURL: '/src/assets/images/thumbnail_05.jpg',
@@ -240,6 +245,7 @@ const lectures = [
     lectureTitle: 'Next.js 풀스택 마스터: SSR과 SSG 정복',
     category: 'web',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '현대 웹 개발의 표준, Next.js를 이용한 서버 사이드 렌더링과 정적 사이트 생성을 배웁니다.',
     thumbnailURL: '/src/assets/images/thumbnail_06.jpg',
@@ -272,6 +278,7 @@ const lectures = [
     lectureTitle: '파이썬 Pandas 데이터 분석 실무',
     category: 'data',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '데이터 분석의 핵심 라이브러리 Pandas! 데이터 정제부터 시각화까지 한번에.',
     thumbnailURL: '/src/assets/images/thumbnail_07.jpg',
@@ -300,6 +307,7 @@ const lectures = [
     lectureTitle: 'Java로 배우는 객체 지향 프로그래밍 (OOP)',
     category: 'basic',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '프로그래밍의 핵심 패러다임, OOP를 Java 언어를 통해 확실하게 이해합니다.',
     thumbnailURL: '/src/assets/images/thumbnail_08.jpg',
@@ -332,6 +340,7 @@ const lectures = [
     lectureTitle: 'Stable Diffusion 이미지 생성 AI 활용법',
     category: 'ai',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       'WebUI 설치부터 프롬프트 엔지니어링, LoRA 활용까지. AI 아티스트가 되어보세요.',
     thumbnailURL: '/src/assets/images/thumbnail_09.jpg',
@@ -360,6 +369,7 @@ const lectures = [
     lectureTitle: '개발자 필수: 컴퓨터 사이언스 101',
     category: 'basic',
     authorId: '2udvwRp51XetB6WF5NGJEQC6Lyh1',
+    authorName: '박선생',
     description:
       '비전공자도 이해할 수 있는 CS 핵심 지식. 자료구조, 알고리즘, 네트워크 기초.',
     thumbnailURL: '/src/assets/images/thumbnail_10.jpg',
