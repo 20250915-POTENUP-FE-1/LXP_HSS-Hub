@@ -57,6 +57,10 @@
   --color-border-light: #9ca3af;
 
   /* ===== 간격 (Spacing) ===== */
+  --inner: 1600px;
+  --layout-height: 80px;
+  --container-space: 30px;
+
   --spacing-4: 4px;
   --spacing-8: 8px;
   --spacing-12: 12px;
@@ -69,6 +73,7 @@
   --spacing-100: 100px;
 
   /* ===== 타이포그래피 (Typography) ===== */
+  --body-font-size: 16px;
   --font-size-xs: 12px;
   --font-size-13: 13px;
   --font-size-sm: 14px;

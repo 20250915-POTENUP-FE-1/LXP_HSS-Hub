@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-width: 1200px;
+  min-width: var(--inner);
   gap: var(--spacing-32);
 }
 

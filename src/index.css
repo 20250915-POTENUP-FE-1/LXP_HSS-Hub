@@ -2,8 +2,10 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
 @import './assets/styles/variables.css';
 @import './assets/styles/font.css';
+@import './assets/styles/responsive.css';
 
 html,
 body,
@@ -91,6 +93,7 @@ video {
   border: 0;
   font-size: 100%;
   vertical-align: baseline;
+  /* font-size: var(--body-font-size); */
 }
 html {
   overflow-y: scroll;

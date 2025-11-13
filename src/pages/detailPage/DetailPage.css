@@ -1,5 +1,5 @@
 .detailpage {
-  max-width: 1200px;
+  max-width: var(--inner);
   margin: 0 auto;
   background-color: var(--color-background);
   padding: 32px 0 50px;

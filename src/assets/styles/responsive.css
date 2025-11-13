@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* pc */
+@media (max-width: 1600px) {
+  :root {
+    --spacing-container: 1230px;
+  }
+}
+
+/* laptop */
+@media (max-width: 1230px) {
+}
+/* Landscape tablet */
+
+/* Landscape tablet */
+@media (max-width: 1024px) {
+  :root {
+    --spacing-40: 30px;
+    --spacing-32: 22px;
+    --layout-height: 60px;
+  }
+}
+
+/* portrait tablet */
+@media (max-width: 900px) {
+  :root {
+    --container-space: 16px;
+    --spacing-40: 20px;
+    --spacing-32: 12px;
+  }
+}
+
+/* Landscape phone */
+@media (max-width: 640px) {
+  :root {
+    --spacing-32: 16px;
+    --layout-height: 40px;
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 400px) {
+}

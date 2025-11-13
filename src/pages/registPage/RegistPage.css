@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1200px;
+  width: var(--inner);
   padding: var(--spacing-32);
   gap: var(--spacing-32);
   border-radius: 20px;

@@ -1,5 +1,17 @@
 .lecture-card {
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--color-white); */
+  /* width: calc(25% - var(--spacing-32)); */
+
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -18,7 +30,7 @@
 }
 
 .lecture-card-thumbnail {
-  height: 160px;
+  width: 100%;
   object-fit: cover;
 }
 
