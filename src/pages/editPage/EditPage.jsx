@@ -76,6 +76,7 @@ function EditPage() {
     setIsLoading(true);
     try {
       await updateLecture(lectureId, formData);
+      alert('강의 수정이 완료되었습니다.');
       navigate('/mypage', { replace: true });
     } catch (error) {
       console.log(error);

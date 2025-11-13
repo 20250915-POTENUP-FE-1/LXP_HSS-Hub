@@ -96,6 +96,7 @@ function RegistPage() {
           userInfo: { lectureList: updatedLectureList },
         }),
       ).unwrap();
+      alert('강의 등록이 완료되었습니다.');
       navigate('/mypage', { replace: true });
     } catch (error) {
       console.log(error);

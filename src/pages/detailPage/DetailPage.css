@@ -46,7 +46,7 @@
 .detailpage-inform {
   position: sticky;
   top: var(--spacing-32);
-  max-width: 400px;
+  width: 400px;
   height: fit-content;
   padding: var(--spacing-24);
 }

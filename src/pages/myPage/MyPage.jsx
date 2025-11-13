@@ -43,7 +43,11 @@ function MyPage() {
             </Button>
           )}
         </div>
-        <LectureList lectures={lectures} type={userInfo.role} />
+        {!isLoading && lectures.length === 0 ? (
+          <div className="mypage-no-lecture">등록된 강의가 없습니다.</div>
+        ) : (
+          <LectureList lectures={lectures} type={userInfo.role} />
+        )}
       </div>
       {isLoading && <span className="loader" />}
     </div>
