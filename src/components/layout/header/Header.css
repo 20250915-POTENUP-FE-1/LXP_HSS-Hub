@@ -3,7 +3,6 @@
   height: 80px;
   background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,13 +12,12 @@
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 20px; /* 버튼 간 간격 */
+  gap: var(--spacing-20);
 }
 
 .header-inner {
   width: 100%;
   max-width: 1200px;
-  padding: 0 12px; /* 여백 */
   display: flex;
   align-items: center;
 }
@@ -27,9 +25,9 @@
 .header-logo {
   display: flex;
   align-items: center;
-  gap: 3px; /* 글자와 아이콘 사이 여백 */
+  gap: 3px;
   font-weight: 700;
-  font-size: 30px;
+  font-size: var(--font-size-30);
   cursor: pointer;
 }
 

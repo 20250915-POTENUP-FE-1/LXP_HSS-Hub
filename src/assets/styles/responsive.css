@@ -1,0 +1,58 @@
+@charset "utf-8";/* laptop */
+@media (max-width: 1600px) { /* layout */
+
+
+ /* main */
+
+ /* contents */
+}
+
+@media (max-width: 1230px) { } 
+
+
+/* Landscape tablet */
+@media (max-width: 1024px) { body, input, textarea, select, button, table { font-size:var(--body-font-size); } 
+
+ /* layout */
+
+
+ /* main */
+
+ /* contents */
+ 
+
+ /* board */
+ .input { padding:5px 14px; height:40px; } 
+ textarea.input { padding:12px 14px; } 
+
+ }
+
+/* portrait tablet */
+@media (max-width: 900px){
+ /* .only-desktop { display:none; } 
+ .only-tablet { display:block; }  */
+
+ /* contents */
+ 
+ 
+ 
+ }
+
+/* Landscape phone */
+@media (max-width: 640px) { body, input, textarea, select, button, table { font-size:var( --body-font-size); } 
+ /* .only-desktop-tablet { display:none; } 
+ .only-tablet { display:none; } 
+ .only-mobile { display:block; }  */
+
+ /* layout */
+ /* main */
+
+ /* contents */
+ 
+
+ /* board */
+ 
+ }
+
+/* Landscape phones and down */
+@media (max-width: 400px) { } 
