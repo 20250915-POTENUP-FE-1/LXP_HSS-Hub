@@ -1,6 +1,6 @@
 /* 메인페이지, 메인상세페이지 공통 레이아웃 css  */
 .mainpage {
-  max-width: 1200px;
+  max-width: var(--inner);
   margin: 0 auto;
   background-color: var(--color-background);
   padding: 32px 0 50px;

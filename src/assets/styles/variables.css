@@ -67,8 +67,19 @@
   --spacing-32: 32px;
   --spacing-40: 40px;
   --spacing-100: 100px;
+  /* --spacing-container: 1600px; */
+  --inner: 1600px;
+
+  /* 공통 양옆 여백  */
+  --container-space: 30px;
+
+  /* --spacing-container: clamp(16px, calc(30 / var(--inner) * 100vw), 30px);
+  --inner: 1600; */
+
+  --layout-height: 80px;
 
   /* ===== 타이포그래피 (Typography) ===== */
+  --body-font-size: 16px;
   --font-size-xs: 12px;
   --font-size-13: 13px;
   --font-size-sm: 14px;

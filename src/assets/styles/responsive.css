@@ -1,58 +1,36 @@
-@charset "utf-8";/* laptop */
-@media (max-width: 1600px) { /* layout */
-
-
- /* main */
-
- /* contents */
+@charset "utf-8";
+/* pc */
+@media (max-width: 1600px) {
+  :root {
+    --spacing-container: 1230px;
+  }
 }
 
-@media (max-width: 1230px) { } 
-
+/* laptop */
+@media (max-width: 1230px) {
+}
+/* Landscape tablet */
 
 /* Landscape tablet */
-@media (max-width: 1024px) { body, input, textarea, select, button, table { font-size:var(--body-font-size); } 
-
- /* layout */
-
-
- /* main */
-
- /* contents */
- 
-
- /* board */
- .input { padding:5px 14px; height:40px; } 
- textarea.input { padding:12px 14px; } 
-
- }
+@media (max-width: 1024px) {
+  :root {
+    --spacing-32: 22px;
+    --layout-height: 60px;
+  }
+}
 
 /* portrait tablet */
-@media (max-width: 900px){
- /* .only-desktop { display:none; } 
- .only-tablet { display:block; }  */
-
- /* contents */
- 
- 
- 
- }
+@media (max-width: 900px) {
+}
 
 /* Landscape phone */
-@media (max-width: 640px) { body, input, textarea, select, button, table { font-size:var( --body-font-size); } 
- /* .only-desktop-tablet { display:none; } 
- .only-tablet { display:none; } 
- .only-mobile { display:block; }  */
-
- /* layout */
- /* main */
-
- /* contents */
- 
-
- /* board */
- 
- }
+@media (max-width: 640px) {
+  :root {
+    --spacing-32: 16px;
+    --layout-height: 40px;
+  }
+}
 
 /* Landscape phones and down */
-@media (max-width: 400px) { } 
+@media (max-width: 400px) {
+}

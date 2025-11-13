@@ -1,7 +1,17 @@
+/* .lecture-list-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-32);
+} */
+
 .lecture-list-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
-  gap: var(--spacing-32);
-  width: 1200px;
+  grid-template-columns: repeat(4, 1fr); /* 4등분 자동 */
+  gap: var(--spacing-32); /* 여백도 자동 균등 */
+}
+
+@media (max-width: 1024px) {
+  .lecture-list-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

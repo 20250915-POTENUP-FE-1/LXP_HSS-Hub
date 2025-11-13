@@ -1,11 +1,11 @@
 .main-layout {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+
   background-color: var(--color-background);
   position: relative;
 }
 
 .main-layout-content {
-  flex: 1;
+  /* flex: 1; */
+  padding: 0 var(--container-space);
 }
