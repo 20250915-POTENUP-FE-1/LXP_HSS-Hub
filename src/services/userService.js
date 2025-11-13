@@ -29,11 +29,6 @@ export const createUser = async (userId, userInfo) => {
   });
 };
 
-export const getUserName = async (userId) => {
-  const snapshot = await getDoc(doc(db, USERS_COLLECTION_NAME, userId));
-  return snapshot.data().userName;
-};
-
 export const updateUser = async (userId, userInfo) => {
   await updateDoc(doc(db, USERS_COLLECTION_NAME, userId), {
     ...userInfo,
