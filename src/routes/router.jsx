@@ -7,6 +7,8 @@ import DetailPage from '../pages/detailPage/DetailPage';
 import MyPage from '../pages/myPage/MyPage';
 import RegistPage from '../pages/registPage/RegistPage';
 import EditPage from '../pages/editPage/EditPage';
+import NotFoundPage from '../pages/notFoundPage/NotFoundPage';
+import ProtectedRoute from './ProtectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -22,12 +24,14 @@ export const router = createBrowserRouter([
       },
       {
         path: 'mypage',
+        element: <ProtectedRoute />,
         children: [
           { index: true, element: <MyPage /> },
           { path: 'regist', element: <RegistPage /> },
           { path: 'edit/:lectureId', element: <EditPage /> },
         ],
       },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ]);
