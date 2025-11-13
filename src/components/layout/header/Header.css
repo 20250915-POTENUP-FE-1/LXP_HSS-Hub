@@ -29,6 +29,7 @@
   font-weight: 700;
   font-size: var(--font-size-30);
   cursor: pointer;
+  position: relative;
 }
 
 .header-logo-text {
@@ -36,6 +37,8 @@
 }
 
 .header-logo-icon {
+  position: relative;
+  top: 2px;
   color: var(--color-primary);
 }
 

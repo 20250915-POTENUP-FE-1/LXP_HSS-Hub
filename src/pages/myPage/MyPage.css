@@ -25,3 +25,7 @@
   font-size: var(--font-size-30);
   font-weight: 700;
 }
+
+.mypage-no-lecture {
+  width: 100%;
+}

@@ -55,7 +55,12 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
           type="number"
           id="price"
           value={formData?.price}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => {
+            setFormData((prev) => ({
+              ...prev,
+              price: parseInt(e.target.value),
+            }));
+          }}
           placeholder={'가격을 입력하세요'}
         />
       </div>

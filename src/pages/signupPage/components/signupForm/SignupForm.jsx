@@ -79,6 +79,7 @@ function SignupForm() {
       );
       // fulfilled일 때만 이동
       if (resultAction.meta.requestStatus === 'fulfilled') {
+        alert('회원가입이 완료되었습니다!');
         navigate('/login', { replace: true });
       }
     } catch (err) {
@@ -182,6 +183,29 @@ function SignupForm() {
             onKeyDown={preventSpace}
             style={{ backgroundColor: '#F9FAFB' }}
           />
+        </FormField>
+
+        <FormField label="유형" required>
+          <div className="signupForm-roleToggle">
+            <button
+              type="button"
+              className={`signupForm-roleBtn ${
+                form.role === 'STUDENT' ? 'signupForm-roleBtn--active' : ''
+              }`}
+              onClick={() => handleRoleChange('STUDENT')}
+            >
+              수강생
+            </button>
+            <button
+              type="button"
+              className={`signupForm-roleBtn ${
+                form.role === 'TEACHER' ? 'signupForm-roleBtn--active' : ''
+              }`}
+              onClick={() => handleRoleChange('TEACHER')}
+            >
+              강사
+            </button>
+          </div>
         </FormField>
 
         {/* 에러 메시지 */}

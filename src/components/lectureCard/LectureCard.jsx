@@ -52,6 +52,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
         )}
         {type === 'MAIN' && (
           <div className="price-enrollment">
+            {console.log(lecture.price)}
             <div className="price">{lecture.price?.toLocaleString()}원</div>
             <div className="enrollment">수강생 {lecture.enrollmentCount}명</div>
           </div>
@@ -61,7 +62,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
             <Button
               variant="primary"
               block={'true'}
-              disabled={lecture.authorName ? false : true}
+              disabled={lecture.authorId ? false : true}
             >
               수강하기
             </Button>
@@ -82,9 +83,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
           </div>
         )}
       </div>
-      {!lecture.authorName && (
-        <div className={'backdrop-blur'}></div>
-      )}
+      {!lecture.authorId && <div className={'backdrop-blur'}></div>}
     </div>
   );
 }
