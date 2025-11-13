@@ -12,3 +12,13 @@
   align-items: center;
   margin-bottom: var(--spacing-30);
 }
+
+@media (max-width: 640px) {
+  .mainpage {
+    padding: 22px 0;
+  }
+
+  .mainpage-top {
+    display: block;
+  }
+}

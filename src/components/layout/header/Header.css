@@ -64,8 +64,25 @@
     margin-top: 4px;
   }
 }
+
+@media (max-width: 900px) {
+  .header-logo-text {
+    font-size: 25px;
+  }
+  .header-logo svg {
+    width: 30px;
+    height: 30px;
+    margin-top: -1px;
+  }
+
+  .header-actions svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
 @media (max-width: 640px) {
   .header-logo-text {
-        font-size: 20px;
-    }
+    font-size: 20px;
+  }
 }

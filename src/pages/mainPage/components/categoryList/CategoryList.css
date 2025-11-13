@@ -1,5 +1,9 @@
+.category-list {
+  display: flex;
+  gap: 10px;
+}
+
 .category-list button {
-  margin: 0 6px;
   padding: 0 14px;
   font-size: var(--font-size-sm);
   line-height: 36px;
@@ -18,5 +22,17 @@
 @media (max-width: 1024px) {
   .category-list button {
     line-height: 32px;
+  }
+}
+@media (max-width: 640px) {
+  .category-list {
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .category-list button {
+    line-height: 24px;
+    font-size: 12px;
+    padding: 0 8px;
   }
 }
