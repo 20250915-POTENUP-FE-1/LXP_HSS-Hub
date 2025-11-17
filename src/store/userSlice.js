@@ -29,14 +29,13 @@ export const signup = createAsyncThunk(
         payload.password,
       );
       const uid = userCredential.user.uid;
+      await auth.signOut();
       // firestore에 저장
       await createUser(uid, {
         userEmail: payload.userEmail,
         role: payload.role,
         userName: payload.userName,
       });
-
-      await auth.signOut();
 
       return;
     } catch (error) {
