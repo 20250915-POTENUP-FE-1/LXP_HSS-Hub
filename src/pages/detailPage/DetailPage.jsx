@@ -143,7 +143,7 @@ function DetailPage() {
               className="lecture-regist-button"
               onClick={handleRegistLecture}
             >
-              {userRole === 'STUDENT' ? '수강 신청' : '강의 수정'}
+              {userRole !== 'TEACHER' ? '수강 신청' : '강의 수정'}
             </button>
           )}
         </div>
