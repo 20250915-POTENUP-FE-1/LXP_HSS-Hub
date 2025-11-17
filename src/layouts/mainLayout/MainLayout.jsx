@@ -11,15 +11,12 @@ function MainLayout() {
   const { pathname } = location;
 
   const getHeaderType = () => {
+    if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
+      // 로그인페이지거나 회원가입 페이지
+      return 'none';
+    }
     if (!userInfo) {
-      // 로그아웃 상태
-      if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
-        // 로그인페이지거나 회원가입 페이지
-        return 'none';
-      } else {
-        // 그냥 일반 로그아웃 상태
-        return 'logout';
-      }
+      return 'logout';
     } else {
       // 로그인 상태
       return 'login';
