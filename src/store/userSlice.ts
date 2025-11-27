@@ -9,9 +9,21 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { createUser, getUser, updateUser } from '../services/userService';
+import { User } from 'types/types';
+
+interface UserState {
+  userInfo: User | null;
+  loading: boolean;
+  error: string;
+}
+
+interface CustomError {
+  code?: string;
+  message?: string;
+}
 
 // 전역으로 관리할 상태
-const initialState = {
+const initialState: UserState = {
   userInfo: null,
   loading: false,
   error: '',
@@ -19,7 +31,7 @@ const initialState = {
 
 export const signup = createAsyncThunk(
   'user/signup',
-  async (payload, { rejectWithValue }) => {
+  async (payload: User & { password: string }, { rejectWithValue }) => {
     // payload: 유저정보 객체(패스워드 포함) (userEmail: "", password: "", userName: "", ...)
     try {
       // authentication에 정보 보내기
@@ -38,8 +50,9 @@ export const signup = createAsyncThunk(
       });
 
       return;
-    } catch (error) {
+    } catch (err) {
       let errorMessage = '회원가입 중 오류가 발생했습니다.';
+      const error = err as CustomError;
 
       switch (error.code) {
         case 'auth/invalid-email':
@@ -60,7 +73,7 @@ export const signup = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'user/login',
-  async (payload, { rejectWithValue }) => {
+  async (payload: User & { password: string }, { rejectWithValue }) => {
     // payload : { userEmail: "", password: ""}
     try {
       // authentication
@@ -71,8 +84,9 @@ export const login = createAsyncThunk(
       );
 
       return;
-    } catch (error) {
+    } catch (err) {
       let errorMessage = '로그인 중 오류가 발생했습니다.';
+      const error = err as CustomError;
       switch (error.code) {
         case 'auth/invalid-email':
           errorMessage = '올바른 이메일 형식이 아닙니다.';
@@ -96,7 +110,8 @@ export const logout = createAsyncThunk(
     try {
       await signOut(auth);
       return '로그아웃 완료';
-    } catch (error) {
+    } catch (err) {
+      const error = err as CustomError;
       return rejectWithValue(error.message);
     }
   },
@@ -104,7 +119,7 @@ export const logout = createAsyncThunk(
 
 export const updateInfo = createAsyncThunk(
   'user/updateInfo',
-  async (payload, { rejectWithValue }) => {
+  async (payload: { userId: string; userInfo: User }, { rejectWithValue }) => {
     try {
       await updateUser(payload.userId, payload.userInfo);
       const userInfo = await getUser(payload.userId);
@@ -132,59 +147,59 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     // 1. 회원가입 액션 처리
     builder
-      .addCase(signup.pending, (state) => {
+      .addCase(signup.pending, (state: UserState) => {
         state.loading = true;
         state.error = '';
       })
-      .addCase(signup.fulfilled, (state) => {
+      .addCase(signup.fulfilled, (state: UserState) => {
         state.loading = false;
       })
-      .addCase(signup.rejected, (state, action) => {
+      .addCase(signup.rejected, (state: UserState, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
     // 2. 로그인 액션 처리
     builder
-      .addCase(login.pending, (state) => {
+      .addCase(login.pending, (state: UserState) => {
         state.loading = true;
         state.error = '';
       })
-      .addCase(login.fulfilled, (state) => {
+      .addCase(login.fulfilled, (state: UserState) => {
         state.loading = false;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, (state: UserState, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
     // 3. 로그아웃 액션 처리
     builder
-      .addCase(logout.pending, (state) => {
+      .addCase(logout.pending, (state: UserState) => {
         state.loading = true;
         state.error = '';
       })
-      .addCase(logout.fulfilled, (state) => {
+      .addCase(logout.fulfilled, (state: UserState) => {
         state.userInfo = null;
         state.error = '';
         state.loading = false;
       })
-      .addCase(logout.rejected, (state, action) => {
+      .addCase(logout.rejected, (state: UserState, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
     // 4. 유저 정보 수정 액션 처리
     builder
-      .addCase(updateInfo.pending, (state) => {
+      .addCase(updateInfo.pending, (state: UserState) => {
         state.loading = true;
         state.error = '';
       })
-      .addCase(updateInfo.fulfilled, (state, action) => {
+      .addCase(updateInfo.fulfilled, (state: UserState, action) => {
         state.userInfo = action.payload.userInfo;
         state.loading = false;
         state.error = '';
       })
-      .addCase(updateInfo.rejected, (state, action) => {
+      .addCase(updateInfo.rejected, (state: UserState, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as string;
       });
   },
 });

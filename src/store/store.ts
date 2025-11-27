@@ -4,6 +4,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import userReducer from './userSlice';
 import storageSession from 'redux-persist/lib/storage/session'; // 1. rootReducer 설정
+import { User } from 'types/types';
 
 // 1. persist 설정
 const persistConfig = {
@@ -23,6 +24,8 @@ const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
   // 다른 리듀서들...
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
