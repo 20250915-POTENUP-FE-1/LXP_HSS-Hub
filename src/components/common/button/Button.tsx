@@ -1,6 +1,27 @@
 import React from 'react';
 import './Button.css';
 
+interface ButtonProps {
+  children: React.ReactNode;
+  varient?:
+    | 'primary'
+    | 'secondary'
+    | 'ghost'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'outline'
+    | 'link'
+    | 'clear';
+  size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
+  disabled?: boolean;
+  onClick: () => void;
+  radius?: 'sm' | 'md' | 'lg' | 'max';
+  type?: 'button' | 'submit' | 'reset';
+  [property: string]: any; // ...rest
+}
+
 /**
  *
  * @param {object} props - 컴포넌트에 전달되는 props 객체
@@ -23,7 +44,7 @@ function Button({
   radius = 'sm',
   type = 'button',
   ...rest
-}) {
+}: ButtonProps) {
   const className = [
     'btn',
     `btn--${variant}`,
