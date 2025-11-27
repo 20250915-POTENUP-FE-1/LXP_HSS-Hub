@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import LectureList from '../../components/lectureList/LectureList';
 import Button from '../../components/common/button/Button';
 import './MyPage.css';
 import { useSelector } from 'react-redux';
 import { getLecturesByLectureIds } from '../../services/lectureService';
+import { Lecture, User } from 'types/types';
+import { RootState } from 'store/store';
+
+// 1. Props들 모두 interface로 바꿔야함
+// 2. useState 바꿔야함
 
 function MyPage() {
   const navigate = useNavigate();
-  const [lectures, setLectures] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { userInfo } = useSelector((state) => state.user);
+  const [lectures, setLectures] = useState<Lecture[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const userInfo = useSelector((state: RootState) => state.user.userInfo!);
 
   const fetchLectures = async () => {
     try {
