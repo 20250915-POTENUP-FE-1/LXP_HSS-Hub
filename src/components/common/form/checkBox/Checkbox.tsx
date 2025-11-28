@@ -1,7 +1,15 @@
 import React from 'react';
 import '../Form.css';
 
-function Checkbox({ id, label, checked, onChange, ...rest }) {
+interface CheckboxProps {
+  id?: string;
+  label?: string;
+  checked: boolean;
+  onChange: () => void;
+  [property: string]: any;
+}
+
+function Checkbox({ id, label, checked, onChange, ...rest }: CheckboxProps) {
   return (
     <label className="checkbox" htmlFor={id}>
       <input

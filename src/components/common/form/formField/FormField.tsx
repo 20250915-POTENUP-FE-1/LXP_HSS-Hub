@@ -1,6 +1,15 @@
 import React from 'react';
 import '../Form.css';
 
+interface FormFieldProps {
+  label?: string;
+  htmlFor?: string;
+  required?: boolean;
+  error?: boolean;
+  size?: 'sm' | 'lg';
+  children: React.ReactNode;
+}
+
 function FormField({
   label,
   htmlFor,
@@ -8,7 +17,7 @@ function FormField({
   error,
   size, // 'sm' | 'lg'
   children,
-}) {
+}: FormFieldProps) {
   const classes = ['field'];
   if (size === 'sm') classes.push('is-sm');
   if (size === 'lg') classes.push('is-lg');

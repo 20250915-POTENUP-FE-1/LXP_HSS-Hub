@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  varient?:
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?:
     | 'primary'
     | 'secondary'
     | 'ghost'
@@ -15,11 +14,7 @@ interface ButtonProps {
     | 'clear';
   size?: 'sm' | 'md' | 'lg';
   block?: boolean;
-  disabled?: boolean;
-  onClick: () => void;
   radius?: 'sm' | 'md' | 'lg' | 'max';
-  type?: 'button' | 'submit' | 'reset';
-  [property: string]: any; // ...rest
 }
 
 /**
