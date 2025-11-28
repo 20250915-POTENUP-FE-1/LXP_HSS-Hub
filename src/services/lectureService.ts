@@ -10,16 +10,22 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  Timestamp,
   updateDoc,
   where,
 } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import { Category, Lecture, Sort } from 'types/types';
 
 const LECTURES_COLLECTION_NAME = 'lectures';
 
 //1. 전체 강의 조회(필터링, 정렬, 검색어를 인수로 받아서) sort: createdAt | enrollmentCount
 // 반환 값은 필터링, 정렬, 검색어 옵션이 처리되어서 반환됨
-export const getLectures = async (category, sort, keyword) => {
+export const getLectures = async (
+  category: Category,
+  sort: Sort,
+  keyword?: string,
+) => {
   let q = null;
   // 카테고리 전체면, 모든 강의 가져오기
   if (category === 'all') {
@@ -42,9 +48,9 @@ export const getLectures = async (category, sort, keyword) => {
   if (!q) return;
   const snapshot = await getDocs(q);
 
-  const result = [];
+  const result: Lecture[] = [];
   snapshot.docs.forEach((doc) => {
-    result.push({ lectureId: doc.id, ...doc.data() });
+    result.push({ lectureId: doc.id, ...doc.data() } as Lecture);
   });
 
   // 키워드 필터링 로직
@@ -59,19 +65,23 @@ export const getLectures = async (category, sort, keyword) => {
 };
 
 // lectureId 배열로 강의 가져오기
-export const getLecturesByLectureIds = async (lectureIds) => {
-  const lecutrePromise = lectureIds.map(async (lectureId) => {
+export const getLecturesByLectureIds = async (lectureIds: string[]) => {
+  const lecturePromise = lectureIds.map(async (lectureId) => {
     const lec = await getLecture(lectureId);
-    return lec;
+    return lec as Lecture;
   });
 
-  const result = await Promise.all(lecutrePromise);
+  const result: Lecture[] = await Promise.all(lecturePromise);
 
-  return result.sort((a, b) => b.createdAt - a.createdAt);
+  return result.sort(
+    (a, b) =>
+      (b.createdAt as Timestamp).toMillis() -
+      (a.createdAt as Timestamp).toMillis(),
+  );
 };
 
 // 특정 강의 조회(강의 ID)
-export const getLecture = async (lectureId) => {
+export const getLecture = async (lectureId: string) => {
   const snapshot = await getDoc(doc(db, LECTURES_COLLECTION_NAME, lectureId));
   return {
     lectureId: snapshot.id,
@@ -80,7 +90,7 @@ export const getLecture = async (lectureId) => {
 };
 
 // 강의 추가(사용자가 입력한 강의 정보)
-export const createLecture = async (lectureInfo) => {
+export const createLecture = async (lectureInfo: Partial<Lecture>) => {
   const docRef = await addDoc(collection(db, LECTURES_COLLECTION_NAME), {
     ...lectureInfo,
     enrollmentCount: 0,
@@ -93,7 +103,10 @@ export const createLecture = async (lectureInfo) => {
 };
 
 // 강의 수정(강의ID, 수정한 강의 정보)
-export const updateLecture = async (lectureId, lectureInfo) => {
+export const updateLecture = async (
+  lectureId: string,
+  lectureInfo: Partial<Lecture>,
+) => {
   await updateDoc(doc(db, LECTURES_COLLECTION_NAME, lectureId), {
     ...lectureInfo,
     updatedAt: serverTimestamp(),
@@ -101,6 +114,6 @@ export const updateLecture = async (lectureId, lectureInfo) => {
 };
 
 // 강의 삭제(강의ID)
-export const deleteLecture = async (lectureId) => {
+export const deleteLecture = async (lectureId: string) => {
   await deleteDoc(doc(db, LECTURES_COLLECTION_NAME, lectureId));
 };
