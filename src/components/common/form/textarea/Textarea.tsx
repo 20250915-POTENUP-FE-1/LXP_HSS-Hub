@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { TextareaHTMLAttributes } from 'react';
 import '../Form.css';
 
-function Textarea({ id, value, onChange, placeholder, rows = 4, ...rest }) {
+function Textarea({
+  id,
+  value,
+  onChange,
+  placeholder,
+  rows = 4,
+  ...rest
+}: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
       id={id}

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { ChangeEvent, InputHTMLAttributes } from 'react';
 import '../Form.css';
 
-function Input({ id, value, onChange, placeholder, type = 'text', ...rest }) {
+function Input({
+  id,
+  value,
+  onChange,
+  placeholder,
+  type = 'text',
+  ...rest
+}: InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       id={id}

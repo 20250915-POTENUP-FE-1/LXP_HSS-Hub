@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { SelectHTMLAttributes } from 'react';
 import '../Form.css';
 
-function Select({ id, value, onChange, children, ...rest }) {
+function Select({
+  id,
+  value,
+  onChange,
+  children,
+  ...rest
+}: SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <select
       id={id}

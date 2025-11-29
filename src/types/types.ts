@@ -33,4 +33,7 @@ type Lesson = {
   lessonTitle: string;
 };
 
-export type { User, Lecture, Lesson };
+type Category = Lecture['category'] | 'all';
+type Sort = 'createdAt' | 'enrollmentCount';
+
+export type { User, Lecture, Lesson, Category, Sort };
