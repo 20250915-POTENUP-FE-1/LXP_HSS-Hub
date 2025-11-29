@@ -109,6 +109,7 @@ export const updateLecture = async (
 ) => {
   await updateDoc(doc(db, LECTURES_COLLECTION_NAME, lectureId), {
     ...lectureInfo,
+    thumbnailURL: '/src/assets/images/thumbnail_10.jpg',
     updatedAt: serverTimestamp(),
   });
 };
