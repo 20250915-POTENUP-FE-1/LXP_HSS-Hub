@@ -11,11 +11,11 @@ import { auth } from '../firebase/config';
 import { createUser, getUser, updateUser } from '../services/userService';
 import { User } from 'types/types';
 
-interface UserState {
+export type UserState = {
   userInfo: User | null;
   loading: boolean;
   error: string;
-}
+};
 
 interface CustomError {
   code?: string;
@@ -119,7 +119,13 @@ export const logout = createAsyncThunk(
 
 export const updateInfo = createAsyncThunk(
   'user/updateInfo',
-  async (payload: { userId: string; userInfo: User }, { rejectWithValue }) => {
+  async (
+    payload: {
+      userId: string;
+      userInfo: Pick<User, 'lectureList'>;
+    },
+    { rejectWithValue },
+  ) => {
     try {
       await updateUser(payload.userId, payload.userInfo);
       const userInfo = await getUser(payload.userId);
