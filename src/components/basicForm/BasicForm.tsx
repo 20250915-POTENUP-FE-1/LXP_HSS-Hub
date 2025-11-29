@@ -1,18 +1,32 @@
-import Input from '../../components/common/form/input/Input';
-import Textarea from '../../components/common/form/textarea/Textarea';
-import Select from '../../components/common/form/select/Select';
-import ThumbnailInput from '../../components/thumbnailInput/ThumbnailInput';
+import Input from '../common/form/input/Input';
+import Textarea from '../common/form/textarea/Textarea';
+import Select from '../common/form/select/Select';
+import ThumbnailInput from '../thumbnailInput/ThumbnailInput';
 import Button from '../common/button/Button';
 import './BasicForm.css';
+import { Lecture } from 'types/types';
+import { Dispatch, SetStateAction, TextareaHTMLAttributes } from 'react';
 
-function BasicForm({ formData, setFormData, handleChange, handleNext }) {
+interface BasicFormProps {
+  formData: Partial<Lecture>;
+  setFormData: Dispatch<SetStateAction<Partial<Lecture>>>; // useState의 함수형 업데이트를 지원하려면 다음과 같이 작성해야함
+  handleNext: () => void;
+  handleTextareaChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+function BasicForm({
+  formData,
+  setFormData,
+  handleTextareaChange,
+  handleNext,
+}: BasicFormProps) {
   return (
     <form className="basic-form">
       <div className="form-input thumbnail">
         <div className="label">썸네일 업로드</div>
         <ThumbnailInput
           thumbnail={formData?.thumbnailURL}
-          onFileChange={(file) =>
+          onFileChange={(file: string) =>
             setFormData((prev) => ({ ...prev, thumbnailURL: file }))
           }
         />
@@ -33,10 +47,10 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
         <Select
           id="category"
           value={formData?.category}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             setFormData((prev) => ({
               ...prev,
-              category: e.target.value,
+              category: e.target.value as Lecture['category'],
             }));
           }}
         >
@@ -70,7 +84,7 @@ function BasicForm({ formData, setFormData, handleChange, handleNext }) {
           id="description"
           value={formData?.description}
           rows={6}
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => handleTextareaChange(e)}
           placeholder={
             '수강생들이 강의에 대해 쉽게 이해할 수 있도록 명확하게 설명해주세요'
           }

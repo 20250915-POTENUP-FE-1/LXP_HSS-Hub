@@ -1,7 +1,13 @@
+import { Lecture } from 'types/types';
 import LectureCard from '../lectureCard/LectureCard';
 import './LectureList.css';
 
-function LectureList({ lectures, type }) {
+interface LectureListProps {
+  lectures: Lecture[];
+  type: 'MAIN' | 'STUDENT' | 'TEACHER';
+}
+
+function LectureList({ lectures, type }: LectureListProps) {
   return (
     <div className="lecture-list">
       <div className="lecture-list-grid">

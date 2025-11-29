@@ -14,7 +14,7 @@ type User = {
 type Lecture = {
   lectureId: string;
   lectureTitle: string;
-  category: 'web' | 'basic' | 'data' | 'ai';
+  category: 'web' | 'basic' | 'data' | 'ai' | ''; // 초기 등록 시 select 부분에서 빈 값으로 입력되기 때문에 빈 값도 추가
   authorId: string | null;
   authorName: string;
   description: string;
@@ -35,5 +35,6 @@ type Lesson = {
 
 type Category = Lecture['category'] | 'all';
 type Sort = 'createdAt' | 'enrollmentCount';
+type LectureRegistStep = 'basic' | 'curriculum';
 
-export type { User, Lecture, Lesson, Category, Sort };
+export type { User, Lecture, Lesson, Category, Sort, LectureRegistStep };

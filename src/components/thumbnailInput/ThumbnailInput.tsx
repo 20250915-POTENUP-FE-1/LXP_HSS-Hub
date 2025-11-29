@@ -1,14 +1,19 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { CloudUpload, XCircle } from 'lucide-react';
 import './ThumbnailInput.css';
+
+interface ThumbnailInputProps {
+  thumbnail?: string | File;
+  onFileChange: (file: string) => void;
+}
 
 // 허용할 이미지 파일 확장자 목록
 const ALLOWED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/gif'];
 
-function ThumbnailInput({ thumbnail, onFileChange }) {
-  const [previewImage, setPreviewImage] = useState(null); // 이미지 미리보기 URL 상태
-  const [isDragging, setIsDragging] = useState(false); // 드래그 상태
-  const fileInputRef = useRef(null); // 숨겨진 file input에 대한 참조
+function ThumbnailInput({ thumbnail, onFileChange }: ThumbnailInputProps) {
+  const [previewImage, setPreviewImage] = useState<string | null>(); // 이미지 미리보기 URL 상태
+  const [isDragging, setIsDragging] = useState<boolean>(false); // 드래그 상태
+  const fileInputRef = useRef<HTMLInputElement>(null); // 숨겨진 file input에 대한 참조
 
   useEffect(() => {
     if (thumbnail) {
@@ -20,7 +25,7 @@ function ThumbnailInput({ thumbnail, onFileChange }) {
       ) {
         const reader = new FileReader();
         reader.onloadend = () => {
-          setPreviewImage(reader.result);
+          setPreviewImage(reader.result as string);
         };
         reader.readAsDataURL(thumbnail);
       } else {
@@ -33,26 +38,22 @@ function ThumbnailInput({ thumbnail, onFileChange }) {
 
   // 파일 유효성 검사 및 미리보기 생성
   const handleFile = useCallback(
-    (file) => {
+    (file: File) => {
       if (file && ALLOWED_IMAGE_TYPES.includes(file.type)) {
         // 유효한 이미지 파일인 경우
         const reader = new FileReader();
         reader.onloadend = () => {
           // 파일 읽기가 완료되면 미리보기 URL을 상태에 저장
-          setPreviewImage(reader.result);
+          setPreviewImage(reader.result as string);
+          onFileChange(reader.result as string);
         };
         reader.readAsDataURL(file); // 파일을 Data URL로 읽기
-
-        // 부모 컴포넌트로 파일 객체 전달
-        if (onFileChange) {
-          onFileChange(file);
-        }
       } else {
         // 허용되지 않는 파일 형식인 경우
         alert('PNG, JPG, GIF 파일만 업로드할 수 있습니다.');
         setPreviewImage(null); // 미리보기 초기화
         if (onFileChange) {
-          onFileChange(null);
+          onFileChange('');
         }
       }
     },
@@ -61,43 +62,43 @@ function ThumbnailInput({ thumbnail, onFileChange }) {
 
   // 박스 클릭 시 파일 선택창 열기
   const handleClick = () => {
-    fileInputRef.current.click();
+    fileInputRef.current?.click();
   };
 
   // 파일 선택창에서 파일이 변경되었을 때
-  const handleChange = (e) => {
-    handleFile(e.target.files[0]);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    handleFile(file);
   };
 
   // 드래그 이벤트 핸들러
-  const handleDragOver = (e) => {
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   };
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
     handleFile(e.dataTransfer.files[0]);
   };
 
-  const handleClearFile = (e) => {
+  const handleClearFile = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation(); // 부모 div의 onClick 이벤트(파일 선택창 열기) 방지
     setPreviewImage(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = ''; // 실제 input 값 초기화
     }
-    if (onFileChange) {
-      onFileChange(null); // 부모 컴포넌트에 파일이 없음을 알림
-    }
+    onFileChange(''); // 부모 컴포넌트에 파일이 없음을 알림
   };
 
   return (

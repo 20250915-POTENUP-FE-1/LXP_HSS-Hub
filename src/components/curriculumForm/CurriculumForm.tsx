@@ -1,7 +1,18 @@
 import { nanoid } from 'nanoid';
-import CurriculumInput from '../../components/curriculumInput/CurriculumInput';
+import CurriculumInput from '../curriculumInput/CurriculumInput';
 import Button from '../common/button/Button';
 import './CurriculumForm.css';
+import { Lecture } from 'types/types';
+import { Dispatch, SetStateAction } from 'react';
+
+interface CurriculumFormProps {
+  formData: Partial<Lecture>;
+  setFormData: Dispatch<SetStateAction<Partial<Lecture>>>; // useState의 함수형 업데이트를 지원하려면 다음과 같이 작성해야함
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  handlePrev: () => void;
+  mode?: 'regist' | 'edit';
+  isLoading: boolean;
+}
 
 function CurriculumForm({
   formData,
@@ -10,11 +21,11 @@ function CurriculumForm({
   handlePrev,
   mode = 'regist',
   isLoading,
-}) {
-  const handleChangeLesson = (e) => {
-    const target = e.target.dataset.order;
+}: CurriculumFormProps) {
+  const handleChangeLesson = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target.dataset.order!;
     setFormData((prev) => {
-      const updated = prev.curriculum.map((lesson, idx) => {
+      const updated = prev.curriculum!.map((lesson, idx) => {
         if (idx + 1 === parseInt(target)) {
           return { ...lesson, lessonTitle: e.target.value };
         }
@@ -30,7 +41,7 @@ function CurriculumForm({
 
   const handleAdd = () => {
     setFormData((prev) => {
-      const updated = prev.curriculum;
+      const updated = prev.curriculum!;
       updated.push({
         lessonId: nanoid(),
         lessonTitle: '',
@@ -42,14 +53,14 @@ function CurriculumForm({
     });
   };
 
-  const handleDelete = (order) => {
-    if (formData.curriculum.length <= 1) {
+  const handleDelete = (order: number) => {
+    if (formData.curriculum!.length <= 1) {
       alert('1개 이상의 강의는 필수로 등록해야 합니다.');
       return;
     }
 
     setFormData((prev) => {
-      const updated = prev.curriculum.filter(
+      const updated = prev.curriculum!.filter(
         (lesson, idx) => idx + 1 !== order,
       );
       return {
@@ -60,12 +71,12 @@ function CurriculumForm({
   };
 
   return (
-    <form className="curriculum-form">
+    <form className="curriculum-form" onSubmit={handleSubmit}>
       <div className="curriculum-length">
-        {formData.curriculum.length}개의 강의
+        {formData.curriculum!.length}개의 강의
       </div>
       <div className="input-wrapper">
-        {formData.curriculum.map((lesson, idx) => (
+        {formData.curriculum!.map((lesson, idx) => (
           <CurriculumInput
             key={idx}
             order={idx + 1}
@@ -83,7 +94,7 @@ function CurriculumForm({
         <Button variant="ghost" size="md" onClick={() => handlePrev()}>
           이전
         </Button>
-        <Button onClick={(e) => handleSubmit(e)} disabled={isLoading}>
+        <Button type="submit" disabled={isLoading}>
           {mode === 'regist' ? '등록' : '수정'}
         </Button>
       </div>

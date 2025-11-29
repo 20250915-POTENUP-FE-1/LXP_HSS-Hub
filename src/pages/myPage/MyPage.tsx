@@ -21,7 +21,9 @@ function MyPage() {
   const fetchLectures = async () => {
     try {
       setIsLoading(true);
-      const result = await getLecturesByLectureIds(userInfo.lectureList);
+      const result: Lecture[] = await getLecturesByLectureIds(
+        userInfo.lectureList,
+      );
       setLectures(result);
     } catch (error) {
       console.log(error);
