@@ -35,7 +35,7 @@ export const createUser = async (
 
 export const updateUser = async (
   userId: string,
-  userInfo: Pick<User, 'lectureList' | 'userName'>,
+  userInfo: Pick<User, 'lectureList'>,
 ) => {
   await updateDoc(doc(db, USERS_COLLECTION_NAME, userId), {
     ...userInfo,
