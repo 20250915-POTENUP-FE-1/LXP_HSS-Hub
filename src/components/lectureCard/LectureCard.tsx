@@ -4,10 +4,17 @@ import Button from '../common/button/Button';
 import './LectureCard.css';
 import { useNavigate } from 'react-router-dom';
 import { updateInfo } from '../../store/userSlice';
+import { Lecture } from 'types/types';
+import { AppDispatch, RootState } from 'store/store';
 
-function LectureCard({ lecture, type = 'MAIN' }) {
-  const { userInfo } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+interface LectureCardProps {
+  lecture: Lecture;
+  type?: 'MAIN' | 'STUDENT' | 'TEACHER';
+}
+
+function LectureCard({ lecture, type = 'MAIN' }: LectureCardProps) {
+  const { userInfo } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleClickCard = () => {
@@ -22,13 +29,13 @@ function LectureCard({ lecture, type = 'MAIN' }) {
         authorId: null,
       });
 
-      const updatedLectureList = userInfo.lectureList.filter((lectureId) => {
+      const updatedLectureList = userInfo!.lectureList.filter((lectureId) => {
         return lectureId !== lecture.lectureId;
       });
 
       await dispatch(
         updateInfo({
-          userId: userInfo.userId,
+          userId: userInfo!.userId,
           userInfo: {
             lectureList: updatedLectureList,
           },
@@ -60,7 +67,7 @@ function LectureCard({ lecture, type = 'MAIN' }) {
           <div className="buttons">
             <Button
               variant="primary"
-              block={'true'}
+              block={true}
               disabled={lecture.authorId ? false : true}
             >
               수강하기
