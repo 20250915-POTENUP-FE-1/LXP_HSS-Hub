@@ -37,4 +37,5 @@ const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
+export type AppDispatch = typeof store.dispatch; // Action 생성자 함수의 결과를 useDispatch의 인수로 넣기위해서 사용
 export default store;

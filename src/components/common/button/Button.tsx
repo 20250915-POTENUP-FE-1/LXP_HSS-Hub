@@ -11,7 +11,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | 'warning'
     | 'outline'
     | 'link'
-    | 'clear';
+    | 'clear'
+    | 'dashed';
   size?: 'sm' | 'md' | 'lg';
   block?: boolean;
   radius?: 'sm' | 'md' | 'lg' | 'max';
