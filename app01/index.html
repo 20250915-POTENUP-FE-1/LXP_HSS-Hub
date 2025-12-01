@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대시보드</title>
+  <link rel="stylesheet" href="./src/css/dashboard.css">
+</head>
+
+<body>
+
+  <div class="container">
+    
+    <!-- 헤더 영역 (js로 layout/header.html 구문 삽입) -->
+
+    <!-- <header class="header">
+      <div class="header-content">
+        <div class="logo">Dashboard</div>
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="/">홈</a></li>
+            <li><a href="/analytics">분석</a></li>
+            <li><a href="/reports">보고서</a></li>
+            <li><a href="/settings">설정</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header> -->
+
+    <!-- 메인 컨테이너 -->
+    <div class="main-container">
+      <!-- 사이드바 (js로 layout/sidebar.html 구문 삽입) -->
+
+      <!-- <aside class="sidebar">
+        <h3>메뉴</h3>
+        <ul class="sidebar-menu">
+          <li><a href="/">대시보드</a></li>
+          <li><a href="/users">사용자</a></li>
+          <li><a href="/products">상품</a></li>
+          <li><a href="/orders">주문</a></li>
+          <li><a href="/inventory">재고</a></li>
+          <li><a href="/reports">보고서</a></li>
+          <li><a href="/settings">설정</a></li>
+        </ul>
+      </aside> -->
+
+      <!-- 메인 콘텐츠 -->
+      <main class="main-content">
+        <div class="content-header">
+          <h1>대시보드</h1>
+          <p>오늘의 주요 지표와 통계를 확인하세요</p>
+        </div>
+
+        <!-- 대시보드 카드 그리드 -->
+        <div class="dashboard-grid">
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">총 사용자</h3>
+              <div class="card-icon">👥</div>
+            </div>
+            <div class="card-value">1,234</div>
+            <div class="card-description">이번 달 신규 가입자</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">총 매출</h3>
+              <div class="card-icon">💰</div>
+            </div>
+            <div class="card-value">₩12,345,678</div>
+            <div class="card-description">이번 달 총 매출액</div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-header">
+              <h3 class="card-title">주문 수</h3>
+              <div class="card-icon">📦</div>
+            </div>
+            <div class="card-value">567</div>
+            <div class="card-description">이번 달 총 주문 수</div>
+          </div>
+        </div>
+
+        <!-- 통계 섹션 -->
+        <div class="stats-section">
+          <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">고객 만족도</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">고객 지원</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">99.9%</div>
+            <div class="stat-label">서비스 가동률</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15</div>
+            <div class="stat-label">지원 언어</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  
+  <!-- <script>
+    // layout>header.html 웹문서 요청 -> html 문구 텍스트 
+    // fetch("요청할 자원의 주소")
+    fetch("/layout/header.html")
+    .then( (response) => response.text() )   //then 메소드 : 함수실행 /응답객체를 받아서 텍스트 응답객체로 받음
+    .then( (responseText) => {
+      // console.log(responseText); //response.text())을 반환 받아서 전달된것
+      document.querySelector(".container").insertAdjacentHTML("afterbegin", responseText);
+    })  
+
+  </script> -->
+
+  <!-- <script>
+    // layout>sidebar.html 웹문서 요청 -> html 문구 텍스트 
+    fetch("/layout/sidebar.html")
+    .then( (response) => response.text() )  
+    .then( (responseText) => {
+      document.querySelector(".main-container").insertAdjacentHTML("afterbegin", responseText); 
+    })  
+  </script> -->
+
+  <script type="module" src="./src/js/layout/includeHeader.js"></script>
+  <script type="module" src="./src/js/layout/includeSidebar.js"></script>
+
+  <!-- type="module" : 모듈방식으로 js파일을 포함시킨다  -->
+
+
+   
+  
+
+</body>
+
+</html>
