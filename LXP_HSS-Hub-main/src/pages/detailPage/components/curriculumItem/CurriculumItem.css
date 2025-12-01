@@ -1,0 +1,15 @@
+.curriculum-item {
+  margin-bottom: var(--spacing-16);
+  padding: var(--spacing-20);
+  font-size: var(--font-size-18);
+  font-weight: 700;
+  cursor: pointer;
+}
+.curriculum-item:hover {
+  color: #fff;
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+.curriculum-item:last-child {
+  margin-bottom: 0;
+}

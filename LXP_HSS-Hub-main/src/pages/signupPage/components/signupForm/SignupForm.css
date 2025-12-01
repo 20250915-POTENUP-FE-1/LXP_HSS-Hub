@@ -1,0 +1,64 @@
+.signupForm-card {
+  width: 420px;
+  padding: 40px 36px 32px;
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  text-align: left;
+}
+
+.signupForm-title {
+  text-align: center;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-32);
+}
+
+.signupForm-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.signupForm-error {
+  margin-top: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+.signupForm-bottomText {
+  margin-top: var(--spacing-16);
+  font-size: var(--font-size-13);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.signupForm-bottomText a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+/* 유형 선택 버튼 */
+.signupForm-roleToggle {
+  margin-top: 4px;
+  display: flex;
+  gap: 8px;
+}
+
+.signupForm-roleBtn {
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-muted);
+  font-size: var(--font-size-13);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.signupForm-roleBtn--active {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: #f9fafb;
+}

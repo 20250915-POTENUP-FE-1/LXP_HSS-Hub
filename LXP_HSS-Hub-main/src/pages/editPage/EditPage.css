@@ -1,0 +1,26 @@
+.edit-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-32);
+}
+
+.edit-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: var(--inner);
+  padding: var(--spacing-32);
+  gap: var(--spacing-32);
+  border-radius: 20px;
+
+  background-color: var(--color-white);
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.edit-page-top {
+  width: 100%;
+}

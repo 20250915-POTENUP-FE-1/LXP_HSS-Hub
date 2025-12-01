@@ -1,0 +1,93 @@
+.loginForm-card {
+  width: 420px;
+  padding: 40px 36px 32px;
+  background-color: #ffffff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+  text-align: left;
+}
+
+.loginForm-title {
+  text-align: center;
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-32);
+}
+
+.loginForm-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.loginForm-error {
+  margin-top: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+.loginForm-bottomText {
+  margin-top: var(--spacing-16);
+  font-size: var(--font-size-13);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.loginForm-bottomText a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.loginForm-button {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--color-primary);
+  color: #f9fafb;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.loginForm-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing-32);
+  height: var(--spacing-32);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+
+  color: var(--color-neutral-600);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.password-toggle:hover {
+  background: var(--color-neutral-50);
+  color: var(--color-neutral-600);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

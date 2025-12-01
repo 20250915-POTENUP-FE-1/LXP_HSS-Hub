@@ -1,0 +1,29 @@
+.basic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: var(--spacing-32);
+}
+
+.basic-form .form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 8px;
+}
+
+.basic-form .label {
+  font-size: var(--font-size-sm);
+  color: var(--color-font-subtitle);
+}
+
+.basic-form .next,
+.basic-form .submit {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

@@ -1,0 +1,23 @@
+.curriculum-input {
+  position: relative;
+  width: 100%;
+}
+
+.curriculum-input .order {
+  font-size: var(--font-size-sm);
+  color: var(--color-font-content);
+  position: absolute;
+  left: 8px;
+  line-height: 38px;
+}
+
+.curriculum-input .delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  right: 12px;
+  top: 0;
+  height: 38px;
+}

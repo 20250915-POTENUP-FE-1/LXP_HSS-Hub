@@ -1,0 +1,31 @@
+.mypage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-32);
+}
+
+.mypage-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: var(--inner);
+  gap: var(--spacing-32);
+}
+
+.mypage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.mypage-title {
+  font-size: var(--font-size-30);
+  font-weight: 700;
+}
+
+.mypage-no-lecture {
+  width: 100%;
+}

@@ -1,0 +1,83 @@
+/* ImageUploader.css */
+
+.thumbnail-input {
+  position: relative;
+  border: 2px dashed var(--color-border);
+  border-radius: 10px;
+  padding: var(--spacing-20);
+  min-height: 294px; /* 최소 높이 지정 */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--color-background);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.thumbnail-input:hover {
+  border-color: #aaa;
+}
+
+.thumbnail-input.drag-over {
+  border-color: #aaa;
+}
+
+.upload-prompt {
+  color: var(--color-font-subtitle);
+}
+
+.upload-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--color-font-gray);
+}
+
+.upload-prompt div {
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  color: var(--color-font-title);
+}
+
+.upload-prompt p {
+  margin: 8px 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-font-content);
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.clear-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7); /* 반투명 흰색 배경 */
+  border: none;
+  border-radius: 50%; /* 원형 버튼 */
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-danger); /* 빨간색 아이콘 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.clear-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.clear-button:active {
+  transform: scale(0.9);
+}

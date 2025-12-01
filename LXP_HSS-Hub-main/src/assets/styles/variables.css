@@ -1,0 +1,97 @@
+/* 전역 디자인 토큰 변수 */
+:root {
+  /* ===== 색상 (Color) ===== */
+
+  /* Primary (파란색 계열) */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #1d51e0;
+
+  --color-background: #f9fafb;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-font-title: #111827;
+  --color-font-subtitle: #374151;
+  --color-font-content: #475569;
+  --color-font-gray: #9ca3af;
+
+  --color-border: #e1e1e1;
+
+  /* --------------------------------------------------------------------- */
+
+  --color-primary-light: rgba(37, 99, 235, 0.15);
+
+  /* Success (초록색 계열) */
+  --color-success: #16a34a;
+  --color-success-hover: #15803d;
+
+  /* Danger (빨간색 계열) */
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-danger-light: rgba(220, 38, 38, 0.1);
+
+  /* Warning (주황색 계열) */
+  --color-warning: #f59e0b;
+  --color-warning-hover: #d97706;
+
+  /* Neutral (회색 계열) */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-600: #6b7280;
+  --color-neutral-900: #111827;
+
+  /* Background */
+  --color-bg-primary: #ffffff;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Text */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-inverse: #ffffff;
+
+  /* Border */
+  --color-border-default: #d1d5db;
+  --color-border-light: #9ca3af;
+
+  /* ===== 간격 (Spacing) ===== */
+  --inner: 1600px;
+  --layout-height: 80px;
+  --container-space: 30px;
+
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-100: 100px;
+
+  /* ===== 타이포그래피 (Typography) ===== */
+  --body-font-size: 16px;
+  --font-size-xs: 12px;
+  --font-size-13: 13px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-18: 18px;
+  --font-size-24: 24px;
+  --font-size-30: 30px;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --line-height-base: 1;
+
+  /* ===== Border Radius ===== */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 20px;
+  --radius-50vh: 50vh;
+
+  /* ===== Shadow ===== */
+  --shadow-focus-primary: 0 0 0 3px var(--color-primary-light);
+  --shadow-focus-danger: 0 0 0 3px var(--color-danger-light);
+}
