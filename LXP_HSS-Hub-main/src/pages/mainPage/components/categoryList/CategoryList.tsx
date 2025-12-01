@@ -7,6 +7,7 @@ import './CategoryList.css';
 interface CategoryListProps {
   selected: string;
   handleCategoryClick: (category: string) => void; //이 함수는 클릭하면 **무엇을 처리할지(상태 갱신)**만 하고, 값을 반환할 필요는 없으니 void
+  //@void가 왜들어가는건지 모르겠
 }
 
 //2) FC: Functional Component 타입 지정
