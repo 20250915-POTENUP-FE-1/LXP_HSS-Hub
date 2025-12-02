@@ -1,11 +1,17 @@
+import { FC } from 'react';
 import './CategoryList.css';
-import { useState } from 'react';
 
-function CategoryList({ selected, handleCategoryClick }) {
-  //  카테고리 목록을 배열로 정의
-  const categories = ['all', 'web', 'basic', 'data', 'ai'];
+interface CategoryListProps {
+  selected: string;
+  handleCategoryClick: (category: string) => void; 
+}
 
-  const categoryText = {
+const CategoryList: FC<CategoryListProps> = ({ selected, handleCategoryClick,
+}) => {
+  const categories: string[] = ['all', 'web', 'basic', 'data', 'ai'];
+
+
+  const categoryText: Record<string, string> = {
     all: '전체',
     web: '웹 개발',
     basic: '코딩 기초',
@@ -18,7 +24,6 @@ function CategoryList({ selected, handleCategoryClick }) {
       {categories.map((category) => (
         <button
           key={category}
-          //선택된 버튼만 CSS 적용
           className={selected === category ? 'active' : ''}
           onClick={() => handleCategoryClick(category)}
         >
@@ -27,6 +32,6 @@ function CategoryList({ selected, handleCategoryClick }) {
       ))}
     </div>
   );
-}
+};
 
 export default CategoryList;
