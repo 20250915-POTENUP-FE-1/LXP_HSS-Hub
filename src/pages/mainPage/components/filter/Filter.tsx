@@ -3,6 +3,7 @@ import './Filter.css';
 import { Sort } from 'types/types';
 
 interface FilterProps {
+  // types.ts에 Sort 정의
   value: Sort;
   handleSortClick: (sort: Sort) => void;
 }
