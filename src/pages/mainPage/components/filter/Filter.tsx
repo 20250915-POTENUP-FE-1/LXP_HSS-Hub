@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Filter.css';
 
-function Filter({ value, handleSortClick }) {
+interface FilterProps {
+  value: string; 
+  handleSortClick: (sortBy: string) => void; 
+  //@void가 왜들어가는건지 모르겠
+}
+
+const Filter: FC<FilterProps> = ({ value, handleSortClick }) => {
   return (
     <select
       className="filter-select"
@@ -12,6 +18,6 @@ function Filter({ value, handleSortClick }) {
       <option value="enrollmentCount">인기 순</option>
     </select>
   );
-}
+};
 
 export default Filter;
