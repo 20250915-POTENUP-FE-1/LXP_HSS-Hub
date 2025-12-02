@@ -10,7 +10,6 @@ const CategoryList: FC<CategoryListProps> = ({ selected, handleCategoryClick,
 }) => {
   const categories: string[] = ['all', 'web', 'basic', 'data', 'ai'];
 
-
   const categoryText: Record<string, string> = {
     all: '전체',
     web: '웹 개발',

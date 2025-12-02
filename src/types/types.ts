@@ -21,10 +21,8 @@ type Lecture = {
   thumbnailURL: string;
   price: number;
   enrollmentCount: number;
-
   createdAt: FieldValue;
   updatedAt: FieldValue;
-
   curriculum: Lesson[];
 };
 
