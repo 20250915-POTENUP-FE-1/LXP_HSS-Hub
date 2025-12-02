@@ -8,7 +8,8 @@ interface FilterProps {
   handleSortClick: (sort: Sort) => void;
 }
 
-const Filter: React.FC<FilterProps> = ({ value, handleSortClick }) => {
+// const Filter: React.FC<FilterProps> = ({ value, handleSortClick }) => {
+function Filter({ value, handleSortClick }: FilterProps){
   return (
     <select
       className="filter-select"
