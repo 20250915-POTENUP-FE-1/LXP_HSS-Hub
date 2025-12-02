@@ -4,11 +4,20 @@ import './SearchBar.css';
 
 interface SearchBarProps {
   keyword: string;
-  setKeyword: (value: string) => void;
+  setKeyword: (keyword: string) => void;
   onSearch: (keyword: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ keyword, setKeyword, onSearch }) => {
+// function SearchBar({keyword, setKeyword, onSearch} : SearchBarProps) {
+
+//   return <div></div>
+// }
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  keyword,
+  setKeyword,
+  onSearch,
+}) => {
   // 엔터 키로도 검색 가능
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {

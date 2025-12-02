@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import './CategoryList.css';
+import { Category } from 'types/types';
 
 interface CategoryListProps {
   selected: string;
-  handleCategoryClick: (category: string) => void; 
+  handleCategoryClick: (category: Category) => void; 
 }
 
-const CategoryList: FC<CategoryListProps> = ({ selected, handleCategoryClick,
-}) => {
-  const categories: string[] = ['all', 'web', 'basic', 'data', 'ai'];
+function CategoryList({ selected, handleCategoryClick }: CategoryListProps) {
+  const categories: Category[] = ['all', 'web', 'basic', 'data', 'ai'];
 
   const categoryText: Record<string, string> = {
     all: '전체',

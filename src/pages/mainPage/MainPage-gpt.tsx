@@ -1,39 +1,31 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LectureList from '../../components/lectureList/LectureList';
 import CategoryList from './components/categoryList/CategoryList';
 import Filter from './components/filter/Filter';
 import SearchBar from './components/searchBar/SearchBar';
 import { getLectures } from '../../services/lectureService';
+import { Lecture, Category, Sort } from 'types/types';
 import './MainPage.css';
-import { Category, Lecture, Sort } from 'types/types';
 
-function MainPage() {
+const MainPage: React.FC = () => {
   const [keyword, setKeyword] = useState<string>('');
-  // 전체 강의 리스트 상태 관리
   const [displayLectures, setDisplayLectures] = useState<Lecture[]>([]);
-  // 정렬 기준(최신순/인기순) 상태관리
   const [sortCondition, setSortCondition] = useState<Sort>('createdAt');
-  //선택된 카테고리 상태 관리
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // 데이터 불러오기 통합 함수
-  const fetchAndSetLectures = async (
-    category: Category,
-    sort: Sort,
-    searchKeyword: string,
-  ) => {
+  const fetchAndSetLectures = async (category: Category, sort: Sort, searchKeyword: string) => {
     try {
       setIsLoading(true);
-      const data = await getLectures(category, sort, searchKeyword);
+      const data: Lecture[] = await getLectures(category, sort, searchKeyword);
       setDisplayLectures(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
- 
+
   useEffect(() => {
     fetchAndSetLectures(selectedCategory, sortCondition, keyword);
   }, []);
@@ -42,6 +34,7 @@ function MainPage() {
     setSelectedCategory(category);
     setKeyword('');
     fetchAndSetLectures(category, sortCondition, '');
+
   };
 
   const handleSortClick = (sort: Sort) => {
@@ -49,7 +42,6 @@ function MainPage() {
     fetchAndSetLectures(selectedCategory, sort, keyword);
   };
 
-  // 검색 기능
   const handleSearch = (searchKeyword: string) => {
     if (!searchKeyword.trim()) {
       alert('검색어를 입력해주세요.');
@@ -61,28 +53,21 @@ function MainPage() {
 
   return (
     <main className="mainpage">
-      <SearchBar
-        keyword={keyword}
-        setKeyword={setKeyword}
-        onSearch={handleSearch}
-      />
+      <SearchBar keyword={keyword} setKeyword={setKeyword} onSearch={handleSearch} />
 
       <div className="mainpage-top">
-        <CategoryList
-          selected={selectedCategory}
-          handleCategoryClick={handleCategoryClick}
-        />
+        <CategoryList selected={selectedCategory} handleCategoryClick={handleCategoryClick} />
         <Filter value={sortCondition} handleSortClick={handleSortClick} />
       </div>
 
       {!isLoading && displayLectures.length === 0 ? (
         <div>등록된 강의가 없습니다.</div>
       ) : (
-        <LectureList lectures={displayLectures} type='MAIN' />
+        <LectureList lectures={displayLectures} />
       )}
       {isLoading && <span className="loader" />}
     </main>
   );
-}
+};
 
 export default MainPage;
