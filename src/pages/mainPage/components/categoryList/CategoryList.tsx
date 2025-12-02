@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import './CategoryList.css';
 import { Category } from 'types/types';
 
