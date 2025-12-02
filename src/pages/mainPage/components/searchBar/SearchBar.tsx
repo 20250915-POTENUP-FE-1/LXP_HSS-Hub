@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { ChangeEvent, KeyboardEvent } from 'react';
 import './SearchBar.css';
 import { Search } from 'lucide-react';
 
-function SearchBar({ keyword, setKeyword, onSearch }) {
+interface SearchBarProps {
+  keyword: string;
+  setKeyword: (value: string) => void;
+  onSearch: (keyword: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ keyword, setKeyword, onSearch }) => {
   // 엔터 키로도 검색 가능
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onSearch(keyword);
     }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
   };
 
   return (
@@ -17,7 +27,7 @@ function SearchBar({ keyword, setKeyword, onSearch }) {
         name="keyword"
         className="search-bar-input"
         value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={handleChange}
         onKeyDown={handleKeyPress}
         placeholder="검색어를 입력해주세요"
       />
@@ -26,6 +36,6 @@ function SearchBar({ keyword, setKeyword, onSearch }) {
       </button>
     </div>
   );
-}
+};
 
 export default SearchBar;
