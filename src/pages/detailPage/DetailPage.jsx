@@ -16,6 +16,7 @@ function DetailPage() {
   // Redux에서 userInfo 가져오기
   const userInfo = useSelector((state) => state.user.userInfo);
   const userRole = userInfo?.role || 'GUEST'; //로그인 안하면 GUEST
+  //3. Redux 타입 지정
   const dispatch = useDispatch();
 
   //  a. useParams의 id값으로 해당 강의 정보 가져오기
