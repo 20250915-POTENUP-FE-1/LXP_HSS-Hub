@@ -26,7 +26,7 @@ export const getLectures = async (
   sort: Sort,
   keyword?: string,
 ) => {
-  let q = null;
+  let q;
   // 카테고리 전체면, 모든 강의 가져오기
   if (category === 'all') {
     // 카테고리 전체, 인기순 정렬
@@ -45,7 +45,6 @@ export const getLectures = async (
     );
   }
 
-  if (!q) return;
   const snapshot = await getDocs(q);
 
   const result: Lecture[] = [];

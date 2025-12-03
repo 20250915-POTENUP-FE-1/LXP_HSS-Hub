@@ -1,10 +1,17 @@
-import { useState } from 'react';
-import './SearchBar.css';
+import { KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
+import './SearchBar.css';
 
-function SearchBar({ keyword, setKeyword, onSearch }) {
+interface SearchBarProps {
+  keyword: string;
+  setKeyword: (keyword: string) => void;
+  onSearch: (keyword: string) => void;
+}
+
+// const SearchBar: React.FC<SearchBarProps> = ({ keyword, setKeyword,onSearch,}) => {
+function SearchBar({ keyword, setKeyword, onSearch }: SearchBarProps) {
   // 엔터 키로도 검색 가능
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onSearch(keyword);
     }
