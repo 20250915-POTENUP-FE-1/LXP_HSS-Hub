@@ -6,82 +6,91 @@ import { Tag, UserRound, UsersRound } from 'lucide-react';
 import { getLecture, updateLecture } from '../../services/lectureService';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateInfo } from '../../store/userSlice';
+import { RootState, AppDispatch } from '../../store/store';
+import { Lecture, User } from 'types/types';
+
+// @@return 전까지 코드 전체 해석 필요 
+
+//4. 문자열 리터럴 타입 (UserRole)
+type UserRole = 'GUEST' | 'STUDENT' | 'TEACHER';
 
 function DetailPage() {
-  const { lectureId } = useParams();
+
+  // useParams 타입 지정 → lectureId 가져오기
+  const { lectureId } = useParams<{ lectureId: string }>();
   const navigate = useNavigate();
-  const [lecture, setLecture] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  
+  // Redux 타입 지정 (useSelector + useDispatch)
+  const dispatch = useDispatch<AppDispatch>();
+
+  // useState 타입 지정
+  const [lecture, setLecture] = useState<Lecture | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Redux에서 userInfo 가져오기
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const userRole = userInfo?.role || 'GUEST'; //로그인 안하면 GUEST
-  const dispatch = useDispatch();
+  const userInfo = useSelector((state: RootState) => state.user.userInfo) as User | null; 
+  
+  const userRole: UserRole = userInfo?.role ?? 'GUEST';
 
-  //  a. useParams의 id값으로 해당 강의 정보 가져오기
+  // 강의 정보 가져오기
   useEffect(() => {
     const fetchLecture = async () => {
+      if (!lectureId) return;
       setIsLoading(true);
-      const data = await getLecture(lectureId); // Firestore에서 강의 불러오기
-      setLecture(data);
+      const data = await getLecture(lectureId);
+      setLecture(data as Lecture);
       setIsLoading(false);
     };
     fetchLecture();
   }, [lectureId]);
 
-  //수강신청 버튼 클릭 이벤트
+  // 수강신청 버튼 클릭 이벤트
   const handleRegistLecture = async () => {
+    if (!lecture) return;
+
     if (userRole === 'GUEST') {
       if (window.confirm('로그인 상태가 아닙니다. 로그인하시겠습니까?')) {
         navigate(`/login`);
       }
       return;
-    } else if (userRole === 'STUDENT') {
-      // 학생일 경우 수강생 수 증가@@
+    }
 
-      // true면 이미 수강중인 강의, false면 아직 수강하지 않은 강의
-      if (
-        userInfo.lectureList.find(
-          (lectureId) => lectureId === lecture.lectureId,
-        )
-      ) {
-        if (
-          confirm('이미 수강 중인 강의 입니다. 마이페이지로 이동하시겠습니까?')
-        ) {
+    if (userRole === 'STUDENT') {
+      // 이미 수강중인지 확인
+      const already = userInfo?.lectureList.includes(lecture.lectureId);
+      if (already) {
+        if (window.confirm('이미 수강 중인 강의 입니다. 마이페이지로 이동하시겠습니까?')) {
           navigate('/mypage');
         }
         return;
       }
 
-      //ui lectureList업데이트
-      setLecture((prev) => ({
-        ...prev,
-        enrollmentCount: prev.enrollmentCount + 1,
-      }));
+      // UI 업데이트
+      setLecture((prev) =>
+        prev ? { ...prev, enrollmentCount: prev.enrollmentCount + 1 } : prev
+      );
 
+      // Firestore 업데이트
       await updateLecture(lecture.lectureId, {
         enrollmentCount: lecture.enrollmentCount + 1,
       });
 
-      //user lectureList업데이트
-      const updatedLectureList = [...userInfo.lectureList, lectureId];
-
+      // Redux userInfo 업데이트
+      const updatedLectureList = [...(userInfo?.lectureList || []), lectureId!];
       await dispatch(
         updateInfo({
-          userId: userInfo.userId,
+          userId: userInfo!.userId,
           userInfo: { lectureList: updatedLectureList },
-        }),
+        })
       );
 
-      if (
-        window.confirm(
-          '수강신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?',
-        )
-      ) {
+      if (window.confirm('수강신청이 완료되었습니다. 마이페이지로 이동하시겠습니까?')) {
         navigate(`/mypage`);
       }
       return;
-    } else if (userRole === 'TEACHER') {
+    }
+
+    if (userRole === 'TEACHER') {
       navigate(`/mypage/edit/${lectureId}`);
     }
   };
@@ -98,17 +107,20 @@ function DetailPage() {
             <h2>강의 상세 설명</h2>
             <p>{lecture?.description}</p>
           </div>
+
           <div className="detailpage-curriculum">
             <h2>커리큘럼</h2>
-            {/* 각 커리큘럼 아이템에 인덱스(index)와 item을 전달 */}
-            {lecture?.curriculum.map((item, index) => (
+            {/* 5. Optional chaining 강화 */}
+            {lecture?.curriculum?.map((item, index) => (
               <CurriculumItem key={item.lessonId} index={index} item={item} />
             ))}
           </div>
         </div>
+
         <div className="detailpage-inform white-box">
           <h2 className="detailpage-inform-title">{lecture?.lectureTitle}</h2>
           <div className="category-box">{lecture?.category}</div>
+
           <div className="detailpage-inform-list">
             <ul>
               <li>
@@ -137,8 +149,11 @@ function DetailPage() {
             </ul>
           </div>
 
+          {/* @@ 코드해석??
+           TS는 "lectureId가 null일 수도 있음"이라고 경고함
+          실제로 URL param은 거의 항상 존재 → "절대 undefined 아님"이라는 의미로 ! */}
           {(userRole !== 'TEACHER' ||
-            userInfo.lectureList.some((id) => id === lectureId)) && (
+            userInfo?.lectureList.includes(lectureId!)) && (
             <button
               className="lecture-regist-button"
               onClick={handleRegistLecture}
@@ -148,6 +163,7 @@ function DetailPage() {
           )}
         </div>
       </div>
+
       {isLoading && <span className="loader"></span>}
     </div>
   );
