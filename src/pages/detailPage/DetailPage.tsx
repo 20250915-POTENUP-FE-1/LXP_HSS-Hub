@@ -9,30 +9,27 @@ import { updateInfo } from '../../store/userSlice';
 import { RootState, AppDispatch } from '../../store/store';
 import { Lecture, User } from 'types/types';
 
+// @@return 전까지 코드 전체 해석 필요 
+
 //4. 문자열 리터럴 타입 (UserRole)
 type UserRole = 'GUEST' | 'STUDENT' | 'TEACHER';
 
 function DetailPage() {
 
-  /* 1. useParams 타입 지정
-  useParams()는 기본적으로 string | undefined
-  TS에게 **"이 URL 파라미터는 문자열이야"**라고 알려줘야 lectureId.toUpperCase() 같은 문자열 연산 가능 */ 
+  // useParams 타입 지정 → lectureId 가져오기
   const { lectureId } = useParams<{ lectureId: string }>();
   const navigate = useNavigate();
   
-  //3. Redux 타입 지정 (useSelector + useDispatch)
+  // Redux 타입 지정 (useSelector + useDispatch)
   const dispatch = useDispatch<AppDispatch>();
 
-  /* 2. useState 타입 지정
-  "이 state가 어떤 타입인지 정확히 뭐지?"
-  lecture는 Firestore에서 가져온 Lecture 타입 → 그러니 제네릭에 넣기
-  초기값 undefined라면 Lecture | undefined 꼭 적기
-  isLoading은 boolean → boolean 명시 */
+  // useState 타입 지정
   const [lecture, setLecture] = useState<Lecture | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Redux에서 userInfo 가져오기
-  const userInfo = useSelector((state: RootState) => state.user.userInfo) as User | null;
+  const userInfo = useSelector((state: RootState) => state.user.userInfo) as User | null; 
+  
   const userRole: UserRole = userInfo?.role ?? 'GUEST';
 
   // 강의 정보 가져오기
@@ -152,7 +149,7 @@ function DetailPage() {
             </ul>
           </div>
 
-          {/* @@ 코드해석
+          {/* @@ 코드해석??
            TS는 "lectureId가 null일 수도 있음"이라고 경고함
           실제로 URL param은 거의 항상 존재 → "절대 undefined 아님"이라는 의미로 ! */}
           {(userRole !== 'TEACHER' ||
